@@ -30,7 +30,7 @@ package gervill.com.sun.media.sound;
  *
  * @author Karl Helgason
  */
-public final class DLSInfo {
+final class DLSInfo {
 
     /**
      * (INAM) Title or subject.
@@ -40,23 +40,23 @@ public final class DLSInfo {
      * (ICRD) Date of creation, the format is: YYYY-MM-DD.
      *        For example 2007-01-01 for 1. january of year 2007.
      */
-    public String creationDate = null;
+    String creationDate = null;
     /**
      * (IENG) Name of engineer who created the object.
      */
-    public String engineers = null;
+    String engineers = null;
     /**
      * (IPRD) Name of the product which the object is intended for.
      */
-    public String product = null;
+    String product = null;
     /**
      * (ICOP) Copyright information.
      */
-    public String copyright = null;
+    String copyright = null;
     /**
      * (ICMT) General comments. Doesn't contain newline characters.
      */
-    public String comments = null;
+    String comments = null;
     /**
      * (ISFT) Name of software package used to create the file.
      */
@@ -64,7 +64,7 @@ public final class DLSInfo {
     /**
      * (IARL) Where content is archived.
      */
-    public String archival_location = null;
+    String archival_location = null;
     /**
      * (IART) Artists of original content.
      */
@@ -72,7 +72,7 @@ public final class DLSInfo {
     /**
      * (ICMS) Names of persons or orginizations who commissioned the file.
      */
-    public String commissioned = null;
+    String commissioned = null;
     /**
      * (IGNR) Genre of the work.
      *        Example: jazz, classical, rock, etc.
@@ -82,7 +82,7 @@ public final class DLSInfo {
      * (IKEY) List of keyword that describe the content.
      *        Examples: FX, bird, piano, etc.
      */
-    public String keywords = null;
+    String keywords = null;
     /**
      * (IMED) Describes original medium of the data.
      *        For example: record, CD, etc.
@@ -91,7 +91,7 @@ public final class DLSInfo {
     /**
      * (ISBJ) Description of the content.
      */
-    public String subject = null;
+    String subject = null;
     /**
      * (ISRC) Name of person or orginization who supplied
      *        orginal material for the file.
@@ -101,9 +101,9 @@ public final class DLSInfo {
      * (ISRF) Source media for sample data is from.
      *        For example: CD, TV, etc.
      */
-    public String source_form = null;
+    String source_form = null;
     /**
      * (ITCH) Technician who sample the file/object.
      */
-    public String technician = null;
+    String technician = null;
 }

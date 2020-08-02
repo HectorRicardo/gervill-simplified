@@ -248,7 +248,7 @@ public class Track {
      * see Sequencer#setTempoInBPM(float)
      * see Sequencer#getTickPosition()
      */
-    public long ticks() {
+    long ticks() {
         long ret = 0;
         synchronized (eventsList) {
             if (eventsList.size() > 0) {

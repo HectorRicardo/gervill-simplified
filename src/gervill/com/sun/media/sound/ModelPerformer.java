@@ -33,7 +33,7 @@ import java.util.List;
  *
  * @author Karl Helgason
  */
-public final class ModelPerformer {
+final class ModelPerformer {
 
     private final List<ModelOscillator> oscillators = new ArrayList<ModelOscillator>();
     private List<ModelConnectionBlock> connectionBlocks

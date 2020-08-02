@@ -47,7 +47,7 @@ import gervill.javax.sound.sampled.AudioFormat;
  *
  * @author Karl Helgason
  */
-public abstract class ModelInstrument extends Instrument {
+abstract class ModelInstrument extends Instrument {
 
     protected ModelInstrument(Soundbank soundbank, Patch patch, String name,
             Class<?> dataClass) {

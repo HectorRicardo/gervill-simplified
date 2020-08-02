@@ -30,7 +30,7 @@ package gervill.com.sun.media.sound;
  *
  * @author Karl Helgason
  */
-public final class ModelIdentifier {
+final class ModelIdentifier {
 
     /*
      *  Object    Variable
@@ -92,18 +92,18 @@ public final class ModelIdentifier {
         this.object = object;
     }
 
-    public ModelIdentifier(String object, int instance) {
+    ModelIdentifier(String object, int instance) {
         this.object = object;
         this.instance = instance;
     }
 
-    public ModelIdentifier(String object, String variable) {
+    ModelIdentifier(String object, String variable) {
         this.object = object;
         this.variable = variable;
 
     }
 
-    public ModelIdentifier(String object, String variable, int instance) {
+    ModelIdentifier(String object, String variable, int instance) {
         this.object = object;
         this.variable = variable;
         this.instance = instance;

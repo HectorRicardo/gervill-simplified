@@ -29,7 +29,7 @@ package gervill.com.sun.media.sound;
  *
  * @author Karl Helgason
  */
-public interface ModelTransform {
+interface ModelTransform {
 
     abstract public double transform(double value);
 }

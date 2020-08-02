@@ -35,7 +35,7 @@ import gervill.javax.sound.midi.Patch;
  *
  * @author Karl Helgason
  */
-public final class SoftTuning {
+final class SoftTuning {
 
     private String name = null;
     private final double[] tuning = new double[128];
@@ -47,13 +47,13 @@ public final class SoftTuning {
             tuning[i] = i * 100;
     }
 
-    public SoftTuning(byte[] data) {
+    SoftTuning(byte[] data) {
         for (int i = 0; i < tuning.length; i++)
             tuning[i] = i * 100;
         load(data);
     }
 
-    public SoftTuning(Patch patch) {
+    SoftTuning(Patch patch) {
         this.patch = patch;
         name = "12-TET";
         for (int i = 0; i < tuning.length; i++)
@@ -241,7 +241,7 @@ public final class SoftTuning {
         return Arrays.copyOf(tuning, tuning.length);
     }
 
-    public double getTuning(int noteNumber) {
+    double getTuning(int noteNumber) {
         return tuning[noteNumber];
     }
 

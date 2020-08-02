@@ -32,7 +32,7 @@ import java.util.Arrays;
  *
  * @author Karl Helgason
  */
-public final class ModelStandardIndexedDirector implements ModelDirector {
+final class ModelStandardIndexedDirector implements ModelDirector {
 
     private final ModelPerformer[] performers;
     private final ModelDirectedPlayer player;
@@ -44,7 +44,7 @@ public final class ModelStandardIndexedDirector implements ModelDirector {
     private int[] counters;
     private int[][] mat;
 
-    public ModelStandardIndexedDirector(final ModelPerformer[] performers,
+    ModelStandardIndexedDirector(final ModelPerformer[] performers,
                                         final ModelDirectedPlayer player) {
         this.performers = Arrays.copyOf(performers, performers.length);
         this.player = player;

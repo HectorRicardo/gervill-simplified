@@ -48,18 +48,18 @@ final class Platform {
     private static final String libNameDSound   = "jsoundds";
 
     // extra libs handling: bit flags for each different library
-    public static final int LIB_MAIN     = 1;
-    public static final int LIB_ALSA     = 2;
-    public static final int LIB_DSOUND   = 4;
+    private static final int LIB_MAIN     = 1;
+    private static final int LIB_ALSA     = 2;
+    private static final int LIB_DSOUND   = 4;
 
     // bit field of the constants above. Willbe set in loadLibraries
     private static int loadedLibs = 0;
 
     // features: the main native library jsound reports which feature is
     // contained in which lib
-    public static final int FEATURE_MIDIIO       = 1;
-    public static final int FEATURE_PORTS        = 2;
-    public static final int FEATURE_DIRECT_AUDIO = 3;
+    private static final int FEATURE_MIDIIO       = 1;
+    private static final int FEATURE_PORTS        = 2;
+    private static final int FEATURE_DIRECT_AUDIO = 3;
 
     // SYSTEM CHARACTERISTICS
     // vary according to hardware architecture

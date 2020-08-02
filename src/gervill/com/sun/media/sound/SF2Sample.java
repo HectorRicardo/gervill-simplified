@@ -36,7 +36,7 @@ import gervill.javax.sound.sampled.AudioInputStream;
  *
  * @author Karl Helgason
  */
-public final class SF2Sample extends SoundbankResource {
+final class SF2Sample extends SoundbankResource {
 
     String name = "";
     long startLoop = 0;
@@ -49,7 +49,7 @@ public final class SF2Sample extends SoundbankResource {
     ModelByteBuffer data;
     ModelByteBuffer data24;
 
-    public SF2Sample(Soundbank soundBank) {
+    SF2Sample(Soundbank soundBank) {
         super(soundBank, null, AudioInputStream.class);
     }
 

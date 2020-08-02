@@ -36,7 +36,7 @@ import gervill.javax.sound.sampled.AudioInputStream;
  *
  * @author Karl Helgason
  */
-public final class SoftJitterCorrector extends AudioInputStream {
+final class SoftJitterCorrector extends AudioInputStream {
 
     private static class JitterStream extends InputStream {
 
@@ -269,7 +269,7 @@ public final class SoftJitterCorrector extends AudioInputStream {
         }
     }
 
-    public SoftJitterCorrector(AudioInputStream stream, int buffersize,
+    SoftJitterCorrector(AudioInputStream stream, int buffersize,
             int smallbuffersize) {
         super(new JitterStream(stream, buffersize, smallbuffersize),
                 stream.getFormat(), stream.getFrameLength());

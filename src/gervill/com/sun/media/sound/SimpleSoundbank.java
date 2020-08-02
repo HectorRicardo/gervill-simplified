@@ -38,14 +38,14 @@ import gervill.javax.sound.midi.SoundbankResource;
  *
  * @author Karl Helgason
  */
-public class SimpleSoundbank implements Soundbank {
+class SimpleSoundbank implements Soundbank {
 
-    String name = "";
-    String version = "";
-    String vendor = "";
-    String description = "";
-    List<SoundbankResource> resources = new ArrayList<SoundbankResource>();
-    List<Instrument> instruments = new ArrayList<Instrument>();
+    private String name = "";
+    private String version = "";
+    private String vendor = "";
+    private String description = "";
+    private List<SoundbankResource> resources = new ArrayList<SoundbankResource>();
+    private List<Instrument> instruments = new ArrayList<Instrument>();
 
     public String getName() {
         return name;
@@ -125,11 +125,11 @@ public class SimpleSoundbank implements Soundbank {
             resources.remove(resource);
     }
 
-    public void addInstrument(Instrument resource) {
+    void addInstrument(Instrument resource) {
         instruments.add(resource);
     }
 
-    public void removeInstrument(Instrument resource) {
+    private void removeInstrument(Instrument resource) {
         instruments.remove(resource);
     }
 

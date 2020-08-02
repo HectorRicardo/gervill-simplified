@@ -98,19 +98,19 @@ public class Sequence {
      * see #SMPTE_30
      * see #getDivisionType
      */
-    protected float divisionType;
+    private float divisionType;
 
     /**
      * The timing resolution of the sequence.
      * see #getResolution
      */
-    protected int resolution;
+    private int resolution;
 
     /**
      * The MIDI tracks in this sequence.
      * see #getTracks
      */
-    protected Vector<Track> tracks = new Vector<Track>();
+    private Vector<Track> tracks = new Vector<Track>();
 
 
     /**

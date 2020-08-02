@@ -32,7 +32,7 @@ import gervill.javax.sound.midi.MidiChannel;
  *
  * @author Karl Helgason
  */
-public final class SoftChannelProxy implements MidiChannel {
+final class SoftChannelProxy implements MidiChannel {
 
     private MidiChannel channel = null;
 

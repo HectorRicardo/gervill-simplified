@@ -30,7 +30,7 @@ package gervill.com.sun.media.sound;
  *
  * @author Karl Helgason
  */
-public interface ModelOscillator {
+interface ModelOscillator {
 
     public int getChannels();
 

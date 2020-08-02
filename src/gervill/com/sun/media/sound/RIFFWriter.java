@@ -35,7 +35,7 @@ import java.io.RandomAccessFile;
  *
  * @author Karl Helgason
  */
-public final class RIFFWriter extends OutputStream {
+final class RIFFWriter extends OutputStream {
 
     private interface RandomAccessWriter {
 
@@ -169,15 +169,15 @@ public final class RIFFWriter extends OutputStream {
     private boolean open = true;
     private boolean writeoverride = false;
 
-    public RIFFWriter(String name, String format) throws IOException {
+    RIFFWriter(String name, String format) throws IOException {
         this(new RandomAccessFileWriter(name), format, 0);
     }
 
-    public RIFFWriter(File file, String format) throws IOException {
+    RIFFWriter(File file, String format) throws IOException {
         this(new RandomAccessFileWriter(file), format, 0);
     }
 
-    public RIFFWriter(OutputStream stream, String format) throws IOException {
+    RIFFWriter(OutputStream stream, String format) throws IOException {
         this(new RandomAccessByteWriter(stream), format, 0);
     }
 
@@ -273,7 +273,7 @@ public final class RIFFWriter extends OutputStream {
         raf.write(b, off, len);
     }
 
-    public RIFFWriter writeList(String format) throws IOException {
+    RIFFWriter writeList(String format) throws IOException {
         if (chunktype == 2) {
             throw new IllegalArgumentException(
                     "Only LIST and RIFF can write lists!");
@@ -286,7 +286,7 @@ public final class RIFFWriter extends OutputStream {
         return childchunk;
     }
 
-    public RIFFWriter writeChunk(String format) throws IOException {
+    RIFFWriter writeChunk(String format) throws IOException {
         if (chunktype == 2) {
             throw new IllegalArgumentException(
                     "Only LIST and RIFF can write chunks!");
@@ -300,13 +300,13 @@ public final class RIFFWriter extends OutputStream {
     }
 
     // Write ASCII chars to stream
-    public void writeString(String string) throws IOException {
+    void writeString(String string) throws IOException {
         byte[] buff = string.getBytes();
         write(buff);
     }
 
     // Write ASCII chars to stream
-    public void writeString(String string, int len) throws IOException {
+    void writeString(String string, int len) throws IOException {
         byte[] buff = string.getBytes();
         if (buff.length > len)
             write(buff, 0, len);
@@ -318,18 +318,18 @@ public final class RIFFWriter extends OutputStream {
     }
 
     // Write 8 bit signed integer to stream
-    public void writeByte(int b) throws IOException {
+    void writeByte(int b) throws IOException {
         write(b);
     }
 
     // Write 16 bit signed integer to stream
-    public void writeShort(short b) throws IOException {
+    void writeShort(short b) throws IOException {
         write((b >>> 0) & 0xFF);
         write((b >>> 8) & 0xFF);
     }
 
     // Write 32 bit signed integer to stream
-    public void writeInt(int b) throws IOException {
+    void writeInt(int b) throws IOException {
         write((b >>> 0) & 0xFF);
         write((b >>> 8) & 0xFF);
         write((b >>> 16) & 0xFF);
@@ -349,17 +349,17 @@ public final class RIFFWriter extends OutputStream {
     }
 
     // Write 8 bit unsigned integer to stream
-    public void writeUnsignedByte(int b) throws IOException {
+    void writeUnsignedByte(int b) throws IOException {
         writeByte((byte) b);
     }
 
     // Write 16 bit unsigned integer to stream
-    public void writeUnsignedShort(int b) throws IOException {
+    void writeUnsignedShort(int b) throws IOException {
         writeShort((short) b);
     }
 
     // Write 32 bit unsigned integer to stream
-    public void writeUnsignedInt(long b) throws IOException {
+    void writeUnsignedInt(long b) throws IOException {
         writeInt((int) b);
     }
 }

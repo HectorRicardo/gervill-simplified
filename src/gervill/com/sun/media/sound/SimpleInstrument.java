@@ -34,7 +34,7 @@ import gervill.javax.sound.midi.Patch;
  *
  * @author Karl Helgason
  */
-public class SimpleInstrument extends ModelInstrument {
+class SimpleInstrument extends ModelInstrument {
 
     private static class SimpleInstrumentPart {
         ModelPerformer[] performers;
@@ -44,11 +44,11 @@ public class SimpleInstrument extends ModelInstrument {
         int velTo;
         int exclusiveClass;
     }
-    protected int preset = 0;
-    protected int bank = 0;
-    protected boolean percussion = false;
-    protected String name = "";
-    protected List<SimpleInstrumentPart> parts
+    private int preset = 0;
+    private int bank = 0;
+    private boolean percussion = false;
+    private String name = "";
+    private List<SimpleInstrumentPart> parts
             = new ArrayList<SimpleInstrumentPart>();
 
     public SimpleInstrument() {
@@ -59,7 +59,7 @@ public class SimpleInstrument extends ModelInstrument {
         parts.clear();
     }
 
-    public void add(ModelPerformer[] performers, int keyFrom, int keyTo,
+    private void add(ModelPerformer[] performers, int keyFrom, int keyTo,
             int velFrom, int velTo, int exclusiveClass) {
         SimpleInstrumentPart part = new SimpleInstrumentPart();
         part.performers = performers;
@@ -71,16 +71,16 @@ public class SimpleInstrument extends ModelInstrument {
         parts.add(part);
     }
 
-    public void add(ModelPerformer[] performers, int keyFrom, int keyTo,
+    private void add(ModelPerformer[] performers, int keyFrom, int keyTo,
             int velFrom, int velTo) {
         add(performers, keyFrom, keyTo, velFrom, velTo, -1);
     }
 
-    public void add(ModelPerformer[] performers, int keyFrom, int keyTo) {
+    private void add(ModelPerformer[] performers, int keyFrom, int keyTo) {
         add(performers, keyFrom, keyTo, 0, 127, -1);
     }
 
-    public void add(ModelPerformer[] performers) {
+    private void add(ModelPerformer[] performers) {
         add(performers, 0, 127, 0, 127, -1);
     }
 

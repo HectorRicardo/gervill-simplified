@@ -29,7 +29,7 @@ package gervill.com.sun.media.sound;
  *
  * @author Karl Helgason
  */
-public final class FFT {
+final class FFT {
 
     private final double[] w;
     private final int fftFrameSize;
@@ -63,7 +63,7 @@ public final class FFT {
 
     }
 
-    public void transform(double[] data) {
+    void transform(double[] data) {
         bitreversal(data);
         calc(fftFrameSize, data, sign, w);
     }

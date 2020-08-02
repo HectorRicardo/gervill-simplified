@@ -36,7 +36,7 @@ import gervill.javax.sound.midi.Patch;
  *
  * @author Karl Helgason
  */
-public final class SF2Instrument extends ModelInstrument {
+final class SF2Instrument extends ModelInstrument {
 
     String name = "";
     int preset = 0;
@@ -44,7 +44,7 @@ public final class SF2Instrument extends ModelInstrument {
     long library = 0;
     long genre = 0;
     long morphology = 0;
-    SF2GlobalRegion globalregion = null;
+    private SF2GlobalRegion globalregion = null;
     List<SF2InstrumentRegion> regions
             = new ArrayList<SF2InstrumentRegion>();
 
@@ -52,7 +52,7 @@ public final class SF2Instrument extends ModelInstrument {
         super(null, null, null, null);
     }
 
-    public SF2Instrument(SF2Soundbank soundbank) {
+    SF2Instrument(SF2Soundbank soundbank) {
         super(soundbank, null, null, null);
     }
 
@@ -730,7 +730,7 @@ public final class SF2Instrument extends ModelInstrument {
         return msrc;
     }
 
-    static ModelDestination convertDestination(int dst,
+    private static ModelDestination convertDestination(int dst,
             double[] amountcorrection, ModelSource[] extrasrc) {
         ModelIdentifier id = null;
         switch (dst) {

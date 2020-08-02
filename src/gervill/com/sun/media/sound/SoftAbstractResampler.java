@@ -35,7 +35,7 @@ import gervill.javax.sound.midi.VoiceStatus;
  *
  * @author Karl Helgason
  */
-public abstract class SoftAbstractResampler implements SoftResampler {
+abstract class SoftAbstractResampler implements SoftResampler {
 
     private class ModelAbstractResamplerStream implements SoftResamplerStreamer {
 

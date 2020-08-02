@@ -38,7 +38,7 @@ import java.util.Collection;
  *
  * @author Karl Helgason
  */
-public final class ModelByteBuffer {
+final class ModelByteBuffer {
 
     private ModelByteBuffer root = this;
     private File file;
@@ -164,13 +164,13 @@ public final class ModelByteBuffer {
         }
     }
 
-    public ModelByteBuffer(byte[] buffer) {
+    ModelByteBuffer(byte[] buffer) {
         this.buffer = buffer;
         this.offset = 0;
         this.len = buffer.length;
     }
 
-    public ModelByteBuffer(byte[] buffer, int offset, int len) {
+    ModelByteBuffer(byte[] buffer, int offset, int len) {
         this.buffer = buffer;
         this.offset = offset;
         this.len = len;
@@ -182,13 +182,13 @@ public final class ModelByteBuffer {
         this.len = file.length();
     }
 
-    public ModelByteBuffer(File file, long offset, long len) {
+    ModelByteBuffer(File file, long offset, long len) {
         this.file = file;
         this.fileoffset = offset;
         this.len = len;
     }
 
-    public void writeTo(OutputStream out) throws IOException {
+    void writeTo(OutputStream out) throws IOException {
         if (root.file != null && root.buffer == null) {
             InputStream is = getInputStream();
             byte[] buff = new byte[1024];
@@ -216,11 +216,11 @@ public final class ModelByteBuffer {
         return subbuffer(beginIndex, capacity());
     }
 
-    public ModelByteBuffer subbuffer(long beginIndex, long endIndex) {
+    ModelByteBuffer subbuffer(long beginIndex, long endIndex) {
         return subbuffer(beginIndex, endIndex, false);
     }
 
-    public ModelByteBuffer subbuffer(long beginIndex, long endIndex,
+    ModelByteBuffer subbuffer(long beginIndex, long endIndex,
             boolean independent) {
         return new ModelByteBuffer(this, beginIndex, endIndex, independent);
     }
@@ -229,13 +229,13 @@ public final class ModelByteBuffer {
         return root.buffer;
     }
 
-    public long arrayOffset() {
+    long arrayOffset() {
         if (root != this)
             return root.arrayOffset() + offset;
         return offset;
     }
 
-    public long capacity() {
+    long capacity() {
         return len;
     }
 
@@ -251,7 +251,7 @@ public final class ModelByteBuffer {
         return fileoffset;
     }
 
-    public static void loadAll(Collection<ModelByteBuffer> col)
+    static void loadAll(Collection<ModelByteBuffer> col)
             throws IOException {
         File selfile = null;
         RandomAccessFile raf = null;

@@ -44,9 +44,9 @@ import gervill.javax.sound.sampled.Control.Type;
  *
  * @author Karl Helgason
  */
-public abstract class SoftMixingDataLine implements DataLine {
+abstract class SoftMixingDataLine implements DataLine {
 
-    public static final FloatControl.Type CHORUS_SEND = new FloatControl.Type(
+    private static final FloatControl.Type CHORUS_SEND = new FloatControl.Type(
             "Chorus Send") {
     };
 
@@ -91,7 +91,7 @@ public abstract class SoftMixingDataLine implements DataLine {
 
         private int mark_ibuffer_len = 0;
 
-        public AudioFloatInputStreamResampler(AudioFloatInputStream ais,
+        AudioFloatInputStreamResampler(AudioFloatInputStream ais,
                 AudioFormat format) {
             this.ais = ais;
             AudioFormat sourceFormat = ais.getFormat();
@@ -417,13 +417,13 @@ public abstract class SoftMixingDataLine implements DataLine {
 
     float eff2gain = 0;
 
-    List<LineListener> listeners = new ArrayList<LineListener>();
+    private List<LineListener> listeners = new ArrayList<LineListener>();
 
     final Object control_mutex;
 
     SoftMixingMixer mixer;
 
-    DataLine.Info info;
+    private DataLine.Info info;
 
     protected abstract void processControlLogic();
 
@@ -440,7 +440,7 @@ public abstract class SoftMixingDataLine implements DataLine {
         calcVolume();
     }
 
-    final void calcVolume() {
+    private final void calcVolume() {
         synchronized (control_mutex) {
             double gain = Math.pow(10.0, gain_control.getValue() / 20.0);
             if (mute_control.getValue())

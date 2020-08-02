@@ -40,15 +40,15 @@ import gervill.javax.sound.sampled.AudioInputStream;
  *
  * @author Karl Helgason
  */
-public final class DLSSample extends SoundbankResource {
+final class DLSSample extends SoundbankResource {
 
     byte[] guid = null;
     DLSInfo info = new DLSInfo();
     DLSSampleOptions sampleoptions;
-    ModelByteBuffer data;
+    private ModelByteBuffer data;
     AudioFormat format;
 
-    public DLSSample(Soundbank soundBank) {
+    DLSSample(Soundbank soundBank) {
         super(soundBank, null, AudioInputStream.class);
     }
 

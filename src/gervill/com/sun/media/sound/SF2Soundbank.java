@@ -53,29 +53,29 @@ import gervill.javax.sound.midi.SoundbankResource;
 public final class SF2Soundbank implements Soundbank {
 
     // version of the Sound Font RIFF file
-    int major = 2;
-    int minor = 1;
+    private int major = 2;
+    private int minor = 1;
     // target Sound Engine
-    String targetEngine = "EMU8000";
+    private String targetEngine = "EMU8000";
     // Sound Font Bank Name
-    String name = "untitled";
+    private String name = "untitled";
     // Sound ROM Name
-    String romName = null;
+    private String romName = null;
     // Sound ROM Version
-    int romVersionMajor = -1;
-    int romVersionMinor = -1;
+    private int romVersionMajor = -1;
+    private int romVersionMinor = -1;
     // Date of Creation of the Bank
-    String creationDate = null;
+    private String creationDate = null;
     // Sound Designers and Engineers for the Bank
-    String engineers = null;
+    private String engineers = null;
     // Product for which the Bank was intended
-    String product = null;
+    private String product = null;
     // Copyright message
-    String copyright = null;
+    private String copyright = null;
     // Comments
-    String comments = null;
+    private String comments = null;
     // The SoundFont tools used to create and alter the bank
-    String tools = null;
+    private String tools = null;
     // The Sample Data loaded from the SoundFont
     private ModelByteBuffer sampleData = null;
     private ModelByteBuffer sampleData24 = null;
@@ -88,7 +88,7 @@ public final class SF2Soundbank implements Soundbank {
     public SF2Soundbank() {
     }
 
-    public SF2Soundbank(URL url) throws IOException {
+    SF2Soundbank(URL url) throws IOException {
 
         InputStream is = url.openStream();
         try {
@@ -109,7 +109,7 @@ public final class SF2Soundbank implements Soundbank {
         }
     }
 
-    public SF2Soundbank(InputStream inputstream) throws IOException {
+    SF2Soundbank(InputStream inputstream) throws IOException {
         readSoundbank(inputstream);
     }
 
@@ -529,7 +529,7 @@ public final class SF2Soundbank implements Soundbank {
         writeSoundbank(new RIFFWriter(file, "sfbk"));
     }
 
-    public void save(OutputStream out) throws IOException {
+    void save(OutputStream out) throws IOException {
         writeSoundbank(new RIFFWriter(out, "sfbk"));
     }
 
@@ -961,7 +961,7 @@ public final class SF2Soundbank implements Soundbank {
         this.tools = tools;
     }
 
-    public void addResource(SoundbankResource resource) {
+    void addResource(SoundbankResource resource) {
         if (resource instanceof SF2Instrument)
             instruments.add((SF2Instrument)resource);
         if (resource instanceof SF2Layer)
@@ -979,7 +979,7 @@ public final class SF2Soundbank implements Soundbank {
             samples.remove((SF2Sample)resource);
     }
 
-    public void addInstrument(SF2Instrument resource) {
+    void addInstrument(SF2Instrument resource) {
         instruments.add(resource);
     }
 

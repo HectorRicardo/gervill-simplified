@@ -35,7 +35,7 @@ import gervill.javax.sound.sampled.AudioSystem;
  * @author Kara Kytle
  * @author Florian Bomers
  */
-public final class Toolkit {
+final class Toolkit {
 
     /**
      * Suppresses default constructor, ensuring non-instantiability.
@@ -92,7 +92,7 @@ public final class Toolkit {
      * returns bytes aligned to a multiple of blocksize
      * the return value will be in the range of (bytes-blocksize+1) ... bytes
      */
-    static long align(long bytes, int blockSize) {
+    private static long align(long bytes, int blockSize) {
         // prevent null pointers
         if (blockSize <= 1) {
             return bytes;
@@ -208,7 +208,7 @@ public final class Toolkit {
     }
 
 
-    public static AudioInputStream getPCMConvertedAudioInputStream(AudioInputStream ais) {
+    static AudioInputStream getPCMConvertedAudioInputStream(AudioInputStream ais) {
         // we can't open the device for non-PCM playback, so we have
         // convert any other encodings to PCM here (at least we try!)
         AudioFormat af = ais.getFormat();

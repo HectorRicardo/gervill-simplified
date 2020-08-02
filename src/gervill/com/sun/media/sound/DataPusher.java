@@ -39,7 +39,7 @@ import gervill.javax.sound.sampled.*;
  * @author Florian Bomers
  */
 
-public final class DataPusher implements Runnable {
+final class DataPusher implements Runnable {
 
     private static final int AUTO_CLOSE_TIME = 5000;
     private final SourceDataLine source;
@@ -65,7 +65,7 @@ public final class DataPusher implements Runnable {
     private final int STATE_STOPPED = 4;
     private final int BUFFER_SIZE = 16384;
 
-    public DataPusher(SourceDataLine sourceLine, AudioFormat format, byte[] audioData, int byteLength) {
+    DataPusher(SourceDataLine sourceLine, AudioFormat format, byte[] audioData, int byteLength) {
         this(sourceLine, format, null, audioData, byteLength);
     }
 

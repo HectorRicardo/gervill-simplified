@@ -34,7 +34,7 @@ import gervill.javax.sound.midi.spi.MidiDeviceProvider;
  *
  * @author Florian Bomers
  */
-public abstract class AbstractMidiDeviceProvider extends MidiDeviceProvider {
+abstract class AbstractMidiDeviceProvider extends MidiDeviceProvider {
 
     private static final boolean enabled;
 
@@ -52,7 +52,7 @@ public abstract class AbstractMidiDeviceProvider extends MidiDeviceProvider {
     }
 
 
-    final synchronized void readDeviceInfos() {
+    private final synchronized void readDeviceInfos() {
         Info[] infos = getInfoCache();
         MidiDevice[] devices = getDeviceCache();
         if (!enabled) {
@@ -164,7 +164,7 @@ public abstract class AbstractMidiDeviceProvider extends MidiDeviceProvider {
             this.index = index;
         }
 
-        final boolean equalStrings(Info info) {
+        private final boolean equalStrings(Info info) {
             return      (info != null
                          && getName().equals(info.getName())
                          && getVendor().equals(info.getVendor())
@@ -176,7 +176,7 @@ public abstract class AbstractMidiDeviceProvider extends MidiDeviceProvider {
             return index;
         }
 
-        final void setIndex(int index) {
+        private final void setIndex(int index) {
             this.index = index;
         }
 

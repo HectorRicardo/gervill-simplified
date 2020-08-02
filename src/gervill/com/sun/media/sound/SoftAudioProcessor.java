@@ -29,7 +29,7 @@ package gervill.com.sun.media.sound;
  *
  * @author Karl Helgason
  */
-public interface SoftAudioProcessor {
+interface SoftAudioProcessor {
 
     public void globalParameterControlChange(int[] slothpath, long param,
             long value);

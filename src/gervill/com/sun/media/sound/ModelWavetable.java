@@ -29,7 +29,7 @@ package gervill.com.sun.media.sound;
  *
  * @author Karl Helgason
  */
-public interface ModelWavetable extends ModelOscillator {
+interface ModelWavetable extends ModelOscillator {
 
     public static final int LOOP_TYPE_OFF = 0;
     public static final int LOOP_TYPE_FORWARD = 1;

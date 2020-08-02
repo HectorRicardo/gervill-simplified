@@ -34,7 +34,7 @@ import gervill.javax.sound.midi.Patch;
  *
  * @author Karl Helgason
  */
-public final class ModelInstrumentComparator implements Comparator<Instrument> {
+final class ModelInstrumentComparator implements Comparator<Instrument> {
 
     public int compare(Instrument arg0, Instrument arg1) {
         Patch p0 = arg0.getPatch();

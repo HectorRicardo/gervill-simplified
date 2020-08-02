@@ -30,13 +30,13 @@ package gervill.com.sun.media.sound;
  *
  * @author Karl Helgason
  */
-public class InvalidFormatException extends InvalidDataException {
+class InvalidFormatException extends InvalidDataException {
 
     public InvalidFormatException() {
         super("Invalid format!");
     }
 
-    public InvalidFormatException(String s) {
+    InvalidFormatException(String s) {
         super(s);
     }
 }

@@ -37,9 +37,9 @@ import java.util.Map;
  *
  * @author Karl Helgason
  */
-public final class SoftPerformer {
+final class SoftPerformer {
 
-    static ModelConnectionBlock[] defaultconnections
+    private static ModelConnectionBlock[] defaultconnections
             = new ModelConnectionBlock[42];
 
     static {
@@ -298,22 +298,22 @@ public final class SoftPerformer {
                 new ModelIdentifier("lfo", "delay", 1)));
 
     }
-    public int keyFrom = 0;
-    public int keyTo = 127;
-    public int velFrom = 0;
-    public int velTo = 127;
-    public int exclusiveClass = 0;
-    public boolean selfNonExclusive = false;
-    public boolean forcedVelocity = false;
-    public boolean forcedKeynumber = false;
-    public ModelPerformer performer;
-    public ModelConnectionBlock[] connections;
-    public ModelOscillator[] oscillators;
-    public Map<Integer, int[]> midi_rpn_connections = new HashMap<Integer, int[]>();
-    public Map<Integer, int[]> midi_nrpn_connections = new HashMap<Integer, int[]>();
-    public int[][] midi_ctrl_connections;
-    public int[][] midi_connections;
-    public int[] ctrl_connections;
+    private int keyFrom = 0;
+    private int keyTo = 127;
+    private int velFrom = 0;
+    private int velTo = 127;
+    int exclusiveClass = 0;
+    boolean selfNonExclusive = false;
+    boolean forcedVelocity = false;
+    boolean forcedKeynumber = false;
+    private ModelPerformer performer;
+    ModelConnectionBlock[] connections;
+    ModelOscillator[] oscillators;
+    Map<Integer, int[]> midi_rpn_connections = new HashMap<Integer, int[]>();
+    Map<Integer, int[]> midi_nrpn_connections = new HashMap<Integer, int[]>();
+    int[][] midi_ctrl_connections;
+    int[][] midi_connections;
+    int[] ctrl_connections;
     private List<Integer> ctrl_connections_list = new ArrayList<Integer>();
 
     private static class KeySortComparator implements Comparator<ModelSource> {
@@ -464,7 +464,7 @@ public final class SoftPerformer {
         }
     }
 
-    public SoftPerformer(ModelPerformer performer) {
+    SoftPerformer(ModelPerformer performer) {
         this.performer = performer;
 
         keyFrom = performer.getKeyFrom();

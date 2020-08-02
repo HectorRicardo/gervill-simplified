@@ -195,7 +195,7 @@ public class AudioSystem {
      * are available on the system, an array of length 0 is returned.
      * see #getMixer
      */
-    public static Mixer.Info[] getMixerInfo() {
+    private static Mixer.Info[] getMixerInfo() {
 
         List infos = getMixerInfoList();
         Mixer.Info[] allInfos = (Mixer.Info[]) infos.toArray(new Mixer.Info[infos.size()]);

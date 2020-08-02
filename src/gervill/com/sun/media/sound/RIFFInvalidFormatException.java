@@ -30,13 +30,13 @@ package gervill.com.sun.media.sound;
  *
  * @author Karl Helgason
  */
-public final class RIFFInvalidFormatException extends InvalidFormatException {
+final class RIFFInvalidFormatException extends InvalidFormatException {
 
     public RIFFInvalidFormatException() {
         super("Invalid format!");
     }
 
-    public RIFFInvalidFormatException(String s) {
+    RIFFInvalidFormatException(String s) {
         super(s);
     }
 }

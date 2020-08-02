@@ -34,13 +34,13 @@ import gervill.javax.sound.midi.SoundbankResource;
  *
  * @author Karl Helgason
  */
-public final class SF2Layer extends SoundbankResource {
+final class SF2Layer extends SoundbankResource {
 
     String name = "";
-    SF2GlobalRegion globalregion = null;
+    private SF2GlobalRegion globalregion = null;
     List<SF2LayerRegion> regions = new ArrayList<SF2LayerRegion>();
 
-    public SF2Layer(SF2Soundbank soundBank) {
+    SF2Layer(SF2Soundbank soundBank) {
         super(soundBank, null, null);
     }
 

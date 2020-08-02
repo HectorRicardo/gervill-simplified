@@ -324,7 +324,7 @@ public interface DataLine extends Line {
          * @param format desired format
          * @param bufferSize desired buffer size in bytes
          */
-        public Info(Class<?> lineClass, AudioFormat format, int bufferSize) {
+        private Info(Class<?> lineClass, AudioFormat format, int bufferSize) {
 
             super(lineClass);
 
@@ -387,7 +387,7 @@ public interface DataLine extends Line {
          * see #getFormats
          * see AudioFormat#matches
          */
-        public boolean isFormatSupported(AudioFormat format) {
+        private boolean isFormatSupported(AudioFormat format) {
 
             for (int i = 0; i < formats.length; i++) {
                 if (format.matches(formats[i])) {

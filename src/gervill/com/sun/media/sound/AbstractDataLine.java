@@ -59,7 +59,7 @@ abstract class AbstractDataLine extends AbstractLine implements DataLine {
     // current buffer size in bytes
     protected int bufferSize;
 
-    protected boolean running = false;
+    private boolean running = false;
     private boolean started = false;
     private boolean active = false;
 
@@ -277,7 +277,7 @@ abstract class AbstractDataLine extends AbstractLine implements DataLine {
     /**
      * This implementation does NOT change the buffer size
      */
-    public final int setBufferSize(int newSize) {
+    private final int setBufferSize(int newSize) {
         return getBufferSize();
     }
 

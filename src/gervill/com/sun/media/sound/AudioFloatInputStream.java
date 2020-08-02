@@ -41,7 +41,7 @@ import gervill.javax.sound.sampled.UnsupportedAudioFileException;
  *
  * @author Karl Helgason
  */
-public abstract class AudioFloatInputStream {
+abstract class AudioFloatInputStream {
 
     private static class BytaArrayAudioFloatInputStream
             extends AudioFloatInputStream {
@@ -229,12 +229,12 @@ public abstract class AudioFloatInputStream {
                 .getAudioInputStream(stream));
     }
 
-    public static AudioFloatInputStream getInputStream(
+    static AudioFloatInputStream getInputStream(
             AudioInputStream stream) {
         return new DirectAudioFloatInputStream(stream);
     }
 
-    public static AudioFloatInputStream getInputStream(AudioFormat format,
+    static AudioFloatInputStream getInputStream(AudioFormat format,
             byte[] buffer, int offset, int len) {
         AudioFloatConverter converter = AudioFloatConverter
                 .getConverter(format);

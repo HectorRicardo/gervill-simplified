@@ -167,7 +167,7 @@ public class LineEvent extends java.util.EventObject {
          * Constructs a new event type.
          * @param name name of the type
          */
-        protected Type(String name) {
+        private Type(String name) {
             this.name = name;
         }
 

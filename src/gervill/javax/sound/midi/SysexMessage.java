@@ -82,7 +82,7 @@ public class SysexMessage extends MidiMessage {
      * Status byte for System Exclusive message (0xF0, or 240).
      * see MidiMessage#getStatus
      */
-    public static final int SYSTEM_EXCLUSIVE                    = 0xF0; // 240
+    private static final int SYSTEM_EXCLUSIVE                    = 0xF0; // 240
 
 
     /**

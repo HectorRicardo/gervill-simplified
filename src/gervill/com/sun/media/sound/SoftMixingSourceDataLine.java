@@ -41,7 +41,7 @@ import gervill.javax.sound.sampled.SourceDataLine;
  *
  * @author Karl Helgason
  */
-public final class SoftMixingSourceDataLine extends SoftMixingDataLine
+final class SoftMixingSourceDataLine extends SoftMixingDataLine
         implements SourceDataLine {
 
     private boolean open = false;

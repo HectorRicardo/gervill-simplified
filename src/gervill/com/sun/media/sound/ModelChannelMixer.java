@@ -39,7 +39,7 @@ import gervill.javax.sound.midi.MidiChannel;
  *
  * @author Karl Helgason
  */
-public interface ModelChannelMixer extends MidiChannel {
+interface ModelChannelMixer extends MidiChannel {
 
     // Used to process input audio from voices mix.
     public boolean process(float[][] buffer, int offset, int len);

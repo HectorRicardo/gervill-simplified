@@ -37,15 +37,15 @@ import gervill.javax.sound.sampled.AudioSystem;
  *
  * @author Karl Helgason
  */
-public final class SoftMixingMainMixer {
+final class SoftMixingMainMixer {
 
-    public final static int CHANNEL_LEFT = 0;
+    final static int CHANNEL_LEFT = 0;
 
-    public final static int CHANNEL_RIGHT = 1;
+    final static int CHANNEL_RIGHT = 1;
 
-    public final static int CHANNEL_EFFECT1 = 2;
+    final static int CHANNEL_EFFECT1 = 2;
 
-    public final static int CHANNEL_EFFECT2 = 3;
+    final static int CHANNEL_EFFECT2 = 3;
 
     public final static int CHANNEL_EFFECT3 = 4;
 
@@ -87,7 +87,7 @@ public final class SoftMixingMainMixer {
         return ais;
     }
 
-    void processAudioBuffers() {
+    private void processAudioBuffers() {
         for (int i = 0; i < buffers.length; i++) {
             buffers[i].clear();
         }
@@ -113,7 +113,7 @@ public final class SoftMixingMainMixer {
 
     }
 
-    public SoftMixingMainMixer(SoftMixingMixer mixer) {
+    SoftMixingMainMixer(SoftMixingMixer mixer) {
         this.mixer = mixer;
 
         nrofchannels = mixer.getFormat().getChannels();
@@ -222,7 +222,7 @@ public final class SoftMixingMainMixer {
 
     }
 
-    public void openLine(SoftMixingDataLine line) {
+    void openLine(SoftMixingDataLine line) {
         synchronized (control_mutex) {
             openLinesList.add(line);
             openLines = openLinesList
@@ -230,7 +230,7 @@ public final class SoftMixingMainMixer {
         }
     }
 
-    public void closeLine(SoftMixingDataLine line) {
+    void closeLine(SoftMixingDataLine line) {
         synchronized (control_mutex) {
             openLinesList.remove(line);
             openLines = openLinesList

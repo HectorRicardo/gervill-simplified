@@ -33,11 +33,11 @@ import gervill.javax.sound.sampled.AudioFormat;
  *
  * @author Karl Helgason
  */
-public final class ModelMappedInstrument extends ModelInstrument {
+final class ModelMappedInstrument extends ModelInstrument {
 
     private final ModelInstrument ins;
 
-    public ModelMappedInstrument(ModelInstrument ins, Patch patch) {
+    ModelMappedInstrument(ModelInstrument ins, Patch patch) {
         super(ins.getSoundbank(), patch, ins.getName(), ins.getDataClass());
         this.ins = ins;
     }

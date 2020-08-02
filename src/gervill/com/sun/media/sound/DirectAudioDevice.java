@@ -252,15 +252,15 @@ final class DirectAudioDevice extends AbstractMixer {
 
     // IMPLEMENTATION HELPERS
 
-    int getMixerIndex() {
+    private int getMixerIndex() {
         return ((DirectAudioDeviceProvider.DirectAudioDeviceInfo) getMixerInfo()).getIndex();
     }
 
-    int getDeviceID() {
+    private int getDeviceID() {
         return ((DirectAudioDeviceProvider.DirectAudioDeviceInfo) getMixerInfo()).getDeviceID();
     }
 
-    int getMaxSimulLines() {
+    private int getMaxSimulLines() {
         return ((DirectAudioDeviceProvider.DirectAudioDeviceInfo) getMixerInfo()).getMaxSimulLines();
     }
 
@@ -300,7 +300,7 @@ final class DirectAudioDevice extends AbstractMixer {
         v.add(new AudioFormat(enc, sampleRate, bits, channels, frameSizeInBytes, sampleRate, bigEndian));
     }
 
-    protected static AudioFormat getSignOrEndianChangedFormat(AudioFormat format) {
+    private static AudioFormat getSignOrEndianChangedFormat(AudioFormat format) {
         boolean isSigned = format.getEncoding().equals(AudioFormat.Encoding.PCM_SIGNED);
         boolean isUnsigned = format.getEncoding().equals(AudioFormat.Encoding.PCM_UNSIGNED);
         if (format.getSampleSizeInBits() > 8 && isSigned) {

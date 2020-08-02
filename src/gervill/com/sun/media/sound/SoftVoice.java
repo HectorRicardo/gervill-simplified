@@ -36,16 +36,16 @@ import gervill.javax.sound.midi.VoiceStatus;
  *
  * @author Karl Helgason
  */
-public final class SoftVoice extends VoiceStatus {
+final class SoftVoice extends VoiceStatus {
 
-    public int exclusiveClass = 0;
-    public boolean releaseTriggered = false;
+    int exclusiveClass = 0;
+    boolean releaseTriggered = false;
     private int noteOn_noteNumber = 0;
     private int noteOn_velocity = 0;
     private int noteOff_velocity = 0;
     private int delay = 0;
     ModelChannelMixer channelmixer = null;
-    double tunedKey = 0;
+    private double tunedKey = 0;
     SoftTuning tuning = null;
     SoftChannel stealer_channel = null;
     ModelConnectionBlock[] stealer_extendedConnectionBlocks = null;
@@ -65,7 +65,7 @@ public final class SoftVoice extends VoiceStatus {
     private final SoftProcess lfo = new SoftLowFrequencyOscillator();
     Map<String, SoftControl> objects =
             new HashMap<String, SoftControl>();
-    SoftSynthesizer synthesizer;
+    private SoftSynthesizer synthesizer;
     SoftInstrument instrument;
     SoftPerformer performer;
     SoftChannel softchannel = null;
@@ -101,8 +101,8 @@ public final class SoftVoice extends VoiceStatus {
     private float lastMuteValue = 0;
     private float lastSoloMuteValue = 0;
     double[] co_noteon_keynumber = new double[1];
-    double[] co_noteon_velocity = new double[1];
-    double[] co_noteon_on = new double[1];
+    private double[] co_noteon_velocity = new double[1];
+    private double[] co_noteon_on = new double[1];
     private final SoftControl co_noteon = new SoftControl() {
         double[] keynumber = co_noteon_keynumber;
         double[] velocity = co_noteon_velocity;
@@ -183,7 +183,7 @@ public final class SoftVoice extends VoiceStatus {
     SoftResamplerStreamer resampler;
     private final int nrofchannels;
 
-    public SoftVoice(SoftSynthesizer synth) {
+    SoftVoice(SoftSynthesizer synth) {
         synthesizer = synth;
         filter_left = new SoftFilter(synth.getFormat().getSampleRate());
         filter_right = new SoftFilter(synth.getFormat().getSampleRate());
@@ -760,7 +760,7 @@ public final class SoftVoice extends VoiceStatus {
 
     }
 
-    void mixAudioStream(SoftAudioBuffer in, SoftAudioBuffer out,
+    private void mixAudioStream(SoftAudioBuffer in, SoftAudioBuffer out,
                                 SoftAudioBuffer dout, float amp_from,
                                 float amp_to) {
         int bufferlen = in.getSize();

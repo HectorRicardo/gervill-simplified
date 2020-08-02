@@ -64,7 +64,7 @@ final class RealTimeSequencer extends AbstractMidiDevice
     /**
      * All RealTimeSequencers share this info object.
      */
-    static final RealTimeSequencerInfo info = new RealTimeSequencerInfo();
+    private static final RealTimeSequencerInfo info = new RealTimeSequencerInfo();
 
 
     private static final Sequencer.SyncMode[] masterSyncModes = { Sequencer.SyncMode.INTERNAL_CLOCK };
@@ -149,7 +149,7 @@ final class RealTimeSequencer extends AbstractMidiDevice
     private boolean doAutoConnectAtNextOpen = false;
 
     /** the receiver that this device is auto-connected to */
-    Receiver autoConnectedReceiver = null;
+    private Receiver autoConnectedReceiver = null;
 
 
     /* ****************************** CONSTRUCTOR ****************************** */
@@ -568,7 +568,7 @@ final class RealTimeSequencer extends AbstractMidiDevice
         return returnedModes;
     }
 
-    int getTrackCount() {
+    private int getTrackCount() {
         Sequence seq = getSequence();
         if (seq != null) {
             // $$fb wish there was a nicer way to get the number of tracks...
@@ -866,7 +866,7 @@ final class RealTimeSequencer extends AbstractMidiDevice
         if (Printer.trace) Printer.trace("<< RealTimeSequencer: implClose() completed");
     }
 
-    void implStart() {
+    private void implStart() {
         if (Printer.trace) Printer.trace(">> RealTimeSequencer: implStart()");
 
         if (playThread == null) {
@@ -883,7 +883,7 @@ final class RealTimeSequencer extends AbstractMidiDevice
     }
 
 
-    void implStop() {
+    private void implStop() {
         if (Printer.trace) Printer.trace(">> RealTimeSequencer: implStop()");
 
         if (playThread == null) {
@@ -918,7 +918,7 @@ final class RealTimeSequencer extends AbstractMidiDevice
      * Send midi player events.
      * must not be synchronized on "this"
      */
-    void sendMetaEvents(MidiMessage message) {
+    private void sendMetaEvents(MidiMessage message) {
         if (metaEventListeners.size() == 0) return;
 
         //if (Printer.debug) Printer.debug("sending a meta event");
@@ -928,7 +928,7 @@ final class RealTimeSequencer extends AbstractMidiDevice
     /**
      * Send midi player events.
      */
-    void sendControllerEvents(MidiMessage message) {
+    private void sendControllerEvents(MidiMessage message) {
         int size = controllerEventListeners.size();
         if (size == 0) return;
 
@@ -1032,7 +1032,7 @@ final class RealTimeSequencer extends AbstractMidiDevice
     }
 
 
-    final class SequencerReceiver extends AbstractReceiver {
+    private final class SequencerReceiver extends AbstractReceiver {
 
         void implSend(MidiMessage message, long timeStamp) {
             if (recording) {
@@ -1203,7 +1203,7 @@ final class RealTimeSequencer extends AbstractMidiDevice
     } // class ControllerListElement
 
 
-    static class RecordingTrack {
+    private static class RecordingTrack {
 
         private final Track track;
         private int channel;
@@ -1245,7 +1245,7 @@ final class RealTimeSequencer extends AbstractMidiDevice
     }
 
 
-    final class PlayThread implements Runnable {
+    private final class PlayThread implements Runnable {
         private Thread thread;
         private final Object lock = new Object();
 

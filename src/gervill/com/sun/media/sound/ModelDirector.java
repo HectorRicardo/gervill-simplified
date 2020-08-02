@@ -36,7 +36,7 @@ package gervill.com.sun.media.sound;
  *
  * @author Karl Helgason
  */
-public interface ModelDirector {
+interface ModelDirector {
 
     public void noteOn(int noteNumber, int velocity);
 

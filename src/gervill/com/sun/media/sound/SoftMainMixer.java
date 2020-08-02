@@ -43,7 +43,7 @@ import gervill.javax.sound.sampled.AudioSystem;
  *
  * @author Karl Helgason
  */
-public final class SoftMainMixer {
+final class SoftMainMixer {
 
     // A private class thats contains a ModelChannelMixer and it's private buffers.
     // This becomes necessary when we want to have separate delay buffers for each channel mixer.
@@ -53,26 +53,26 @@ public final class SoftMainMixer {
         SoftAudioBuffer[] buffers;
     }
 
-    public final static int CHANNEL_LEFT = 0;
-    public final static int CHANNEL_RIGHT = 1;
-    public final static int CHANNEL_MONO = 2;
-    public final static int CHANNEL_DELAY_LEFT = 3;
-    public final static int CHANNEL_DELAY_RIGHT = 4;
-    public final static int CHANNEL_DELAY_MONO = 5;
-    public final static int CHANNEL_EFFECT1 = 6;
-    public final static int CHANNEL_EFFECT2 = 7;
-    public final static int CHANNEL_DELAY_EFFECT1 = 8;
-    public final static int CHANNEL_DELAY_EFFECT2 = 9;
-    public final static int CHANNEL_LEFT_DRY = 10;
-    public final static int CHANNEL_RIGHT_DRY = 11;
+    final static int CHANNEL_LEFT = 0;
+    final static int CHANNEL_RIGHT = 1;
+    final static int CHANNEL_MONO = 2;
+    final static int CHANNEL_DELAY_LEFT = 3;
+    final static int CHANNEL_DELAY_RIGHT = 4;
+    final static int CHANNEL_DELAY_MONO = 5;
+    final static int CHANNEL_EFFECT1 = 6;
+    final static int CHANNEL_EFFECT2 = 7;
+    final static int CHANNEL_DELAY_EFFECT1 = 8;
+    final static int CHANNEL_DELAY_EFFECT2 = 9;
+    final static int CHANNEL_LEFT_DRY = 10;
+    final static int CHANNEL_RIGHT_DRY = 11;
     public final static int CHANNEL_SCRATCH1 = 12;
     public final static int CHANNEL_SCRATCH2 = 13;
-    boolean active_sensing_on = false;
+    private boolean active_sensing_on = false;
     private long msec_last_activity = -1;
     private boolean pusher_silent = false;
     private int pusher_silent_count = 0;
     private long sample_pos = 0;
-    boolean readfully = true;
+    private boolean readfully = true;
     private final Object control_mutex;
     private SoftSynthesizer synth;
     private float samplerate = 44100;
@@ -87,8 +87,8 @@ public final class SoftMainMixer {
     TreeMap<Long, Object> midimessages = new TreeMap<Long, Object>();
     private int delay_midievent = 0;
     private int max_delay_midievent = 0;
-    double last_volume_left = 1.0;
-    double last_volume_right = 1.0;
+    private double last_volume_left = 1.0;
+    private double last_volume_right = 1.0;
     private double[] co_master_balance = new double[1];
     private double[] co_master_volume = new double[1];
     private double[] co_master_coarse_tuning = new double[1];
@@ -438,7 +438,7 @@ public final class SoftMainMixer {
         delay_midievent = 0;
     }
 
-    void processAudioBuffers() {
+    private void processAudioBuffers() {
 
         if(synth.weakstream != null && synth.weakstream.silent_samples != 0)
         {
@@ -759,7 +759,7 @@ public final class SoftMainMixer {
     }
 
     // Must only we called within control_mutex synchronization
-    public void activity()
+    void activity()
     {
         long silent_samples = 0;
         if(pusher_silent)
@@ -775,13 +775,13 @@ public final class SoftMainMixer {
                 * (1000000.0 / samplerate));
     }
 
-    public void stopMixer(ModelChannelMixer mixer) {
+    void stopMixer(ModelChannelMixer mixer) {
         if (stoppedMixers == null)
             stoppedMixers = new HashSet<ModelChannelMixer>();
         stoppedMixers.add(mixer);
     }
 
-    public void registerMixer(ModelChannelMixer mixer) {
+    void registerMixer(ModelChannelMixer mixer) {
         if (registeredMixers == null)
             registeredMixers = new HashSet<SoftChannelMixerContainer>();
         SoftChannelMixerContainer mixercontainer = new SoftChannelMixerContainer();
@@ -795,7 +795,7 @@ public final class SoftMainMixer {
         cur_registeredMixers = null;
     }
 
-    public SoftMainMixer(SoftSynthesizer synth) {
+    SoftMainMixer(SoftSynthesizer synth) {
         this.synth = synth;
 
         sample_pos = 0;
@@ -927,7 +927,7 @@ public final class SoftMainMixer {
         return ais;
     }
 
-    public void reset() {
+    private void reset() {
 
         SoftChannel[] channels = synth.channels;
         for (int i = 0; i < channels.length; i++) {
@@ -1002,7 +1002,7 @@ public final class SoftMainMixer {
         }
     }
 
-    public void globalParameterControlChange(int[] slothpath, long[] params,
+    private void globalParameterControlChange(int[] slothpath, long[] params,
             long[] paramsvalue) {
         if (slothpath.length == 0)
             return;
@@ -1028,14 +1028,14 @@ public final class SoftMainMixer {
         }
     }
 
-    public void processMessage(Object object) {
+    private void processMessage(Object object) {
         if (object instanceof byte[])
             processMessage((byte[]) object);
         if (object instanceof MidiMessage)
             processMessage((MidiMessage)object);
     }
 
-    public void processMessage(MidiMessage message) {
+    void processMessage(MidiMessage message) {
         if (message instanceof ShortMessage) {
             ShortMessage sms = (ShortMessage)message;
             processMessage(sms.getChannel(), sms.getCommand(),
@@ -1045,7 +1045,7 @@ public final class SoftMainMixer {
         processMessage(message.getMessage());
     }
 
-    public void processMessage(byte[] data) {
+    private void processMessage(byte[] data) {
         int status = 0;
         if (data.length > 0)
             status = data[0] & 0xFF;
@@ -1073,7 +1073,7 @@ public final class SoftMainMixer {
 
     }
 
-    public void processMessage(int ch, int cmd, int data1, int data2) {
+    private void processMessage(int ch, int cmd, int data1, int data2) {
         synchronized (synth.control_mutex) {
             activity();
         }

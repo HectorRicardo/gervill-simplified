@@ -34,7 +34,7 @@ import gervill.javax.sound.midi.MidiDevice;
  * @author Kara Kytle
  * @author Florian Bomers
  */
-public final class MidiInDeviceProvider extends AbstractMidiDeviceProvider {
+final class MidiInDeviceProvider extends AbstractMidiDeviceProvider {
 
     /** Cache of info objects for all MIDI output devices on the system. */
     private static Info[] infos = null;

@@ -33,9 +33,9 @@ import gervill.javax.sound.sampled.spi.MixerProvider;
  *
  * @author Karl Helgason
  */
-public final class SoftMixingMixerProvider extends MixerProvider {
+final class SoftMixingMixerProvider extends MixerProvider {
 
-    static SoftMixingMixer globalmixer = null;
+    private static SoftMixingMixer globalmixer = null;
 
     static Thread lockthread = null;
 

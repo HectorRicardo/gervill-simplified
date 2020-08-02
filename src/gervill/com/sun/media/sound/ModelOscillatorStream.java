@@ -33,7 +33,7 @@ import gervill.javax.sound.midi.VoiceStatus;
  *
  * @author Karl Helgason
  */
-public interface ModelOscillatorStream {
+interface ModelOscillatorStream {
 
     public void setPitch(float pitch); // Pitch is in cents!
 

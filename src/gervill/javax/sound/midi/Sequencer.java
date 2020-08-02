@@ -781,7 +781,7 @@ public interface Sequencer extends MidiDevice {
          * Constructs a synchronization mode.
          * @param name name of the synchronization mode
          */
-        protected SyncMode(String name) {
+        private SyncMode(String name) {
 
             this.name = name;
         }

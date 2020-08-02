@@ -33,7 +33,7 @@ import gervill.javax.sound.sampled.AudioFormat;
  *
  * @author Karl Helgason
  */
-public final class SoftAudioBuffer {
+final class SoftAudioBuffer {
 
     private int size;
     private float[] buffer;
@@ -42,7 +42,7 @@ public final class SoftAudioBuffer {
     private AudioFloatConverter converter;
     private byte[] converter_buffer;
 
-    public SoftAudioBuffer(int size, AudioFormat format) {
+    SoftAudioBuffer(int size, AudioFormat format) {
         this.size = size;
         this.format = format;
         converter = AudioFloatConverter.getConverter(format);

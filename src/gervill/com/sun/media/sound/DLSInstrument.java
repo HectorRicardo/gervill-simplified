@@ -40,7 +40,7 @@ import gervill.javax.sound.midi.Patch;
  *
  * @author Karl Helgason
  */
-public final class DLSInstrument extends ModelInstrument {
+final class DLSInstrument extends ModelInstrument {
 
     int preset = 0;
     int bank = 0;
@@ -48,13 +48,13 @@ public final class DLSInstrument extends ModelInstrument {
     byte[] guid = null;
     DLSInfo info = new DLSInfo();
     List<DLSRegion> regions = new ArrayList<DLSRegion>();
-    List<DLSModulator> modulators = new ArrayList<DLSModulator>();
+    private List<DLSModulator> modulators = new ArrayList<DLSModulator>();
 
     public DLSInstrument() {
         super(null, null, null, null);
     }
 
-    public DLSInstrument(DLSSoundbank soundbank) {
+    DLSInstrument(DLSSoundbank soundbank) {
         super(soundbank, null, null, null);
     }
 

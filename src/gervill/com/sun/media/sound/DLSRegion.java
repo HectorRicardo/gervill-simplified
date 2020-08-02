@@ -36,10 +36,10 @@ import java.util.List;
  *
  * @author Karl Helgason
  */
-public final class DLSRegion {
+final class DLSRegion {
 
-    public final static int OPTION_SELFNONEXCLUSIVE = 0x0001;
-    List<DLSModulator> modulators = new ArrayList<DLSModulator>();
+    final static int OPTION_SELFNONEXCLUSIVE = 0x0001;
+    private List<DLSModulator> modulators = new ArrayList<DLSModulator>();
     int keyfrom;
     int keyto;
     int velfrom;

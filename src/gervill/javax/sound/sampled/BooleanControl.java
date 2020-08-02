@@ -129,7 +129,7 @@ public abstract class BooleanControl extends Control {
      * @return the label for the specified state, such as "true" or "on"
      * for <code>true</code>, or "false" or "off" for <code>false</code>.
      */
-    public String getStateLabel(boolean state) {
+    private String getStateLabel(boolean state) {
         return ((state == true) ? trueStateLabel : falseStateLabel);
     }
 

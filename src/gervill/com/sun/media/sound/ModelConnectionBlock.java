@@ -34,7 +34,7 @@ import java.util.Arrays;
  *
  * @author Karl Helgason
  */
-public final class ModelConnectionBlock {
+final class ModelConnectionBlock {
 
     //
     //   source1 * source2 * scale -> destination
@@ -47,7 +47,7 @@ public final class ModelConnectionBlock {
     public ModelConnectionBlock() {
     }
 
-    public ModelConnectionBlock(double scale, ModelDestination destination) {
+    ModelConnectionBlock(double scale, ModelDestination destination) {
         this.scale = scale;
         this.destination = destination;
     }
@@ -61,7 +61,7 @@ public final class ModelConnectionBlock {
         this.destination = destination;
     }
 
-    public ModelConnectionBlock(ModelSource source, double scale,
+    ModelConnectionBlock(ModelSource source, double scale,
             ModelDestination destination) {
         if (source != null) {
             this.sources = new ModelSource[1];
@@ -71,7 +71,7 @@ public final class ModelConnectionBlock {
         this.destination = destination;
     }
 
-    public ModelConnectionBlock(ModelSource source, ModelSource control,
+    ModelConnectionBlock(ModelSource source, ModelSource control,
             ModelDestination destination) {
         if (source != null) {
             if (control == null) {
@@ -86,7 +86,7 @@ public final class ModelConnectionBlock {
         this.destination = destination;
     }
 
-    public ModelConnectionBlock(ModelSource source, ModelSource control,
+    ModelConnectionBlock(ModelSource source, ModelSource control,
             double scale, ModelDestination destination) {
         if (source != null) {
             if (control == null) {
@@ -126,7 +126,7 @@ public final class ModelConnectionBlock {
         this.sources = source == null ? no_sources : Arrays.copyOf(source, source.length);
     }
 
-    public void addSource(ModelSource source) {
+    void addSource(ModelSource source) {
         ModelSource[] oldsources = sources;
         sources = new ModelSource[oldsources.length + 1];
         System.arraycopy(oldsources, 0, sources, 0, oldsources.length);

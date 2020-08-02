@@ -185,7 +185,7 @@ public final class DLSSoundbank implements Soundbank {
     public DLSSoundbank() {
     }
 
-    public DLSSoundbank(URL url) throws IOException {
+    DLSSoundbank(URL url) throws IOException {
         InputStream is = url.openStream();
         try {
             readSoundbank(is);
@@ -205,7 +205,7 @@ public final class DLSSoundbank implements Soundbank {
         }
     }
 
-    public DLSSoundbank(InputStream inputstream) throws IOException {
+    DLSSoundbank(InputStream inputstream) throws IOException {
         readSoundbank(inputstream);
     }
 

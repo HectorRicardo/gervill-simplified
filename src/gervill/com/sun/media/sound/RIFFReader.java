@@ -33,7 +33,7 @@ import java.io.InputStream;
  *
  * @author Karl Helgason
  */
-public final class RIFFReader extends InputStream {
+final class RIFFReader extends InputStream {
 
     private final RIFFReader root;
     private long filepointer = 0;
@@ -44,7 +44,7 @@ public final class RIFFReader extends InputStream {
     private long avail = Integer.MAX_VALUE;
     private RIFFReader lastiterator = null;
 
-    public RIFFReader(InputStream stream) throws IOException {
+    RIFFReader(InputStream stream) throws IOException {
 
         if (stream instanceof RIFFReader) {
             root = ((RIFFReader) stream).root;
@@ -91,13 +91,13 @@ public final class RIFFReader extends InputStream {
         return root.filepointer;
     }
 
-    public boolean hasNextChunk() throws IOException {
+    boolean hasNextChunk() throws IOException {
         if (lastiterator != null)
             lastiterator.finish();
         return avail != 0;
     }
 
-    public RIFFReader nextChunk() throws IOException {
+    RIFFReader nextChunk() throws IOException {
         if (lastiterator != null)
             lastiterator.finish();
         if (avail == 0)
@@ -154,11 +154,11 @@ public final class RIFFReader extends InputStream {
         }
     }
 
-    public final void readFully(byte b[]) throws IOException {
+    final void readFully(byte b[]) throws IOException {
         readFully(b, 0, b.length);
     }
 
-    public final void readFully(byte b[], int off, int len) throws IOException {
+    final void readFully(byte b[], int off, int len) throws IOException {
         if (len < 0)
             throw new IndexOutOfBoundsException();
         while (len > 0) {
@@ -204,14 +204,14 @@ public final class RIFFReader extends InputStream {
         return (int)avail;
     }
 
-    public void finish() throws IOException {
+    private void finish() throws IOException {
         if (avail != 0) {
             skip(avail);
         }
     }
 
     // Read ASCII chars from stream
-    public String readString(final int len) throws IOException {
+    String readString(final int len) throws IOException {
         final byte[] buff;
         try {
             buff = new byte[len];
@@ -228,7 +228,7 @@ public final class RIFFReader extends InputStream {
     }
 
     // Read 8 bit signed integer from stream
-    public byte readByte() throws IOException {
+    byte readByte() throws IOException {
         int ch = read();
         if (ch < 0)
             throw new EOFException();
@@ -236,7 +236,7 @@ public final class RIFFReader extends InputStream {
     }
 
     // Read 16 bit signed integer from stream
-    public short readShort() throws IOException {
+    short readShort() throws IOException {
         int ch1 = read();
         int ch2 = read();
         if (ch1 < 0)
@@ -247,7 +247,7 @@ public final class RIFFReader extends InputStream {
     }
 
     // Read 32 bit signed integer from stream
-    public int readInt() throws IOException {
+    int readInt() throws IOException {
         int ch1 = read();
         int ch2 = read();
         int ch3 = read();
@@ -294,7 +294,7 @@ public final class RIFFReader extends InputStream {
     }
 
     // Read 8 bit unsigned integer from stream
-    public int readUnsignedByte() throws IOException {
+    int readUnsignedByte() throws IOException {
         int ch = read();
         if (ch < 0)
             throw new EOFException();
@@ -302,7 +302,7 @@ public final class RIFFReader extends InputStream {
     }
 
     // Read 16 bit unsigned integer from stream
-    public int readUnsignedShort() throws IOException {
+    int readUnsignedShort() throws IOException {
         int ch1 = read();
         int ch2 = read();
         if (ch1 < 0)
@@ -313,7 +313,7 @@ public final class RIFFReader extends InputStream {
     }
 
     // Read 32 bit unsigned integer from stream
-    public long readUnsignedInt() throws IOException {
+    long readUnsignedInt() throws IOException {
         long ch1 = read();
         long ch2 = read();
         long ch3 = read();

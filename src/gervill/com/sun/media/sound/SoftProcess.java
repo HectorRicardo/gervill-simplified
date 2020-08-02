@@ -29,7 +29,7 @@ package gervill.com.sun.media.sound;
  *
  * @author Karl Helgason
  */
-public interface SoftProcess extends SoftControl {
+interface SoftProcess extends SoftControl {
 
     public void init(SoftSynthesizer synth);
 

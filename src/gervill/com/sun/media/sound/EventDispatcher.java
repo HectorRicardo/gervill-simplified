@@ -79,7 +79,7 @@ final class EventDispatcher implements Runnable {
     /**
      * Approximate interval between calls to LineMonitor.checkLine
      */
-    static final int LINE_MONITOR_TIME = 400;
+    private static final int LINE_MONITOR_TIME = 400;
 
 
     /**
@@ -101,7 +101,7 @@ final class EventDispatcher implements Runnable {
      * Invoked when there is at least one event in the queue.
      * Implement this as a callback to process one event.
      */
-    void processEvent(EventInfo eventInfo) {
+    private void processEvent(EventInfo eventInfo) {
         int count = eventInfo.getListenerCount();
 
         // process an LineEvent
@@ -162,7 +162,7 @@ final class EventDispatcher implements Runnable {
      * exclusive access over the code where an event is removed from the
      *queue.
      */
-    void dispatchEvents() {
+    private void dispatchEvents() {
 
         EventInfo eventInfo = null;
 

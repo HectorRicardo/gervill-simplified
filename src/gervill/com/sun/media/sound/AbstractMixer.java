@@ -293,7 +293,7 @@ abstract class AbstractMixer extends AbstractLine implements Mixer {
     /**
      * This implementation tries to open the mixer with its current format and buffer size settings.
      */
-    final synchronized void open(boolean manual) throws LineUnavailableException {
+    private final synchronized void open(boolean manual) throws LineUnavailableException {
         if (Printer.trace) Printer.trace(">> AbstractMixer: open()");
         if (!isOpen()) {
             implOpen();
@@ -497,7 +497,7 @@ abstract class AbstractMixer extends AbstractLine implements Mixer {
      * Right now this just checks whether it's supported, but should
      * check whether it actually belongs to this mixer....
      */
-    final boolean isSourceLine(Line.Info info) {
+    private final boolean isSourceLine(Line.Info info) {
 
         for (int i = 0; i < sourceLineInfo.length; i++) {
             if (info.matches(sourceLineInfo[i])) {
@@ -514,7 +514,7 @@ abstract class AbstractMixer extends AbstractLine implements Mixer {
      * Right now this just checks whether it's supported, but should
      * check whether it actually belongs to this mixer....
      */
-    final boolean isTargetLine(Line.Info info) {
+    private final boolean isTargetLine(Line.Info info) {
 
         for (int i = 0; i < targetLineInfo.length; i++) {
             if (info.matches(targetLineInfo[i])) {

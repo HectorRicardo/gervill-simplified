@@ -30,28 +30,28 @@ package gervill.com.sun.media.sound;
  *
  * @author Karl Helgason
  */
-public final class ModelSource {
+final class ModelSource {
 
-    public static final ModelIdentifier SOURCE_NONE = null;
-    public static final ModelIdentifier SOURCE_NOTEON_KEYNUMBER =
+    private static final ModelIdentifier SOURCE_NONE = null;
+    static final ModelIdentifier SOURCE_NOTEON_KEYNUMBER =
             new ModelIdentifier("noteon", "keynumber");     // midi keynumber
-    public static final ModelIdentifier SOURCE_NOTEON_VELOCITY =
+    static final ModelIdentifier SOURCE_NOTEON_VELOCITY =
             new ModelIdentifier("noteon", "velocity");      // midi velocity
-    public static final ModelIdentifier SOURCE_EG1 =
+    static final ModelIdentifier SOURCE_EG1 =
             new ModelIdentifier("eg", null, 0);
-    public static final ModelIdentifier SOURCE_EG2 =
+    static final ModelIdentifier SOURCE_EG2 =
             new ModelIdentifier("eg", null, 1);
-    public static final ModelIdentifier SOURCE_LFO1 =
+    static final ModelIdentifier SOURCE_LFO1 =
             new ModelIdentifier("lfo", null, 0);
-    public static final ModelIdentifier SOURCE_LFO2 =
+    static final ModelIdentifier SOURCE_LFO2 =
             new ModelIdentifier("lfo", null, 1);
-    public static final ModelIdentifier SOURCE_MIDI_PITCH =
+    static final ModelIdentifier SOURCE_MIDI_PITCH =
             new ModelIdentifier("midi", "pitch", 0);            // (0..16383)
-    public static final ModelIdentifier SOURCE_MIDI_CHANNEL_PRESSURE =
+    static final ModelIdentifier SOURCE_MIDI_CHANNEL_PRESSURE =
             new ModelIdentifier("midi", "channel_pressure", 0); // (0..127)
 //    public static final ModelIdentifier SOURCE_MIDI_MONO_PRESSURE =
 //            new ModelIdentifier("midi","mono_pressure",0);    // (0..127)
-    public static final ModelIdentifier SOURCE_MIDI_POLY_PRESSURE =
+    static final ModelIdentifier SOURCE_MIDI_POLY_PRESSURE =
             new ModelIdentifier("midi", "poly_pressure", 0);    // (0..127)
     public static final ModelIdentifier SOURCE_MIDI_CC_0 =
             new ModelIdentifier("midi_cc", "0", 0);             // (0..127)
@@ -64,7 +64,7 @@ public final class ModelSource {
         this.transform = new ModelStandardTransform();
     }
 
-    public ModelSource(ModelIdentifier id) {
+    ModelSource(ModelIdentifier id) {
         source = id;
         this.transform = new ModelStandardTransform();
     }
@@ -74,19 +74,19 @@ public final class ModelSource {
         this.transform = new ModelStandardTransform(direction);
     }
 
-    public ModelSource(ModelIdentifier id, boolean direction, boolean polarity) {
+    ModelSource(ModelIdentifier id, boolean direction, boolean polarity) {
         source = id;
         this.transform = new ModelStandardTransform(direction, polarity);
     }
 
-    public ModelSource(ModelIdentifier id, boolean direction, boolean polarity,
+    ModelSource(ModelIdentifier id, boolean direction, boolean polarity,
             int transform) {
         source = id;
         this.transform =
                 new ModelStandardTransform(direction, polarity, transform);
     }
 
-    public ModelSource(ModelIdentifier id, ModelTransform transform) {
+    ModelSource(ModelIdentifier id, ModelTransform transform) {
         source = id;
         this.transform = transform;
     }

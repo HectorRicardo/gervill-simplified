@@ -38,10 +38,10 @@ final class Printer {
     static final boolean debug = false;
     static final boolean trace = false;
     static final boolean verbose = false;
-    static final boolean release = false;
+    private static final boolean release = false;
 
-    static final boolean SHOW_THREADID = false;
-    static final boolean SHOW_TIMESTAMP = false;
+    private static final boolean SHOW_THREADID = false;
+    private static final boolean SHOW_TIMESTAMP = false;
 
     /*static void setErrorPrint(boolean on) {
 

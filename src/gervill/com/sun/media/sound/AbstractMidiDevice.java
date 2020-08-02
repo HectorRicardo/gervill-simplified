@@ -181,7 +181,7 @@ abstract class AbstractMidiDevice implements MidiDevice, ReferenceCountingDevice
      * @param object The object that might have been opening the device implicitely (for now,
      * this may be a Transmitter or receiver).
      */
-    public final void closeInternal(Object object) {
+    private final void closeInternal(Object object) {
         if (Printer.trace) Printer.trace("> AbstractMidiDevice: closeInternal()");
         synchronized(this) {
             if (getOpenKeepingObjects().remove(object)) {
@@ -197,7 +197,7 @@ abstract class AbstractMidiDevice implements MidiDevice, ReferenceCountingDevice
     }
 
 
-    public final void doClose() {
+    private final void doClose() {
         if (Printer.trace) Printer.trace("> AbstractMidiDevice: doClose()");
         synchronized(this) {
             if (isOpen()) {
@@ -539,7 +539,7 @@ abstract class AbstractMidiDevice implements MidiDevice, ReferenceCountingDevice
     class BasicTransmitter implements MidiDeviceTransmitter {
 
         private Receiver receiver = null;
-        TransmitterList tlist = null;
+        private TransmitterList tlist = null;
 
         protected BasicTransmitter() {
         }

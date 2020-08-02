@@ -120,7 +120,7 @@ public abstract class CompoundControl extends Control {
      * @author Kara Kytle
      * @since 1.3
      */
-    public static class Type extends Control.Type {
+    private static class Type extends Control.Type {
 
 
         // TYPE DEFINES

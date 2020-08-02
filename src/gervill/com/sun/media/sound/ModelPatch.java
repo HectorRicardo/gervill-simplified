@@ -33,7 +33,7 @@ import gervill.javax.sound.midi.Patch;
  *
  * @author Karl Helgason
  */
-public final class ModelPatch extends Patch {
+final class ModelPatch extends Patch {
 
     private boolean percussion = false;
 
@@ -41,7 +41,7 @@ public final class ModelPatch extends Patch {
         super(bank, program);
     }
 
-    public ModelPatch(int bank, int program, boolean percussion) {
+    ModelPatch(int bank, int program, boolean percussion) {
         super(bank, program);
         this.percussion = percussion;
     }

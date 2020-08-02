@@ -31,13 +31,13 @@ package gervill.com.sun.media.sound;
  *
  * @author Karl Helgason
  */
-public final class SoftSincResampler extends SoftAbstractResampler {
+final class SoftSincResampler extends SoftAbstractResampler {
 
-    float[][][] sinc_table;
-    int sinc_scale_size = 100;
-    int sinc_table_fsize = 800;
-    int sinc_table_size = 30;
-    int sinc_table_center = sinc_table_size / 2;
+    private float[][][] sinc_table;
+    private int sinc_scale_size = 100;
+    private int sinc_table_fsize = 800;
+    private int sinc_table_size = 30;
+    private int sinc_table_center = sinc_table_size / 2;
 
     public SoftSincResampler() {
         super();
@@ -52,12 +52,12 @@ public final class SoftSincResampler extends SoftAbstractResampler {
     }
 
     // Normalized sinc function
-    public static double sinc(double x) {
+    private static double sinc(double x) {
         return (x == 0.0) ? 1.0 : Math.sin(Math.PI * x) / (Math.PI * x);
     }
 
     // Generate hann window suitable for windowing sinc
-    public static float[] wHanning(int size, float offset) {
+    private static float[] wHanning(int size, float offset) {
         float[] window_table = new float[size];
         for (int k = 0; k < size; k++) {
             window_table[k] = (float)(-0.5
@@ -68,7 +68,7 @@ public final class SoftSincResampler extends SoftAbstractResampler {
     }
 
     // Generate sinc table
-    public static float[] sincTable(int size, float offset, float scale) {
+    private static float[] sincTable(int size, float offset, float scale) {
         int center = size / 2;
         float[] w = wHanning(size, offset);
         for (int k = 0; k < size; k++)

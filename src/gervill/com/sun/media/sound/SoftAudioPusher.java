@@ -34,7 +34,7 @@ import gervill.javax.sound.sampled.SourceDataLine;
  *
  * @author Karl Helgason
  */
-public final class SoftAudioPusher implements Runnable {
+final class SoftAudioPusher implements Runnable {
 
     private volatile boolean active = false;
     private SourceDataLine sourceDataLine = null;
@@ -42,7 +42,7 @@ public final class SoftAudioPusher implements Runnable {
     private final AudioInputStream ais;
     private final byte[] buffer;
 
-    public SoftAudioPusher(SourceDataLine sourceDataLine, AudioInputStream ais,
+    SoftAudioPusher(SourceDataLine sourceDataLine, AudioInputStream ais,
             int workbuffersizer) {
         this.ais = ais;
         this.buffer = new byte[workbuffersizer];

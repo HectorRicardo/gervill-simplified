@@ -68,7 +68,7 @@ public class AudioInputStream extends InputStream {
     /**
      * The format of the audio data contained in the stream.
      */
-    protected AudioFormat format;
+    private AudioFormat format;
 
     /**
      * This stream's length, in sample frames.

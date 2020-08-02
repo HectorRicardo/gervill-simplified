@@ -31,7 +31,7 @@ package gervill.com.sun.media.sound;
  *
  * @author Karl Helgason
  */
-public final class SoftLinearResampler2 extends SoftAbstractResampler {
+final class SoftLinearResampler2 extends SoftAbstractResampler {
 
     public int getPadding() {
         return 2;

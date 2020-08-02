@@ -88,7 +88,7 @@ public class ShortMessage extends MidiMessage {
      * Status byte for End of System Exclusive message (0xF7, or 247).
      * see MidiMessage#getStatus
      */
-    public static final int END_OF_EXCLUSIVE                    = 0xF7; // 247
+    static final int END_OF_EXCLUSIVE                    = 0xF7; // 247
 
 
     // System real-time messages
@@ -273,7 +273,7 @@ public class ShortMessage extends MidiMessage {
      * see #setMessage
      */
     // $$fb this should throw an Exception in case of an illegal message!
-    protected ShortMessage(byte[] data) {
+    private ShortMessage(byte[] data) {
         // $$fb this may set an invalid message.
         // Can't correct without compromising compatibility
         super(data);

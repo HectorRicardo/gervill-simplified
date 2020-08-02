@@ -33,15 +33,15 @@ package gervill.com.sun.media.sound;
  *
  * @author Karl Helgason
  */
-public final class SoftFilter {
+final class SoftFilter {
 
-    public final static int FILTERTYPE_LP6 = 0x00;
-    public final static int FILTERTYPE_LP12 = 0x01;
-    public final static int FILTERTYPE_HP12 = 0x11;
-    public final static int FILTERTYPE_BP12 = 0x21;
-    public final static int FILTERTYPE_NP12 = 0x31;
-    public final static int FILTERTYPE_LP24 = 0x03;
-    public final static int FILTERTYPE_HP24 = 0x13;
+    private final static int FILTERTYPE_LP6 = 0x00;
+    final static int FILTERTYPE_LP12 = 0x01;
+    private final static int FILTERTYPE_HP12 = 0x11;
+    private final static int FILTERTYPE_BP12 = 0x21;
+    private final static int FILTERTYPE_NP12 = 0x31;
+    private final static int FILTERTYPE_LP24 = 0x03;
+    private final static int FILTERTYPE_HP24 = 0x13;
 
     //
     // 0x0 = 1st-order, 6 dB/oct
@@ -85,7 +85,7 @@ public final class SoftFilter {
     private double resonancedB = 0;
     private boolean dirty = true;
 
-    public SoftFilter(float samplerate) {
+    SoftFilter(float samplerate) {
         this.samplerate = samplerate;
         dirty = true;
     }
@@ -128,7 +128,7 @@ public final class SoftFilter {
         this.filtertype = filtertype;
     }
 
-    public void processAudio(SoftAudioBuffer sbuffer) {
+    void processAudio(SoftAudioBuffer sbuffer) {
         if (filtertype == FILTERTYPE_LP6)
             filter1(sbuffer);
         if (filtertype == FILTERTYPE_LP12)
@@ -145,7 +145,7 @@ public final class SoftFilter {
             filter4(sbuffer);
     }
 
-    public void filter4(SoftAudioBuffer sbuffer) {
+    private void filter4(SoftAudioBuffer sbuffer) {
 
         float[] buffer = sbuffer.array();
 
@@ -286,7 +286,7 @@ public final class SoftFilter {
         return (Math.exp(x) - Math.exp(-x)) * 0.5;
     }
 
-    public void filter2calc() {
+    private void filter2calc() {
 
         double resonancedB = this.resonancedB;
         if (resonancedB < 0)
@@ -410,7 +410,7 @@ public final class SoftFilter {
 
     }
 
-    public void filter2(SoftAudioBuffer sbuffer) {
+    private void filter2(SoftAudioBuffer sbuffer) {
 
         float[] buffer = sbuffer.array();
 
@@ -523,7 +523,7 @@ public final class SoftFilter {
 
     }
 
-    public void filter1calc() {
+    private void filter1calc() {
         if (cutoff < 120)
             cutoff = 120;
         double c = (7.0 / 6.0) * Math.PI * 2 * cutoff / samplerate;
@@ -541,7 +541,7 @@ public final class SoftFilter {
                 wet = 1.0f;
     }
 
-    public void filter1(SoftAudioBuffer sbuffer) {
+    private void filter1(SoftAudioBuffer sbuffer) {
 
         if (dirty) {
             filter1calc();

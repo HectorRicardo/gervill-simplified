@@ -70,13 +70,13 @@ import gervill.javax.sound.sampled.SourceDataLine;
 public final class SoftSynthesizer implements AudioSynthesizer,
         ReferenceCountingDevice {
 
-    protected static final class WeakAudioStream extends InputStream
+    static final class WeakAudioStream extends InputStream
     {
         private volatile AudioInputStream stream;
-        public SoftAudioPusher pusher = null;
-        public AudioInputStream jitter_stream = null;
-        public SourceDataLine sourceDataLine = null;
-        public volatile long silent_samples = 0;
+        private SoftAudioPusher pusher = null;
+        private AudioInputStream jitter_stream = null;
+        private SourceDataLine sourceDataLine = null;
+        volatile long silent_samples = 0;
         private int framesize = 0;
         private WeakReference<AudioInputStream> weak_stream_link;
         private AudioFloatConverter converter;
@@ -145,7 +145,7 @@ public final class SoftSynthesizer implements AudioSynthesizer,
              }
         }
 
-        public WeakAudioStream(AudioInputStream stream) {
+        private WeakAudioStream(AudioInputStream stream) {
             this.stream = stream;
             weak_stream_link = new WeakReference<AudioInputStream>(stream);
             converter = AudioFloatConverter.getConverter(stream.getFormat());
@@ -172,11 +172,11 @@ public final class SoftSynthesizer implements AudioSynthesizer,
         }
     }
 
-    static final String INFO_NAME = "Gervill";
-    static final String INFO_VENDOR = "OpenJDK";
-    static final String INFO_DESCRIPTION = "Software MIDI Synthesizer";
-    static final String INFO_VERSION = "1.0";
-    final static MidiDevice.Info info = new Info();
+    private static final String INFO_NAME = "Gervill";
+    private static final String INFO_VENDOR = "OpenJDK";
+    private static final String INFO_DESCRIPTION = "Software MIDI Synthesizer";
+    private static final String INFO_VERSION = "1.0";
+    private final static MidiDevice.Info info = new Info();
 
     private static SourceDataLine testline = null;
 
@@ -192,14 +192,14 @@ public final class SoftSynthesizer implements AudioSynthesizer,
     // 1: DLS Voice Allocation
     int voice_allocation_mode = 0;
 
-    boolean load_default_soundbank = false;
+    private boolean load_default_soundbank = false;
     boolean reverb_light = true;
     boolean reverb_on = true;
     boolean chorus_on = true;
     boolean agc_on = true;
 
     SoftChannel[] channels;
-    SoftChannelProxy[] external_channels = null;
+    private SoftChannelProxy[] external_channels = null;
 
     private boolean largemode = false;
 

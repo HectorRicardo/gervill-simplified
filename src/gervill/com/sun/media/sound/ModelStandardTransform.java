@@ -36,20 +36,20 @@ package gervill.com.sun.media.sound;
  *
  * @author Karl Helgason
  */
-public final class ModelStandardTransform implements ModelTransform {
+final class ModelStandardTransform implements ModelTransform {
 
-    public static final boolean DIRECTION_MIN2MAX = false;
-    public static final boolean DIRECTION_MAX2MIN = true;
-    public static final boolean POLARITY_UNIPOLAR = false;
-    public static final boolean POLARITY_BIPOLAR = true;
-    public static final int TRANSFORM_LINEAR = 0;
+    static final boolean DIRECTION_MIN2MAX = false;
+    static final boolean DIRECTION_MAX2MIN = true;
+    static final boolean POLARITY_UNIPOLAR = false;
+    static final boolean POLARITY_BIPOLAR = true;
+    static final int TRANSFORM_LINEAR = 0;
     // concave: output = (20*log10(127^2/value^2)) / 96
-    public static final int TRANSFORM_CONCAVE = 1;
+    static final int TRANSFORM_CONCAVE = 1;
     // convex: same as concave except that start and end point are reversed.
-    public static final int TRANSFORM_CONVEX = 2;
+    static final int TRANSFORM_CONVEX = 2;
     // switch: if value > avg(max,min) then max else min
-    public static final int TRANSFORM_SWITCH = 3;
-    public static final int TRANSFORM_ABSOLUTE = 4;
+    static final int TRANSFORM_SWITCH = 3;
+    static final int TRANSFORM_ABSOLUTE = 4;
     private boolean direction = DIRECTION_MIN2MAX;
     private boolean polarity = POLARITY_UNIPOLAR;
     private int transform = TRANSFORM_LINEAR;
@@ -57,16 +57,16 @@ public final class ModelStandardTransform implements ModelTransform {
     public ModelStandardTransform() {
     }
 
-    public ModelStandardTransform(boolean direction) {
+    ModelStandardTransform(boolean direction) {
         this.direction = direction;
     }
 
-    public ModelStandardTransform(boolean direction, boolean polarity) {
+    ModelStandardTransform(boolean direction, boolean polarity) {
         this.direction = direction;
         this.polarity = polarity;
     }
 
-    public ModelStandardTransform(boolean direction, boolean polarity,
+    ModelStandardTransform(boolean direction, boolean polarity,
             int transform) {
         this.direction = direction;
         this.polarity = polarity;

@@ -29,19 +29,19 @@ package gervill.com.sun.media.sound;
  *
  * @author Karl Helgason
  */
-public final class SoftEnvelopeGenerator implements SoftProcess {
+final class SoftEnvelopeGenerator implements SoftProcess {
 
-    public final static int EG_OFF = 0;
-    public final static int EG_DELAY = 1;
-    public final static int EG_ATTACK = 2;
-    public final static int EG_HOLD = 3;
-    public final static int EG_DECAY = 4;
-    public final static int EG_SUSTAIN = 5;
-    public final static int EG_RELEASE = 6;
-    public final static int EG_SHUTDOWN = 7;
-    public final static int EG_END = 8;
-    int max_count = 10;
-    int used_count = 0;
+    private final static int EG_OFF = 0;
+    private final static int EG_DELAY = 1;
+    private final static int EG_ATTACK = 2;
+    private final static int EG_HOLD = 3;
+    private final static int EG_DECAY = 4;
+    private final static int EG_SUSTAIN = 5;
+    private final static int EG_RELEASE = 6;
+    private final static int EG_SHUTDOWN = 7;
+    private final static int EG_END = 8;
+    private int max_count = 10;
+    private int used_count = 0;
     private final int[] stage = new int[max_count];
     private final int[] stage_ix = new int[max_count];
     private final double[] stage_v = new double[max_count];

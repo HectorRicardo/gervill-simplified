@@ -38,7 +38,7 @@ import gervill.javax.sound.sampled.AudioFormat.Encoding;
  *
  * @author Karl Helgason
  */
-public abstract class AudioFloatConverter {
+abstract class AudioFloatConverter {
 
     /***************************************************************************
      *
@@ -903,7 +903,7 @@ public abstract class AudioFloatConverter {
         }
     }
 
-    public static AudioFloatConverter getConverter(AudioFormat format) {
+    static AudioFloatConverter getConverter(AudioFormat format) {
         AudioFloatConverter conv = null;
         if (format.getFrameSize() == 0)
             return null;
@@ -1014,7 +1014,7 @@ public abstract class AudioFloatConverter {
     public abstract float[] toFloatArray(byte[] in_buff, int in_offset,
             float[] out_buff, int out_offset, int out_len);
 
-    public final float[] toFloatArray(byte[] in_buff, float[] out_buff,
+    final float[] toFloatArray(byte[] in_buff, float[] out_buff,
             int out_offset, int out_len) {
         return toFloatArray(in_buff, 0, out_buff, out_offset, out_len);
     }
@@ -1036,7 +1036,7 @@ public abstract class AudioFloatConverter {
     public abstract byte[] toByteArray(float[] in_buff, int in_offset,
             int in_len, byte[] out_buff, int out_offset);
 
-    public final byte[] toByteArray(float[] in_buff, int in_len,
+    final byte[] toByteArray(float[] in_buff, int in_len,
                                     byte[] out_buff, int out_offset) {
         return toByteArray(in_buff, 0, in_len, out_buff, out_offset);
     }
@@ -1046,12 +1046,12 @@ public abstract class AudioFloatConverter {
         return toByteArray(in_buff, in_offset, in_len, out_buff, 0);
     }
 
-    public final byte[] toByteArray(float[] in_buff, int in_len,
+    final byte[] toByteArray(float[] in_buff, int in_len,
                                     byte[] out_buff) {
         return toByteArray(in_buff, 0, in_len, out_buff, 0);
     }
 
-    public final byte[] toByteArray(float[] in_buff, byte[] out_buff) {
+    final byte[] toByteArray(float[] in_buff, byte[] out_buff) {
         return toByteArray(in_buff, 0, in_buff.length, out_buff, 0);
     }
 }

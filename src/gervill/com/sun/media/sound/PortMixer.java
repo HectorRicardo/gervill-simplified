@@ -203,11 +203,11 @@ final class PortMixer extends AbstractMixer {
         return null;
     }
 
-    int getMixerIndex() {
+    private int getMixerIndex() {
         return ((PortMixerProvider.PortMixerInfo) getMixerInfo()).getIndex();
     }
 
-    Port getPort(int index) {
+    private Port getPort(int index) {
         if (ports == null) {
             ports = new PortMixerPort[portInfos.length];
         }
@@ -219,7 +219,7 @@ final class PortMixer extends AbstractMixer {
         return ports[index];
     }
 
-    long getID() {
+    private long getID() {
         return id;
     }
 

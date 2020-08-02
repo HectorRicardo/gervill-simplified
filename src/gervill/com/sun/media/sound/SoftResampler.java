@@ -29,7 +29,7 @@ package gervill.com.sun.media.sound;
  *
  * @author Karl Helgason
  */
-public interface SoftResampler {
+interface SoftResampler {
 
     public SoftResamplerStreamer openStreamer();
 }

@@ -29,7 +29,7 @@ package gervill.com.sun.media.sound;
  *
  * @author Karl Helgason
  */
-public final class SoftLowFrequencyOscillator implements SoftProcess {
+final class SoftLowFrequencyOscillator implements SoftProcess {
 
     private final int max_count = 10;
     private int used_count = 0;

@@ -29,5 +29,5 @@ package gervill.com.sun.media.sound;
  *
  * @author Karl Helgason
  */
-public final class SF2GlobalRegion extends SF2Region {
+final class SF2GlobalRegion extends SF2Region {
 }

@@ -29,12 +29,12 @@ package gervill.com.sun.media.sound;
  *
  * @author Karl Helgason
  */
-public final class SoftLanczosResampler extends SoftAbstractResampler {
+final class SoftLanczosResampler extends SoftAbstractResampler {
 
-    float[][] sinc_table;
-    int sinc_table_fsize = 2000;
-    int sinc_table_size = 5;
-    int sinc_table_center = sinc_table_size / 2;
+    private float[][] sinc_table;
+    private int sinc_table_fsize = 2000;
+    private int sinc_table_size = 5;
+    private int sinc_table_center = sinc_table_size / 2;
 
     public SoftLanczosResampler() {
         super();
@@ -51,7 +51,7 @@ public final class SoftLanczosResampler extends SoftAbstractResampler {
     }
 
     // Generate sinc table
-    public static float[] sincTable(int size, float offset) {
+    private static float[] sincTable(int size, float offset) {
         int center = size / 2;
         float[] w = new float[size];
         for (int k = 0; k < size; k++) {

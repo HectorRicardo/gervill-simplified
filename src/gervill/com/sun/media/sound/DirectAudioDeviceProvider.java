@@ -34,7 +34,7 @@ import gervill.javax.sound.sampled.spi.MixerProvider;
  *
  * @author Florian Bomers
  */
-public final class DirectAudioDeviceProvider extends MixerProvider {
+final class DirectAudioDeviceProvider extends MixerProvider {
 
     // STATIC VARIABLES
 

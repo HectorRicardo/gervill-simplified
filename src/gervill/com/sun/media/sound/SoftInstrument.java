@@ -32,14 +32,14 @@ import gervill.javax.sound.midi.MidiChannel;
  *
  * @author Karl Helgason
  */
-public final class SoftInstrument extends Instrument {
+final class SoftInstrument extends Instrument {
 
     private SoftPerformer[] performers;
     private ModelPerformer[] modelperformers;
     private final Object data;
     private final ModelInstrument ins;
 
-    public SoftInstrument(ModelInstrument ins) {
+    SoftInstrument(ModelInstrument ins) {
         super(ins.getSoundbank(), ins.getPatch(), ins.getName(),
                 ins.getDataClass());
         data = ins.getData();
@@ -47,7 +47,7 @@ public final class SoftInstrument extends Instrument {
         initPerformers(((ModelInstrument)ins).getPerformers());
     }
 
-    public SoftInstrument(ModelInstrument ins,
+    SoftInstrument(ModelInstrument ins,
             ModelPerformer[] overrideperformers) {
         super(ins.getSoundbank(), ins.getPatch(), ins.getName(),
                 ins.getDataClass());
@@ -63,7 +63,7 @@ public final class SoftInstrument extends Instrument {
             performers[i] = new SoftPerformer(modelperformers[i]);
     }
 
-    public ModelDirector getDirector(MidiChannel channel,
+    ModelDirector getDirector(MidiChannel channel,
             ModelDirectedPlayer player) {
         return ins.getDirector(modelperformers, channel, player);
     }
@@ -81,7 +81,7 @@ public final class SoftInstrument extends Instrument {
         return performers;
     }
     */
-    public SoftPerformer getPerformer(int index) {
+    SoftPerformer getPerformer(int index) {
         return performers[index];
     }
 }

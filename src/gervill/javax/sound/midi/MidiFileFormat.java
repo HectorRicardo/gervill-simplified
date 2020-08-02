@@ -102,7 +102,7 @@ public class MidiFileFormat {
     /**
      * The type of MIDI file.
      */
-    protected int type;
+    private int type;
 
     /**
      * The division type of the MIDI file.
@@ -113,22 +113,22 @@ public class MidiFileFormat {
      * see Sequence#SMPTE_30DROP
      * see Sequence#SMPTE_30
      */
-    protected float divisionType;
+    private float divisionType;
 
     /**
      * The timing resolution of the MIDI file.
      */
-    protected int resolution;
+    private int resolution;
 
     /**
      * The length of the MIDI file in bytes.
      */
-    protected int byteLength;
+    private int byteLength;
 
     /**
      * The duration of the MIDI file in microseconds.
      */
-    protected long microsecondLength;
+    private long microsecondLength;
 
 
     /** The set of properties */

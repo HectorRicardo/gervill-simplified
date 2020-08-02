@@ -30,7 +30,7 @@ package gervill.com.sun.media.sound;
  *
  * @author Karl Helgason
  */
-public interface SoftControl {
+interface SoftControl {
 
     public double[] get(int instance, String name);
 }

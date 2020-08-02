@@ -39,7 +39,7 @@ import gervill.javax.sound.midi.Patch;
  *
  * @author Karl Helgason
  */
-public final class SoftChannel implements MidiChannel, ModelDirectedPlayer {
+final class SoftChannel implements MidiChannel, ModelDirectedPlayer {
 
     private static boolean[] dontResetControls = new boolean[128];
     static {
@@ -91,8 +91,8 @@ public final class SoftChannel implements MidiChannel, ModelDirectedPlayer {
     private int rpn_control = RPN_NULL_VALUE;
     private int nrpn_control = RPN_NULL_VALUE;
     double portamento_time = 1; // keyschanges per control buffer time
-    int[] portamento_lastnote = new int[128];
-    int portamento_lastnote_ix = 0;
+    private int[] portamento_lastnote = new int[128];
+    private int portamento_lastnote_ix = 0;
     private boolean portamento = false;
     private boolean mono = false;
     private boolean mute = false;
@@ -112,17 +112,17 @@ public final class SoftChannel implements MidiChannel, ModelDirectedPlayer {
     private double[] co_midi_pitch = new double[1];
     private double[] co_midi_channel_pressure = new double[1];
     SoftTuning tuning = new SoftTuning();
-    int tuning_bank = 0;
-    int tuning_program = 0;
+    private int tuning_bank = 0;
+    private int tuning_program = 0;
     SoftInstrument current_instrument = null;
-    ModelChannelMixer current_mixer = null;
+    private ModelChannelMixer current_mixer = null;
     ModelDirector current_director = null;
 
     // Controller Destination Settings
-    int cds_control_number = -1;
-    ModelConnectionBlock[] cds_control_connections = null;
-    ModelConnectionBlock[] cds_channelpressure_connections = null;
-    ModelConnectionBlock[] cds_polypressure_connections = null;
+    private int cds_control_number = -1;
+    private ModelConnectionBlock[] cds_control_connections = null;
+    private ModelConnectionBlock[] cds_channelpressure_connections = null;
+    private ModelConnectionBlock[] cds_polypressure_connections = null;
     boolean sustain = false;
     boolean[][] keybasedcontroller_active = null;
     double[][] keybasedcontroller_value = null;
@@ -161,8 +161,8 @@ public final class SoftChannel implements MidiChannel, ModelDirectedPlayer {
             return cc[Integer.parseInt(name)];
         }
     };
-    Map<Integer, int[]> co_midi_rpn_rpn_i = new HashMap<Integer, int[]>();
-    Map<Integer, double[]> co_midi_rpn_rpn = new HashMap<Integer, double[]>();
+    private Map<Integer, int[]> co_midi_rpn_rpn_i = new HashMap<Integer, int[]>();
+    private Map<Integer, double[]> co_midi_rpn_rpn = new HashMap<Integer, double[]>();
     private SoftControl co_midi_rpn = new SoftControl() {
         Map<Integer, double[]> rpn = co_midi_rpn_rpn;
         public double[] get(int instance, String name) {
@@ -177,8 +177,8 @@ public final class SoftChannel implements MidiChannel, ModelDirectedPlayer {
             return v;
         }
     };
-    Map<Integer, int[]> co_midi_nrpn_nrpn_i = new HashMap<Integer, int[]>();
-    Map<Integer, double[]> co_midi_nrpn_nrpn = new HashMap<Integer, double[]>();
+    private Map<Integer, int[]> co_midi_nrpn_nrpn_i = new HashMap<Integer, int[]>();
+    private Map<Integer, double[]> co_midi_nrpn_nrpn = new HashMap<Integer, double[]>();
     private SoftControl co_midi_nrpn = new SoftControl() {
         Map<Integer, double[]> nrpn = co_midi_nrpn_nrpn;
         public double[] get(int instance, String name) {
@@ -208,7 +208,7 @@ public final class SoftChannel implements MidiChannel, ModelDirectedPlayer {
         return value;
     }
 
-    public SoftChannel(SoftSynthesizer synth, int channel) {
+    SoftChannel(SoftSynthesizer synth, int channel) {
         this.channel = channel;
         this.voices = synth.getVoices();
         this.synthesizer = synth;
@@ -707,7 +707,7 @@ public final class SoftChannel implements MidiChannel, ModelDirectedPlayer {
         }
     }
 
-    void applyInstrumentCustomization() {
+    private void applyInstrumentCustomization() {
         if (cds_control_connections == null
                 && cds_channelpressure_connections == null
                 && cds_polypressure_connections == null) {
@@ -945,7 +945,7 @@ public final class SoftChannel implements MidiChannel, ModelDirectedPlayer {
         return conns.toArray(new ModelConnectionBlock[conns.size()]);
     }
 
-    public void mapPolyPressureToDestination(int[] destination, int[] range) {
+    void mapPolyPressureToDestination(int[] destination, int[] range) {
         current_instrument = null;
         if (destination.length == 0) {
             cds_polypressure_connections = null;
@@ -957,7 +957,7 @@ public final class SoftChannel implements MidiChannel, ModelDirectedPlayer {
                     destination, range);
     }
 
-    public void mapChannelPressureToDestination(int[] destination, int[] range) {
+    void mapChannelPressureToDestination(int[] destination, int[] range) {
         current_instrument = null;
         if (destination.length == 0) {
             cds_channelpressure_connections = null;
@@ -969,7 +969,7 @@ public final class SoftChannel implements MidiChannel, ModelDirectedPlayer {
                     destination, range);
     }
 
-    public void mapControlToDestination(int control, int[] destination, int[] range) {
+    void mapControlToDestination(int control, int[] destination, int[] range) {
 
         if (!((control >= 0x01 && control <= 0x1F)
                 || (control >= 0x40 && control <= 0x5F))) {
@@ -989,7 +989,7 @@ public final class SoftChannel implements MidiChannel, ModelDirectedPlayer {
                     destination, range);
     }
 
-    public void controlChangePerNote(int noteNumber, int controller, int value) {
+    void controlChangePerNote(int noteNumber, int controller, int value) {
 
 /*
  CC# | nn   | Name                    | vv             | default    | description
@@ -1253,7 +1253,7 @@ public final class SoftChannel implements MidiChannel, ModelDirectedPlayer {
         tuningChange(0, program);
     }
 
-    public void tuningChange(int bank, int program) {
+    private void tuningChange(int bank, int program) {
         synchronized (control_mutex) {
             tuning = synthesizer.getTuning(new Patch(bank, program));
         }
@@ -1303,7 +1303,7 @@ public final class SoftChannel implements MidiChannel, ModelDirectedPlayer {
         }
     }
 
-    public void nrpnChange(int controller, int value) {
+    private void nrpnChange(int controller, int value) {
 
         /*
         System.out.println("(" + channel + ").nrpnChange("
@@ -1362,7 +1362,7 @@ public final class SoftChannel implements MidiChannel, ModelDirectedPlayer {
 
     }
 
-    public void rpnChange(int controller, int value) {
+    private void rpnChange(int controller, int value) {
 
         /*
         System.out.println("(" + channel + ").rpnChange("
@@ -1402,7 +1402,7 @@ public final class SoftChannel implements MidiChannel, ModelDirectedPlayer {
         resetAllControllers(false);
     }
 
-    public void resetAllControllers(boolean allControls) {
+    void resetAllControllers(boolean allControls) {
         synchronized (control_mutex) {
             mainmixer.activity();
 

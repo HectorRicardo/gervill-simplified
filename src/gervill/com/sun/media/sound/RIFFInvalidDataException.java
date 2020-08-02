@@ -29,13 +29,13 @@ package gervill.com.sun.media.sound;
  *
  * @author Karl Helgason
  */
-public final class RIFFInvalidDataException extends InvalidDataException {
+final class RIFFInvalidDataException extends InvalidDataException {
 
     public RIFFInvalidDataException() {
         super("Invalid Data!");
     }
 
-    public RIFFInvalidDataException(String s) {
+    RIFFInvalidDataException(String s) {
         super(s);
     }
 }

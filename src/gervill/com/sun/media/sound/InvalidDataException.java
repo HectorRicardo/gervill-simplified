@@ -31,13 +31,13 @@ import java.io.IOException;
  *
  * @author Karl Helgason
  */
-public class InvalidDataException extends IOException {
+class InvalidDataException extends IOException {
 
     public InvalidDataException() {
         super("Invalid Data!");
     }
 
-    public InvalidDataException(String s) {
+    InvalidDataException(String s) {
         super(s);
     }
 }

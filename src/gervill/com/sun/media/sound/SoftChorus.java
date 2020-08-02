@@ -32,7 +32,7 @@ import java.util.Arrays;
  *
  * @author Karl Helgason
  */
-public final class SoftChorus implements SoftAudioProcessor {
+final class SoftChorus implements SoftAudioProcessor {
 
     private static class VariableDelay {
 
@@ -284,7 +284,7 @@ public final class SoftChorus implements SoftAudioProcessor {
             vdelay1R.setReverbSendGain(dirty_vdelay1R_reverbsendgain);
         }
     }
-    double silentcounter = 1000;
+    private double silentcounter = 1000;
 
     public void processAudio() {
 

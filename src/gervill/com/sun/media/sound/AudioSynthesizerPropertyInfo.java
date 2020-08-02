@@ -29,7 +29,7 @@ package gervill.com.sun.media.sound;
  *
  * @author Karl Helgason
  */
-public final class AudioSynthesizerPropertyInfo {
+final class AudioSynthesizerPropertyInfo {
 
     /**
      * Constructs a <code>AudioSynthesizerPropertyInfo</code> object with a given
@@ -40,7 +40,7 @@ public final class AudioSynthesizerPropertyInfo {
      * @param value the current value or class used for values.
      *
      */
-    public AudioSynthesizerPropertyInfo(String name, Object value) {
+    AudioSynthesizerPropertyInfo(String name, Object value) {
         this.name = name;
         if (value instanceof Class)
             valueClass = (Class)value;
@@ -58,7 +58,7 @@ public final class AudioSynthesizerPropertyInfo {
     /**
      * A brief description of the property, which may be null.
      */
-    public String description = null;
+    String description = null;
     /**
      * The <code>value</code> field specifies the current value of
      * the property.
@@ -68,12 +68,12 @@ public final class AudioSynthesizerPropertyInfo {
      * The <code>valueClass</code> field specifies class
      * used in <code>value</code> field.
      */
-    public Class valueClass = null;
+    Class valueClass = null;
     /**
      * An array of possible values if the value for the field
      * <code>AudioSynthesizerPropertyInfo.value</code> may be selected
      * from a particular set of values; otherwise null.
      */
-    public Object[] choices = null;
+    Object[] choices = null;
 
 }

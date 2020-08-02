@@ -59,7 +59,7 @@ final class WaveFileFormat extends AudioFileFormat {
     static  final int DATA_MAGIC                 = 0x64617461; // "data"
 
     // encodings
-    static final int WAVE_FORMAT_UNKNOWN   = 0x0000;
+    private static final int WAVE_FORMAT_UNKNOWN   = 0x0000;
     static final int WAVE_FORMAT_PCM       = 0x0001;
     static final int WAVE_FORMAT_ADPCM     = 0x0002;
     static final int WAVE_FORMAT_ALAW      = 0x0006;

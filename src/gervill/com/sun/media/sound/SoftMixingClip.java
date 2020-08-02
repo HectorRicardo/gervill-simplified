@@ -42,7 +42,7 @@ import gervill.javax.sound.sampled.LineUnavailableException;
  *
  * @author Karl Helgason
  */
-public final class SoftMixingClip extends SoftMixingDataLine implements Clip {
+final class SoftMixingClip extends SoftMixingDataLine implements Clip {
 
     private AudioFormat format;
 

@@ -36,7 +36,7 @@ import gervill.javax.sound.sampled.AudioFormat.Encoding;
  *
  * @author Karl Helgason
  */
-public final class ModelByteBufferWavetable implements ModelWavetable {
+final class ModelByteBufferWavetable implements ModelWavetable {
 
     private class Buffer8PlusInputStream extends InputStream {
 
@@ -138,7 +138,7 @@ public final class ModelByteBufferWavetable implements ModelWavetable {
         this.buffer = buffer;
     }
 
-    public ModelByteBufferWavetable(ModelByteBuffer buffer,
+    ModelByteBufferWavetable(ModelByteBuffer buffer,
             float pitchcorrection) {
         this.buffer = buffer;
         this.pitchcorrection = pitchcorrection;
@@ -149,18 +149,18 @@ public final class ModelByteBufferWavetable implements ModelWavetable {
         this.buffer = buffer;
     }
 
-    public ModelByteBufferWavetable(ModelByteBuffer buffer, AudioFormat format,
+    ModelByteBufferWavetable(ModelByteBuffer buffer, AudioFormat format,
             float pitchcorrection) {
         this.format = format;
         this.buffer = buffer;
         this.pitchcorrection = pitchcorrection;
     }
 
-    public void set8BitExtensionBuffer(ModelByteBuffer buffer) {
+    void set8BitExtensionBuffer(ModelByteBuffer buffer) {
         buffer8 = buffer;
     }
 
-    public ModelByteBuffer get8BitExtensionBuffer() {
+    ModelByteBuffer get8BitExtensionBuffer() {
         return buffer8;
     }
 

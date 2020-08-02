@@ -34,7 +34,7 @@ import java.util.List;
  *
  * @author Karl Helgason
  */
-public final class DLSSampleOptions {
+final class DLSSampleOptions {
 
     int unitynote;
     short finetune;

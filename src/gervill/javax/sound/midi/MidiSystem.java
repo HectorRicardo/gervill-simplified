@@ -438,7 +438,7 @@ public class MidiSystem {
      * see #getReceiver
      * @since 1.5
      */
-    public static Sequencer getSequencer(boolean connected)
+    private static Sequencer getSequencer(boolean connected)
         throws MidiUnavailableException {
         Sequencer seq = (Sequencer) getDefaultDeviceWrapper(Sequencer.class);
 

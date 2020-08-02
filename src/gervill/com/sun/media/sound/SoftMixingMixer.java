@@ -48,7 +48,7 @@ import gervill.javax.sound.sampled.Control.Type;
  *
  * @author Karl Helgason
  */
-public final class SoftMixingMixer implements Mixer {
+final class SoftMixingMixer implements Mixer {
 
     private static class Info extends Mixer.Info {
         Info() {
@@ -56,13 +56,13 @@ public final class SoftMixingMixer implements Mixer {
         }
     }
 
-    static final String INFO_NAME = "Gervill Sound Mixer";
+    private static final String INFO_NAME = "Gervill Sound Mixer";
 
-    static final String INFO_VENDOR = "OpenJDK Proposal";
+    private static final String INFO_VENDOR = "OpenJDK Proposal";
 
-    static final String INFO_DESCRIPTION = "Software Sound Mixer";
+    private static final String INFO_DESCRIPTION = "Software Sound Mixer";
 
-    static final String INFO_VERSION = "1.0";
+    private static final String INFO_VERSION = "1.0";
 
     static final Mixer.Info info = new Info();
 
@@ -339,7 +339,7 @@ public final class SoftMixingMixer implements Mixer {
         open(null);
     }
 
-    public void open(SourceDataLine line) throws LineUnavailableException {
+    private void open(SourceDataLine line) throws LineUnavailableException {
         if (isOpen()) {
             implicitOpen = false;
             return;
@@ -472,7 +472,7 @@ public final class SoftMixingMixer implements Mixer {
         }
     }
 
-    public AudioInputStream openStream(AudioFormat targetFormat)
+    private AudioInputStream openStream(AudioFormat targetFormat)
             throws LineUnavailableException {
 
         if (isOpen())

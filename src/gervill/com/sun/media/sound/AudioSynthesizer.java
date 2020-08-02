@@ -41,7 +41,7 @@ import gervill.javax.sound.sampled.SourceDataLine;
  *
  * @author Karl Helgason
  */
-public interface AudioSynthesizer extends Synthesizer {
+interface AudioSynthesizer extends Synthesizer {
 
     /**
      * Obtains the current format (encoding, sample rate, number of channels,

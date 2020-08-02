@@ -29,10 +29,10 @@ package gervill.com.sun.media.sound;
  *
  * @author Karl Helgason
  */
-public final class DLSSampleLoop {
+final class DLSSampleLoop {
 
-    public final static int LOOP_TYPE_FORWARD = 0;
-    public final static int LOOP_TYPE_RELEASE = 1;
+    final static int LOOP_TYPE_FORWARD = 0;
+    final static int LOOP_TYPE_RELEASE = 1;
     long type;
     long start;
     long length;

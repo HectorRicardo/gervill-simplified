@@ -36,7 +36,7 @@ import gervill.javax.sound.midi.ShortMessage;
  *
  * @author Karl Helgason
  */
-public final class SoftReceiver implements MidiDeviceReceiver {
+final class SoftReceiver implements MidiDeviceReceiver {
 
     boolean open = true;
     private final Object control_mutex;
@@ -44,7 +44,7 @@ public final class SoftReceiver implements MidiDeviceReceiver {
     TreeMap<Long, Object> midimessages;
     SoftMainMixer mainmixer;
 
-    public SoftReceiver(SoftSynthesizer synth) {
+    SoftReceiver(SoftSynthesizer synth) {
         this.control_mutex = synth.control_mutex;
         this.synth = synth;
         this.mainmixer = synth.getMainMixer();

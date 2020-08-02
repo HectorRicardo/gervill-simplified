@@ -30,18 +30,18 @@ package gervill.com.sun.media.sound;
  *
  * @author Karl Helgason
  */
-public final class SoftLimiter implements SoftAudioProcessor {
+final class SoftLimiter implements SoftAudioProcessor {
 
-    float lastmax = 0;
-    float gain = 1;
-    float[] temp_bufferL;
-    float[] temp_bufferR;
-    boolean mix = false;
-    SoftAudioBuffer bufferL;
-    SoftAudioBuffer bufferR;
-    SoftAudioBuffer bufferLout;
-    SoftAudioBuffer bufferRout;
-    float controlrate;
+    private float lastmax = 0;
+    private float gain = 1;
+    private float[] temp_bufferL;
+    private float[] temp_bufferR;
+    private boolean mix = false;
+    private SoftAudioBuffer bufferL;
+    private SoftAudioBuffer bufferR;
+    private SoftAudioBuffer bufferLout;
+    private SoftAudioBuffer bufferRout;
+    private float controlrate;
 
     public void init(float samplerate, float controlrate) {
         this.controlrate = controlrate;
@@ -69,7 +69,7 @@ public final class SoftLimiter implements SoftAudioProcessor {
             long value) {
     }
 
-    double silentcounter = 0;
+    private double silentcounter = 0;
 
     public void processAudio() {
         if (this.bufferL.isSilent()

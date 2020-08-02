@@ -34,7 +34,7 @@ import gervill.javax.sound.sampled.spi.MixerProvider;
  *
  * @author Florian Bomers
  */
-public final class PortMixerProvider extends MixerProvider {
+final class PortMixerProvider extends MixerProvider {
 
     // STATIC VARIABLES
 

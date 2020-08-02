@@ -130,37 +130,37 @@ public class AudioFormat {
     /**
      * The audio encoding technique used by this format.
      */
-    protected Encoding encoding;
+    private Encoding encoding;
 
     /**
      * The number of samples played or recorded per second, for sounds that have this format.
      */
-    protected float sampleRate;
+    private float sampleRate;
 
     /**
      * The number of bits in each sample of a sound that has this format.
      */
-    protected int sampleSizeInBits;
+    private int sampleSizeInBits;
 
     /**
      * The number of audio channels in this format (1 for mono, 2 for stereo).
      */
-    protected int channels;
+    private int channels;
 
     /**
      * The number of bytes in each frame of a sound that has this format.
      */
-    protected int frameSize;
+    private int frameSize;
 
     /**
      * The number of frames played or recorded per second, for sounds that have this format.
      */
-    protected float frameRate;
+    private float frameRate;
 
     /**
      * Indicates whether the audio data is stored in big-endian or little-endian order.
      */
-    protected boolean bigEndian;
+    private boolean bigEndian;
 
 
     /** The set of properties */
