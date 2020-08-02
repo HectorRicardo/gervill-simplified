@@ -25,8 +25,6 @@
 
 package gervill.javax.sound.sampled.spi;
 
-import java.io.InputStream;
-
 import gervill.javax.sound.sampled.AudioFormat;
 import gervill.javax.sound.sampled.AudioInputStream;
 

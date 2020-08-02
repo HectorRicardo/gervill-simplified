@@ -25,8 +25,6 @@
 
 package gervill.javax.sound.midi;
 
-import gervill.javax.sound.sampled.Control;
-
 
 /**
  * A <code>Synthesizer</code> generates sound.  This usually happens when one of

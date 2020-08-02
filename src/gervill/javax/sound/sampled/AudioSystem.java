@@ -216,7 +216,6 @@ public class AudioSystem {
      */
     public static Mixer getMixer(Mixer.Info info) {
 
-        Mixer mixer = null;
         List providers = getMixerProviders();
 
         for(int i = 0; i < providers.size(); i++ ) {
@@ -279,7 +278,6 @@ public class AudioSystem {
         Line.Info[] currentInfoArray;
 
         Mixer mixer;
-        Line.Info fullInfo = null;
         Mixer.Info[] infoArray = getMixerInfo();
 
         for (int i = 0; i < infoArray.length; i++) {
@@ -319,7 +317,6 @@ public class AudioSystem {
         Line.Info[] currentInfoArray;
 
         Mixer mixer;
-        Line.Info fullInfo = null;
         Mixer.Info[] infoArray = getMixerInfo();
 
         for (int i = 0; i < infoArray.length; i++) {
@@ -1606,8 +1603,6 @@ public class AudioSystem {
         List infos = new ArrayList();
 
         Mixer.Info[] someInfos; // per-mixer
-        Mixer.Info[] allInfos;  // for all mixers
-
         for(int i = 0; i < providers.size(); i++ ) {
             someInfos = (Mixer.Info[])
                 ((MixerProvider)providers.get(i)).getMixerInfo();

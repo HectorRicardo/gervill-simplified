@@ -109,7 +109,6 @@ final class DirectAudioDevice extends AbstractMixer {
                 for (int i = 0; i < size; i++) {
                     AudioFormat format = (AudioFormat)formats.elementAt(i);
                     hardwareFormatArray[i] = format;
-                    int bits = format.getSampleSizeInBits();
                     boolean isSigned = format.getEncoding().equals(AudioFormat.Encoding.PCM_SIGNED);
                     boolean isUnsigned = format.getEncoding().equals(AudioFormat.Encoding.PCM_UNSIGNED);
                     if ((isSigned || isUnsigned)) {

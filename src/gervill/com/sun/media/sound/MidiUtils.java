@@ -206,7 +206,7 @@ public final class MidiUtils {
 
         int resolution = seq.getResolution();
 
-        long us = 0; long tick = 0; int newReadPos = 0; int i = 1;
+        long us = 0; long tick = 0; int i = 1;
 
         // walk through all tempo changes and add time for the respective blocks
         // to find the right tick

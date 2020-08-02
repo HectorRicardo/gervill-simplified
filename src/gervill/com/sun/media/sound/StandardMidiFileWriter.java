@@ -160,9 +160,7 @@ public final class StandardMidiFileWriter extends MidiFileWriter {
 
     private InputStream getFileStream(int type, Sequence sequence) throws IOException {
         Track tracks[] = sequence.getTracks();
-        int bytesBuilt = 0;
         int headerLength = 14;
-        int length = 0;
         int timeFormat;
         float divtype;
 
@@ -273,7 +271,6 @@ public final class StandardMidiFileWriter extends MidiFileWriter {
         fStream = new SequenceInputStream(headerStream, trackStream);
         hdos.close();
 
-        length = bytesBuilt + headerLength;
         return fStream;
     }
 
@@ -326,7 +323,6 @@ public final class StandardMidiFileWriter extends MidiFileWriter {
 
     private InputStream writeTrack( Track track, int type ) throws IOException, InvalidMidiDataException {
         int bytesWritten = 0;
-        int lastBytesWritten = 0;
         int size = track.size();
         PipedOutputStream thpos = new PipedOutputStream();
         DataOutputStream  thdos = new DataOutputStream(thpos);
@@ -340,7 +336,6 @@ public final class StandardMidiFileWriter extends MidiFileWriter {
 
         long currentTick = 0;
         long deltaTick = 0;
-        long eventTick = 0;
         int runningStatus = -1;
 
         // -----------------------------
@@ -351,17 +346,12 @@ public final class StandardMidiFileWriter extends MidiFileWriter {
 
             int status;
             int eventtype;
-            int metatype;
             int data1, data2;
-            int length;
             byte data[] = null;
             ShortMessage shortMessage = null;
             MetaMessage  metaMessage  = null;
             SysexMessage sysexMessage = null;
 
-            // get the tick
-            // $$jb: this gets easier if we change all system-wide time to delta ticks
-            eventTick = event.getTick();
             deltaTick = event.getTick() - currentTick;
             currentTick = event.getTick();
 
@@ -398,7 +388,6 @@ public final class StandardMidiFileWriter extends MidiFileWriter {
 
             case SYSEX:
                 sysexMessage = (SysexMessage) event.getMessage();
-                length     = sysexMessage.getLength();
                 data       = sysexMessage.getMessage();
                 bytesWritten += writeVarInt( deltaTick );
 
@@ -420,7 +409,6 @@ public final class StandardMidiFileWriter extends MidiFileWriter {
 
             case META:
                 metaMessage = (MetaMessage) event.getMessage();
-                length    = metaMessage.getLength();
                 data      = metaMessage.getMessage();
                 bytesWritten += writeVarInt( deltaTick );
 

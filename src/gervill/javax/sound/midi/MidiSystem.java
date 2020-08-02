@@ -25,7 +25,6 @@
 
 package gervill.javax.sound.midi;
 
-import java.io.FileInputStream;
 import java.io.File;
 import java.io.InputStream;
 import java.io.OutputStream;

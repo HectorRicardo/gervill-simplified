@@ -26,7 +26,6 @@
 package gervill.javax.sound.sampled.spi;
 
 import java.io.File;
-import java.io.InputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 

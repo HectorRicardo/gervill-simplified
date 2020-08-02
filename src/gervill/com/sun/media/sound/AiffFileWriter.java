@@ -162,11 +162,7 @@ public final class AiffFileWriter extends SunFileWriter {
         AudioFormat.Encoding streamEncoding = streamFormat.getEncoding();
 
 
-        float sampleRate;
         int sampleSizeInBits;
-        int channels;
-        int frameSize;
-        float frameRate;
         int fileSize;
         boolean convert8to16 = false;
 
@@ -271,14 +267,10 @@ public final class AiffFileWriter extends SunFileWriter {
         //int headerSize          = 54;
         int headerSize          = aiffFileFormat.getHeaderSize();
 
-        //int fverChunkSize       = 0;
-        int fverChunkSize       = aiffFileFormat.getFverChunkSize();
         //int commChunkSize       = 26;
         int commChunkSize       = aiffFileFormat.getCommChunkSize();
         int aiffLength          = -1;
         int ssndChunkSize       = -1;
-        //int ssndOffset                        = headerSize - 16;
-        int ssndOffset                  = aiffFileFormat.getSsndChunkOffset();
         short channels = (short) format.getChannels();
         short sampleSize = (short) format.getSampleSizeInBits();
         int ssndBlockSize               = (channels * sampleSize);
@@ -290,8 +282,6 @@ public final class AiffFileWriter extends SunFileWriter {
             aiffLength = (int)dataSize+headerSize;
         }
         float sampleFramesPerSecond = format.getSampleRate();
-        int compCode = AiffFileFormat.AIFC_PCM;
-
         byte header[] = null;
         ByteArrayInputStream headerStream = null;
         ByteArrayOutputStream baos = null;

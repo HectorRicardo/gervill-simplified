@@ -213,15 +213,12 @@ public final class WaveFileReader extends SunFileReader {
 
         // assumes sream is rewound
 
-        int bytesRead;
         int nread = 0;
         int fmt;
         int length = 0;
         int wav_type = 0;
         short channels;
         long sampleRate;
-        long avgBytesPerSec;
-        short blockAlign;
         int sampleSizeInBits;
         AudioFormat.Encoding encoding = null;
 
@@ -304,11 +301,9 @@ public final class WaveFileReader extends SunFileReader {
         // sample rate.
         sampleRate = rllong(dis); nread += 4;
 
-        // this is the avgBytesPerSec
-        avgBytesPerSec = rllong(dis); nread += 4;
+        rllong(dis); nread += 4;
 
-        // this is blockAlign value
-        blockAlign = rlshort(dis); nread += 2;
+        rlshort(dis); nread += 2;
 
         // this is the PCM-specific value bitsPerSample
         sampleSizeInBits = (int)rlshort(dis); nread += 2;

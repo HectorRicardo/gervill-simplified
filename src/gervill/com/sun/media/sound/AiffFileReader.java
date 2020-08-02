@@ -26,7 +26,6 @@
 package gervill.com.sun.media.sound;
 
 import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -323,11 +322,8 @@ public final class AiffFileReader extends SunFileReader {
                                           frameSize, sampleRate, true);
                 break;
             case AiffFileFormat.SSND_MAGIC:
-                // Data chunk.
-                // we are getting *weird* numbers for chunkLen sometimes;
-                // this really should be the size of the data chunk....
-                int dataOffset = dis.readInt();
-                int blocksize = dis.readInt();
+                dis.readInt();
+                dis.readInt();
                 chunkRead += 8;
 
                 // okay, now we are done reading the header.  we need to set the size
@@ -367,31 +363,6 @@ public final class AiffFileReader extends SunFileReader {
 
         return new AiffFileFormat(type, totallength, format, dataLength / format.getFrameSize());
     }
-
-    // HELPER METHODS
-    /** write_ieee_extended(DataOutputStream dos, double f) throws IOException {
-     * Extended precision IEEE floating-point conversion routine.
-     * @argument DataOutputStream
-     * @argument double
-     * @return void
-     * @exception IOException
-     */
-    private void write_ieee_extended(DataOutputStream dos, double f) throws IOException {
-
-        int exponent = 16398;
-        double highMantissa = f;
-
-        // For now write the integer portion of f
-        // $$jb: 03.30.99: stay in synch with JMF on this!!!!
-        while (highMantissa < 44000) {
-            highMantissa *= 2;
-            exponent--;
-        }
-        dos.writeShort(exponent);
-        dos.writeInt( ((int) highMantissa) << 16);
-        dos.writeInt(0); // low Mantissa
-    }
-
 
     /**
      * read_ieee_extended

@@ -25,8 +25,6 @@
 
 package gervill.javax.sound.midi;
 
-import java.net.URL;
-
 
 
 /**

@@ -26,7 +26,6 @@
 package gervill.javax.sound.sampled;
 
 import java.io.InputStream;
-import java.io.PushbackInputStream;
 import java.io.IOException;
 
 

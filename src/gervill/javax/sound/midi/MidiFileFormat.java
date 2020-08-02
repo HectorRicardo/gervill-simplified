@@ -25,8 +25,6 @@
 
 package gervill.javax.sound.midi;
 
-import java.io.InputStream;
-import java.io.IOException;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;

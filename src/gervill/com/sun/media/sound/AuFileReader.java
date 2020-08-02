@@ -85,7 +85,6 @@ public final class AuFileReader extends SunFileReader {
         int channels       = -1;
         final int sampleSizeInBits;
         int length = 0;
-        int nread = 0;
         AudioFormat.Encoding encoding = null;
 
         DataInputStream dis = new DataInputStream( stream );
@@ -106,11 +105,11 @@ public final class AuFileReader extends SunFileReader {
             bigendian = true;        // otherwise little-endian
         }
 
-        headerSize     = (bigendian==true ? dis.readInt() : rllong(dis) );  nread += 4;
-        dataSize       = (bigendian==true ? dis.readInt() : rllong(dis) );  nread += 4;
-        encoding_local = (bigendian==true ? dis.readInt() : rllong(dis) );  nread += 4;
-        sampleRate     = (bigendian==true ? dis.readInt() : rllong(dis) );  nread += 4;
-        channels       = (bigendian==true ? dis.readInt() : rllong(dis) );  nread += 4;
+        headerSize     = (bigendian==true ? dis.readInt() : rllong(dis) );  
+        dataSize       = (bigendian==true ? dis.readInt() : rllong(dis) );  
+        encoding_local = (bigendian==true ? dis.readInt() : rllong(dis) );  
+        sampleRate     = (bigendian==true ? dis.readInt() : rllong(dis) );  
+        channels       = (bigendian==true ? dis.readInt() : rllong(dis) );  
         if (channels <= 0) {
             dis.reset();
             throw new UnsupportedAudioFileException("Invalid number of channels");
@@ -212,8 +211,6 @@ public final class AuFileReader extends SunFileReader {
         InputStream                             urlStream = null;
         BufferedInputStream             bis = null;
         AudioFileFormat                 fileFormat = null;
-        AudioFormat                             format = null;
-
         urlStream = url.openStream();   // throws IOException
 
         try {
@@ -243,8 +240,6 @@ public final class AuFileReader extends SunFileReader {
         FileInputStream                 fis = null;
         BufferedInputStream             bis = null;
         AudioFileFormat                 fileFormat = null;
-        AudioFormat                             format = null;
-
         fis = new FileInputStream( file );      // throws IOException
         // part of fix for 4325421
         try {
@@ -322,8 +317,6 @@ public final class AuFileReader extends SunFileReader {
 
         InputStream                             urlStream = null;
         BufferedInputStream             bis = null;
-        AudioFileFormat                 fileFormat = null;
-
         urlStream = url.openStream();   // throws IOException
         AudioInputStream result = null;
         try {
@@ -353,8 +346,6 @@ public final class AuFileReader extends SunFileReader {
 
         FileInputStream                 fis = null;
         BufferedInputStream             bis = null;
-        AudioFileFormat                 fileFormat = null;
-
         fis = new FileInputStream( file );      // throws IOException
         AudioInputStream result = null;
         // part of fix for 4325421

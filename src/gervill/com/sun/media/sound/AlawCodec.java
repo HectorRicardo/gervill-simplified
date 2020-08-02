@@ -368,7 +368,6 @@ public final class AlawCodec extends SunCodec {
                 short SEG_SHIFT = 4;
                 short mask;
                 short seg;
-                int adj;
                 int i;
 
                 short sample;

@@ -53,9 +53,6 @@ public final class PCMtoPCMCodec extends SunCodec {
 
 
 
-    private static final int tempBufferSize = 64;
-    private byte tempBuffer [] = null;
-
     /**
      * Constructs a new PCMtoPCM codec object.
      */
@@ -164,7 +161,6 @@ public final class PCMtoPCMCodec extends SunCodec {
         } else {
 
             cs = (AudioInputStream) (new PCMtoPCMCodecStream(stream, outputFormat));
-            tempBuffer = new byte[tempBufferSize];
         }
         return cs;
     }
@@ -490,8 +486,6 @@ public final class PCMtoPCMCodec extends SunCodec {
         public int read(byte[] b, int off, int len) throws IOException {
 
 
-            int i;
-
             // don't read fractional frames
             if ( len%frameSize != 0 ) {
                 len -= (len%frameSize);
@@ -502,8 +496,6 @@ public final class PCMtoPCMCodec extends SunCodec {
             }
 
             int readCount = super.read(b, off, len);
-            byte tempByte;
-
             if(readCount<0) {   // EOF or error
                 return readCount;
             }

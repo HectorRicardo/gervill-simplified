@@ -147,11 +147,7 @@ public final class AuFileWriter extends SunFileWriter {
         AudioFormat.Encoding streamEncoding = streamFormat.getEncoding();
 
 
-        float sampleRate;
         int sampleSizeInBits;
-        int channels;
-        int frameSize;
-        float frameRate;
         int fileSize;
 
         if( !types[0].equals(type) ) {
@@ -206,7 +202,6 @@ public final class AuFileWriter extends SunFileWriter {
 
         AudioFormat format            = auFileFormat.getFormat();
 
-        int magic          = AuFileFormat.AU_SUN_MAGIC;
         int headerSize     = AuFileFormat.AU_HEADERSIZE;
         long dataSize       = auFileFormat.getFrameLength();
         //$$fb fix for Bug 4351296

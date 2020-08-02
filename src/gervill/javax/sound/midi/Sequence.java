@@ -26,7 +26,6 @@
 package gervill.javax.sound.midi;
 
 import java.util.Vector;
-import gervill.com.sun.media.sound.MidiUtils;
 
 
 /**

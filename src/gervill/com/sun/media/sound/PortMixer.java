@@ -396,24 +396,6 @@ final class PortMixer extends AbstractMixer {
     }
 
     /**
-     * Private inner class representing a CompoundControl for PortMixerPort
-     */
-    private static final class CompCtrl extends CompoundControl {
-        private CompCtrl(String name, Control[] controls) {
-            super(new CCT(name), controls);
-        }
-
-        /**
-         * inner class for custom compound control types
-         */
-        private static final class CCT extends CompoundControl.Type {
-            private CCT(String name) {
-                super(name);
-            }
-        }
-    }
-
-    /**
      * Private inner class representing a BooleanControl for PortMixerPort
      */
     private static final class FloatCtrl extends FloatControl {

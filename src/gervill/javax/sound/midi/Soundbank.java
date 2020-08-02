@@ -25,8 +25,6 @@
 
 package gervill.javax.sound.midi;
 
-import java.net.URL;
-
 
 /**
  * A <code>Soundbank</code> contains a set of <code>Instruments</code>

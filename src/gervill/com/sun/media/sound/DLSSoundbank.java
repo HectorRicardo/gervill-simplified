@@ -1012,18 +1012,17 @@ public final class DLSSoundbank implements Soundbank {
     private void writeInstrument(RIFFWriter writer, DLSInstrument instrument)
             throws IOException {
 
-        int art1_count = 0;
         int art2_count = 0;
         for (DLSModulator modulator : instrument.getModulators()) {
-            if (modulator.version == 1)
-                art1_count++;
+            if (modulator.version == 1) {
+			}
             if (modulator.version == 2)
                 art2_count++;
         }
         for (DLSRegion region : instrument.regions) {
             for (DLSModulator modulator : region.getModulators()) {
-                if (modulator.version == 1)
-                    art1_count++;
+                if (modulator.version == 1) {
+				}
                 if (modulator.version == 2)
                     art2_count++;
             }
