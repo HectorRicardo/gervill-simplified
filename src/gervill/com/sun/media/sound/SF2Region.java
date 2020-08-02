@@ -50,13 +50,13 @@ class SF2Region {
     final static int GENERATOR_MODENVTOFILTERFC = 11;
     final static int GENERATOR_ENDADDRSCOARSEOFFSET = 12;
     final static int GENERATOR_MODLFOTOVOLUME = 13;
-    public final static int GENERATOR_UNUSED1 = 14;
+    
     final static int GENERATOR_CHORUSEFFECTSSEND = 15;
     final static int GENERATOR_REVERBEFFECTSSEND = 16;
     final static int GENERATOR_PAN = 17;
-    public final static int GENERATOR_UNUSED2 = 18;
-    public final static int GENERATOR_UNUSED3 = 19;
-    public final static int GENERATOR_UNUSED4 = 20;
+    
+    
+    
     final static int GENERATOR_DELAYMODLFO = 21;
     final static int GENERATOR_FREQMODLFO = 22;
     final static int GENERATOR_DELAYVIBLFO = 23;
@@ -78,25 +78,25 @@ class SF2Region {
     final static int GENERATOR_KEYNUMTOVOLENVHOLD = 39;
     final static int GENERATOR_KEYNUMTOVOLENVDECAY = 40;
     final static int GENERATOR_INSTRUMENT = 41;
-    public final static int GENERATOR_RESERVED1 = 42;
+    
     final static int GENERATOR_KEYRANGE = 43;
     final static int GENERATOR_VELRANGE = 44;
     final static int GENERATOR_STARTLOOPADDRSCOARSEOFFSET = 45;
     final static int GENERATOR_KEYNUM = 46;
     final static int GENERATOR_VELOCITY = 47;
     final static int GENERATOR_INITIALATTENUATION = 48;
-    public final static int GENERATOR_RESERVED2 = 49;
+    
     final static int GENERATOR_ENDLOOPADDRSCOARSEOFFSET = 50;
     final static int GENERATOR_COARSETUNE = 51;
     final static int GENERATOR_FINETUNE = 52;
     final static int GENERATOR_SAMPLEID = 53;
     final static int GENERATOR_SAMPLEMODES = 54;
-    public final static int GENERATOR_RESERVED3 = 55;
+    
     final static int GENERATOR_SCALETUNING = 56;
     final static int GENERATOR_EXCLUSIVECLASS = 57;
     final static int GENERATOR_OVERRIDINGROOTKEY = 58;
-    public final static int GENERATOR_UNUSED5 = 59;
-    public final static int GENERATOR_ENDOPR = 60;
+    
+    
     protected Map<Integer, Short> generators = new HashMap<Integer, Short>();
     protected List<SF2Modulator> modulators = new ArrayList<SF2Modulator>();
 

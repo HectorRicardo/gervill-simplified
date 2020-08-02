@@ -365,7 +365,6 @@ final class SoftChannel implements MidiChannel, ModelDirectedPlayer {
         voice.channel = channel;
         voice.bank = bank;
         voice.program = program;
-        voice.instrument = current_instrument;
         voice.performer = p;
         voice.objects.clear();
         voice.objects.put("midi", co_midi[noteNumber]);

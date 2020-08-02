@@ -66,7 +66,7 @@ final class SoftVoice extends VoiceStatus {
     Map<String, SoftControl> objects =
             new HashMap<String, SoftControl>();
     private SoftSynthesizer synthesizer;
-    SoftInstrument instrument;
+    
     SoftPerformer performer;
     SoftChannel softchannel = null;
     boolean on = false;
@@ -576,7 +576,6 @@ final class SoftVoice extends VoiceStatus {
             active = false;
             stopping = false;
             audiostarted = false;
-            instrument = null;
             performer = null;
             connections = null;
             extendedConnectionBlocks = null;

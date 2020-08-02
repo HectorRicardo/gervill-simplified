@@ -60,12 +60,7 @@ final class SoftTuning {
             tuning[i] = i * 100;
     }
 
-    public SoftTuning(Patch patch, byte[] data) {
-        this.patch = patch;
-        for (int i = 0; i < tuning.length; i++)
-            tuning[i] = i * 100;
-        load(data);
-    }
+    
 
     private boolean checksumOK(byte[] data) {
         int x = data[1] & 0xFF;

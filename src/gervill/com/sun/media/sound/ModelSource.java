@@ -53,10 +53,8 @@ final class ModelSource {
 //            new ModelIdentifier("midi","mono_pressure",0);    // (0..127)
     static final ModelIdentifier SOURCE_MIDI_POLY_PRESSURE =
             new ModelIdentifier("midi", "poly_pressure", 0);    // (0..127)
-    public static final ModelIdentifier SOURCE_MIDI_CC_0 =
-            new ModelIdentifier("midi_cc", "0", 0);             // (0..127)
-    public static final ModelIdentifier SOURCE_MIDI_RPN_0 =
-            new ModelIdentifier("midi_rpn", "0", 0);            // (0..16383)
+    
+    
     private ModelIdentifier source = SOURCE_NONE;
     private ModelTransform transform;
 

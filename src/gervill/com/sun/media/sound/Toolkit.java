@@ -43,30 +43,10 @@ final class Toolkit {
     private Toolkit() {
     }
 
-    /**
-     * Converts bytes from signed to unsigned.
-     */
-    static void getUnsigned8(byte[] b, int off, int len) {
-        for (int i = off; i < (off+len); i++) {
-            b[i] += 128;
-        }
-    }
+    
 
 
-    /**
-     * Swaps bytes.
-     * throws ArrayOutOfBoundsException if len is not a multiple of 2.
-     */
-    static void getByteSwapped(byte[] b, int off, int len) {
-
-        byte tempByte;
-        for (int i = off; i < (off+len); i+=2) {
-
-            tempByte = b[i];
-            b[i] = b[i+1];
-            b[i+1] = tempByte;
-        }
-    }
+    
 
 
     /**
@@ -124,20 +104,9 @@ final class Toolkit {
         return (long) (bytes / format.getFrameRate() * 1000.0f / format.getFrameSize());
     }
 
-    /*
-     * gets the number of bytes needed to play the specified number of microseconds
-     */
-    static long micros2bytes(AudioFormat format, long micros) {
-        long result = (long) (micros * format.getFrameRate() / 1000000.0f * format.getFrameSize());
-        return align(result, format.getFrameSize());
-    }
+    
 
-    /*
-     * gets the time in microseconds for the given number of bytes
-     */
-    static long bytes2micros(AudioFormat format, long bytes) {
-        return (long) (bytes / format.getFrameRate() * 1000000.0f / format.getFrameSize());
-    }
+    
 
     /*
      * gets the number of frames needed to play the specified number of microseconds
@@ -208,31 +177,6 @@ final class Toolkit {
     }
 
 
-    static AudioInputStream getPCMConvertedAudioInputStream(AudioInputStream ais) {
-        // we can't open the device for non-PCM playback, so we have
-        // convert any other encodings to PCM here (at least we try!)
-        AudioFormat af = ais.getFormat();
-
-        if( (!af.getEncoding().equals(AudioFormat.Encoding.PCM_SIGNED)) &&
-            (!af.getEncoding().equals(AudioFormat.Encoding.PCM_UNSIGNED))) {
-
-            try {
-                AudioFormat newFormat =
-                    new AudioFormat( AudioFormat.Encoding.PCM_SIGNED,
-                                     af.getSampleRate(),
-                                     16,
-                                     af.getChannels(),
-                                     af.getChannels() * 2,
-                                     af.getSampleRate(),
-                                     Platform.isBigEndian());
-                ais = AudioSystem.getAudioInputStream(newFormat, ais);
-            } catch (Exception e) {
-                if (Printer.err) e.printStackTrace();
-                ais = null;
-            }
-        }
-
-        return ais;
-    }
+    
 
 }

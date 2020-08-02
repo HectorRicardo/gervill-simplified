@@ -84,7 +84,7 @@ final class DLSModulator {
     static final int CONN_SRC_CC11 = 0x08B; // linear 0..1
     static final int CONN_SRC_RPN0 = 0x100; // ?? // Pitch Bend Range
     static final int CONN_SRC_RPN1 = 0x101; // ?? // Fine Tune
-    public static final int CONN_SRC_RPN2 = 0x102; // ?? // Course Tune
+    
     // DLS2 Sources
     static final int CONN_SRC_POLYPRESSURE = 0x007; // linear 0..1
     static final int CONN_SRC_CHANNELPRESSURE = 0x008; // linear 0..1
@@ -92,8 +92,7 @@ final class DLSModulator {
     static final int CONN_SRC_MONOPRESSURE = 0x00A; // linear 0..1
     static final int CONN_SRC_CC91 = 0x0DB; // linear 0..1
     static final int CONN_SRC_CC93 = 0x0DD; // linear 0..1
-    // DLS1 Transforms
-    public static final int CONN_TRN_NONE = 0x000;
+    
     static final int CONN_TRN_CONCAVE = 0x001;
     // DLS2 Transforms
     static final int CONN_TRN_CONVEX = 0x002;

@@ -65,8 +65,8 @@ final class SoftMainMixer {
     final static int CHANNEL_DELAY_EFFECT2 = 9;
     final static int CHANNEL_LEFT_DRY = 10;
     final static int CHANNEL_RIGHT_DRY = 11;
-    public final static int CHANNEL_SCRATCH1 = 12;
-    public final static int CHANNEL_SCRATCH2 = 13;
+    
+    
     private boolean active_sensing_on = false;
     private long msec_last_activity = -1;
     private boolean pusher_silent = false;

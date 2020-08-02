@@ -55,10 +55,7 @@ final class AudioSynthesizerPropertyInfo {
      * The name of the property.
      */
     public String name;
-    /**
-     * A brief description of the property, which may be null.
-     */
-    String description = null;
+    
     /**
      * The <code>value</code> field specifies the current value of
      * the property.
@@ -69,11 +66,6 @@ final class AudioSynthesizerPropertyInfo {
      * used in <code>value</code> field.
      */
     Class valueClass = null;
-    /**
-     * An array of possible values if the value for the field
-     * <code>AudioSynthesizerPropertyInfo.value</code> may be selected
-     * from a particular set of values; otherwise null.
-     */
-    Object[] choices = null;
+    
 
 }

@@ -47,21 +47,21 @@ final class SoftMixingMainMixer {
 
     final static int CHANNEL_EFFECT2 = 3;
 
-    public final static int CHANNEL_EFFECT3 = 4;
+    
 
-    public final static int CHANNEL_EFFECT4 = 5;
+    
 
-    public final static int CHANNEL_LEFT_DRY = 10;
+    
 
-    public final static int CHANNEL_RIGHT_DRY = 11;
+    
 
-    public final static int CHANNEL_SCRATCH1 = 12;
+    
 
-    public final static int CHANNEL_SCRATCH2 = 13;
+    
 
-    public final static int CHANNEL_CHANNELMIXER_LEFT = 14;
+    
 
-    public final static int CHANNEL_CHANNELMIXER_RIGHT = 15;
+    
 
     private final SoftMixingMixer mixer;
 
