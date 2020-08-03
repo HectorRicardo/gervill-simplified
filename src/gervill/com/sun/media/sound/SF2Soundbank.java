@@ -29,7 +29,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -88,15 +87,7 @@ public final class SF2Soundbank implements Soundbank {
     public SF2Soundbank() {
     }
 
-    SF2Soundbank(URL url) throws IOException {
-
-        InputStream is = url.openStream();
-        try {
-            readSoundbank(is);
-        } finally {
-            is.close();
-        }
-    }
+    
 
     public SF2Soundbank(File file) throws IOException {
         largeFormat = true;
@@ -109,9 +100,7 @@ public final class SF2Soundbank implements Soundbank {
         }
     }
 
-    SF2Soundbank(InputStream inputstream) throws IOException {
-        readSoundbank(inputstream);
-    }
+    
 
     private void readSoundbank(InputStream inputstream) throws IOException {
         RIFFReader riff = new RIFFReader(inputstream);
@@ -521,13 +510,9 @@ public final class SF2Soundbank implements Soundbank {
 
     }
 
-    public void save(String name) throws IOException {
-        writeSoundbank(new RIFFWriter(name, "sfbk"));
-    }
+    
 
-    public void save(File file) throws IOException {
-        writeSoundbank(new RIFFWriter(file, "sfbk"));
-    }
+    
 
     void save(OutputStream out) throws IOException {
         writeSoundbank(new RIFFWriter(out, "sfbk"));
@@ -970,20 +955,11 @@ public final class SF2Soundbank implements Soundbank {
             samples.add((SF2Sample)resource);
     }
 
-    public void removeResource(SoundbankResource resource) {
-        if (resource instanceof SF2Instrument)
-            instruments.remove((SF2Instrument)resource);
-        if (resource instanceof SF2Layer)
-            layers.remove((SF2Layer)resource);
-        if (resource instanceof SF2Sample)
-            samples.remove((SF2Sample)resource);
-    }
+    
 
     void addInstrument(SF2Instrument resource) {
         instruments.add(resource);
     }
 
-    public void removeInstrument(SF2Instrument resource) {
-        instruments.remove(resource);
-    }
+    
 }

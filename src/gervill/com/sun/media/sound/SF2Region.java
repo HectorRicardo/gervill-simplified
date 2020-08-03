@@ -137,9 +137,7 @@ class SF2Region {
         return generators.get(generator);
     }
 
-    public void putShort(int generator, short value) {
-        generators.put(generator, value);
-    }
+    
 
     byte[] getBytes(int generator) {
         int val = getInteger(generator);

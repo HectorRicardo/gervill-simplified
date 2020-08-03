@@ -329,9 +329,7 @@ abstract class AbstractMidiDevice implements MidiDevice, ReferenceCountingDevice
 
     // HELPER METHODS
 
-    final long getId() {
-        return id;
-    }
+    
 
 
     // REFERENCE COUNTING
@@ -687,28 +685,7 @@ abstract class AbstractMidiDevice implements MidiDevice, ReferenceCountingDevice
             }
         }
 
-        void sendMessage(byte[] data, long timeStamp) {
-            try {
-                synchronized(transmitters) {
-                    int size = transmitters.size();
-                    if (TRACE_TRANSMITTER) Printer.println("Sending long message to "+size+" transmitter's receivers");
-                    for (int i = 0; i < size; i++) {
-                        Receiver receiver = ((Transmitter)transmitters.get(i)).getReceiver();
-                        if (receiver != null) {
-                            //$$fb 2002-04-02: SysexMessages are mutable, so
-                            // an application could change the contents of this object,
-                            // or try to use the object later. So we can't get around object creation
-                            // But the array need not be unique for each FastSysexMessage object,
-                            // because it cannot be modified.
-                            receiver.send(new FastSysexMessage(data), timeStamp);
-                        }
-                    }
-                }
-            } catch (InvalidMidiDataException e) {
-                // this happens when invalid data comes over the wire. Ignore it.
-                return;
-            }
-        }
+        
 
 
         /**

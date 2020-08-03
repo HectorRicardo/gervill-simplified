@@ -339,18 +339,7 @@ public interface DataLine extends Line {
         }
 
 
-        /**
-         * Constructs a data line's info object from the specified information,
-         * which includes a single audio format.
-         * This constructor is typically used by an application to
-         * describe a desired line.
-         *
-         * @param lineClass the class of the data line described by the info object
-         * @param format desired format
-         */
-        public Info(Class<?> lineClass, AudioFormat format) {
-            this(lineClass, format, AudioSystem.NOT_SPECIFIED);
-        }
+        
 
 
         /**

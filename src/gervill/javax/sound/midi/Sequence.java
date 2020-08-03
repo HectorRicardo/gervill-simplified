@@ -62,30 +62,6 @@ public class Sequence {
      */
     public static final float PPQ                                                       = 0.0f;
 
-    /**
-     * The SMPTE-based timing type with 24 frames per second (resolution is expressed in ticks per frame).
-     * see #Sequence(float, int)
-     */
-    public static final float SMPTE_24                                          = 24.0f;
-
-    /**
-     * The SMPTE-based timing type with 25 frames per second (resolution is expressed in ticks per frame).
-     * see #Sequence(float, int)
-     */
-    public static final float SMPTE_25                                          = 25.0f;
-
-    /**
-     * The SMPTE-based timing type with 29.97 frames per second (resolution is expressed in ticks per frame).
-     * see #Sequence(float, int)
-     */
-    public static final float SMPTE_30DROP                                      = 29.97f;
-
-    /**
-     * The SMPTE-based timing type with 30 frames per second (resolution is expressed in ticks per frame).
-     * see #Sequence(float, int)
-     */
-    public static final float SMPTE_30                                          = 30.0f;
-
 
     // Variables
 
@@ -113,97 +89,10 @@ public class Sequence {
     private Vector<Track> tracks = new Vector<Track>();
 
 
-    /**
-     * Constructs a new MIDI sequence with the specified timing division
-     * type and timing resolution.  The division type must be one of the
-     * recognized MIDI timing types.  For tempo-based timing,
-     * <code>divisionType</code> is PPQ (pulses per quarter note) and
-     * the resolution is specified in ticks per beat.  For SMTPE timing,
-     * <code>divisionType</code> specifies the number of frames per
-     * second and the resolution is specified in ticks per frame.
-     * The sequence will contain no initial tracks.  Tracks may be
-     * added to or removed from the sequence using <code> #createTrack</code>
-     * and <code> #deleteTrack</code>.
-     *
-     * @param divisionType the timing division type (PPQ or one of the SMPTE types)
-     * @param resolution the timing resolution
-     * throws InvalidMidiDataException if <code>divisionType</code> is not valid
-     *
-     * see #PPQ
-     * see #SMPTE_24
-     * see #SMPTE_25
-     * see #SMPTE_30DROP
-     * see #SMPTE_30
-     * see #getDivisionType
-     * see #getResolution
-     * see #getTracks
-     */
-    public Sequence(float divisionType, int resolution) throws InvalidMidiDataException {
-
-        if (divisionType == PPQ)
-            this.divisionType = PPQ;
-        else if (divisionType == SMPTE_24)
-            this.divisionType = SMPTE_24;
-        else if (divisionType == SMPTE_25)
-            this.divisionType = SMPTE_25;
-        else if (divisionType == SMPTE_30DROP)
-            this.divisionType = SMPTE_30DROP;
-        else if (divisionType == SMPTE_30)
-            this.divisionType = SMPTE_30;
-        else throw new InvalidMidiDataException("Unsupported division type: " + divisionType);
-
-        this.resolution = resolution;
-    }
+    
 
 
-    /**
-     * Constructs a new MIDI sequence with the specified timing division
-     * type, timing resolution, and number of tracks.  The division type must be one of the
-     * recognized MIDI timing types.  For tempo-based timing,
-     * <code>divisionType</code> is PPQ (pulses per quarter note) and
-     * the resolution is specified in ticks per beat.  For SMTPE timing,
-     * <code>divisionType</code> specifies the number of frames per
-     * second and the resolution is specified in ticks per frame.
-     * The sequence will be initialized with the number of tracks specified by
-     * <code>numTracks</code>. These tracks are initially empty (i.e.
-     * they contain only the meta-event End of Track).
-     * The tracks may be retrieved for editing using the <code> #getTracks</code>
-     * method.  Additional tracks may be added, or existing tracks removed,
-     * using <code> #createTrack</code> and <code> #deleteTrack</code>.
-     *
-     * @param divisionType the timing division type (PPQ or one of the SMPTE types)
-     * @param resolution the timing resolution
-     * @param numTracks the initial number of tracks in the sequence.
-     * throws InvalidMidiDataException if <code>divisionType</code> is not valid
-     *
-     * see #PPQ
-     * see #SMPTE_24
-     * see #SMPTE_25
-     * see #SMPTE_30DROP
-     * see #SMPTE_30
-     * see #getDivisionType
-     * see #getResolution
-     */
-    public Sequence(float divisionType, int resolution, int numTracks) throws InvalidMidiDataException {
-
-        if (divisionType == PPQ)
-            this.divisionType = PPQ;
-        else if (divisionType == SMPTE_24)
-            this.divisionType = SMPTE_24;
-        else if (divisionType == SMPTE_25)
-            this.divisionType = SMPTE_25;
-        else if (divisionType == SMPTE_30DROP)
-            this.divisionType = SMPTE_30DROP;
-        else if (divisionType == SMPTE_30)
-            this.divisionType = SMPTE_30;
-        else throw new InvalidMidiDataException("Unsupported division type: " + divisionType);
-
-        this.resolution = resolution;
-
-        for (int i = 0; i < numTracks; i++) {
-            tracks.addElement(new Track());
-        }
-    }
+    
 
 
     /**
@@ -238,39 +127,10 @@ public class Sequence {
     }
 
 
-    /**
-     * Creates a new, initially empty track as part of this sequence.
-     * The track initially contains the meta-event End of Track.
-     * The newly created track is returned.  All tracks in the sequence
-     * may be retrieved using <code> #getTracks</code>.  Tracks may be
-     * removed from the sequence using <code> #deleteTrack</code>.
-     * @return the newly created track
-     */
-    public Track createTrack() {
-
-        Track track = new Track();
-        tracks.addElement(track);
-
-        return track;
-    }
+    
 
 
-    /**
-     * Removes the specified track from the sequence.
-     * @param track the track to remove
-     * @return <code>true</code> if the track existed in the track and was removed,
-     * otherwise <code>false</code>.
-     *
-     * see #createTrack
-     * see #getTracks
-     */
-    public boolean deleteTrack(Track track) {
-
-        synchronized(tracks) {
-
-            return tracks.removeElement(track);
-        }
-    }
+    
 
 
     /**

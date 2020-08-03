@@ -121,9 +121,7 @@ final class SF2Sample extends SoundbankResource {
         this.data = new ModelByteBuffer(data);
     }
 
-    public void setData(byte[] data, int offset, int length) {
-        this.data = new ModelByteBuffer(data, offset, length);
-    }
+    
 
     public void setData24(ModelByteBuffer data24) {
         this.data24 = data24;
@@ -133,9 +131,7 @@ final class SF2Sample extends SoundbankResource {
         this.data24 = new ModelByteBuffer(data24);
     }
 
-    public void setData24(byte[] data24, int offset, int length) {
-        this.data24 = new ModelByteBuffer(data24, offset, length);
-    }
+    
 
     /*
     public void setData(File file, int offset, int length) {

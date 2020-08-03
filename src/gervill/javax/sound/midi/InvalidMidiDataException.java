@@ -56,7 +56,7 @@ public class InvalidMidiDataException extends Exception {
      *
      * @param message the string to display as an error detail message
      */
-    public InvalidMidiDataException(String message) {
+    InvalidMidiDataException(String message) {
 
         super(message);
     }

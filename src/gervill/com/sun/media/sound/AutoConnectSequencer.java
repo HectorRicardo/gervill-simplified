@@ -33,7 +33,7 @@ import gervill.javax.sound.midi.Receiver;
  *
  * @author Florian Bomers
  */
-public interface AutoConnectSequencer {
+interface AutoConnectSequencer {
 
     /**
      * Set the receiver that this device is

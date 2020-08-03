@@ -25,29 +25,17 @@
 
 package gervill.javax.sound.midi;
 
-import java.io.File;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.io.IOException;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
-
-import java.net.URL;
-
-import gervill.javax.sound.midi.spi.MidiFileWriter;
 import gervill.javax.sound.midi.spi.MidiFileReader;
 import gervill.javax.sound.midi.spi.SoundbankReader;
 import gervill.javax.sound.midi.spi.MidiDeviceProvider;
 
 import gervill.com.sun.media.sound.JDK13Services;
 import gervill.com.sun.media.sound.ReferenceCountingDevice;
-import gervill.com.sun.media.sound.AutoConnectSequencer;
 import gervill.com.sun.media.sound.MidiDeviceReceiverEnvelope;
-import gervill.com.sun.media.sound.MidiDeviceTransmitterEnvelope;
 
 
 /**
@@ -174,56 +162,10 @@ public class MidiSystem {
     }
 
 
-    /**
-     * Obtains an array of information objects representing
-     * the set of all MIDI devices available on the system.
-     * A returned information object can then be used to obtain the
-     * corresponding device object, by invoking
-     *  #getMidiDevice(MidiDevice.Info) getMidiDevice.
-     *
-     * @return an array of <code>MidiDevice.Info</code> objects, one
-     * for each installed MIDI device.  If no such devices are installed,
-     * an array of length 0 is returned.
-     */
-    public static MidiDevice.Info[] getMidiDeviceInfo() {
-        List allInfos = new ArrayList();
-        List providers = getMidiDeviceProviders();
-
-        for(int i = 0; i < providers.size(); i++) {
-            MidiDeviceProvider provider = (MidiDeviceProvider) providers.get(i);
-            MidiDevice.Info[] tmpinfo = provider.getDeviceInfo();
-            for (int j = 0; j < tmpinfo.length; j++) {
-                allInfos.add( tmpinfo[j] );
-            }
-        }
-        MidiDevice.Info[] infosArray = (MidiDevice.Info[]) allInfos.toArray(new MidiDevice.Info[0]);
-        return infosArray;
-    }
+    
 
 
-    /**
-     * Obtains the requested MIDI device.
-     *
-     * @param info a device information object representing the desired device.
-     * @return the requested device
-     * throws MidiUnavailableException if the requested device is not available
-     * due to resource restrictions
-     * throws IllegalArgumentException if the info object does not represent
-     * a MIDI device installed on the system
-     * see #getMidiDeviceInfo
-     */
-    public static MidiDevice getMidiDevice(MidiDevice.Info info) throws MidiUnavailableException {
-        List providers = getMidiDeviceProviders();
-
-        for(int i = 0; i < providers.size(); i++) {
-            MidiDeviceProvider provider = (MidiDeviceProvider) providers.get(i);
-            if (provider.isDeviceSupported(info)) {
-                MidiDevice device = provider.getDevice(info);
-                return device;
-            }
-        }
-        throw new IllegalArgumentException("Requested device not installed: " + info);
-    }
+    
 
 
     /**
@@ -280,55 +222,7 @@ public class MidiSystem {
     }
 
 
-    /**
-     * Obtains a MIDI transmitter from an external MIDI port
-     * or other default source.
-     * The returned transmitter always implements
-     * the {@code MidiDeviceTransmitter} interface.
-     *
-     * <p>If the system property
-     * <code>gervill.javax.sound.midi.Transmitter</code>
-     * is defined or it is defined in the file &quot;sound.properties&quot;,
-     * it is used to identify the device that provides the default transmitter.
-     * For details, refer to the  MidiSystem class description.
-     *
-     * <p>If a native transmitter provided by the default device does not implement
-     * the {@code MidiDeviceTransmitter} interface, it will be wrapped in a
-     * wrapper class that implements the {@code MidiDeviceTransmitter} interface.
-     * The corresponding {@code Transmitter} method calls will be forwarded
-     * to the native transmitter.
-     *
-     * <p>If this method returns successfully, the 
-     * gervill.javax.sound.midi.MidiDevice MidiDevice the
-     * <code>Transmitter</code> belongs to is opened implicitly, if it
-     * is not already open. It is possible to close an implicitly
-     * opened device by calling 
-     * gervill.javax.sound.midi.Transmitter#close close on the returned
-     * <code>Transmitter</code>. All open <code>Transmitter</code>
-     * instances have to be closed in order to release system resources
-     * hold by the <code>MidiDevice</code>. For a detailed description
-     * of open/close behaviour see the class description of 
-     * gervill.javax.sound.midi.MidiDevice MidiDevice.
-     *
-     * @return the default MIDI transmitter
-     * throws MidiUnavailableException if the default transmitter is not
-     *         available due to resource restrictions,
-     *         or no device providing transmitters is installed in the system
-     */
-    public static Transmitter getTransmitter() throws MidiUnavailableException {
-        // may throw MidiUnavailableException
-        MidiDevice device = getDefaultDeviceWrapper(Transmitter.class);
-        Transmitter transmitter;
-        if (device instanceof ReferenceCountingDevice) {
-            transmitter = ((ReferenceCountingDevice) device).getTransmitterReferenceCounting();
-        } else {
-            transmitter = device.getTransmitter();
-        }
-        if (!(transmitter instanceof MidiDeviceTransmitter)) {
-            transmitter = new MidiDeviceTransmitterEnvelope(device, transmitter);
-        }
-        return transmitter;
-    }
+    
 
 
     /**
@@ -351,155 +245,7 @@ public class MidiSystem {
     }
 
 
-    /**
-     * Obtains the default <code>Sequencer</code>, connected to
-     * a default device.
-     * The returned <code>Sequencer</code> instance is
-     * connected to the default <code>Synthesizer</code>,
-     * as returned by  #getSynthesizer.
-     * If there is no <code>Synthesizer</code>
-     * available, or the default <code>Synthesizer</code>
-     * cannot be opened, the <code>sequencer</code> is connected
-     * to the default <code>Receiver</code>, as returned
-     * by  #getReceiver.
-     * The connection is made by retrieving a <code>Transmitter</code>
-     * instance from the <code>Sequencer</code> and setting its
-     * <code>Receiver</code>.
-     * Closing and re-opening the sequencer will restore the
-     * connection to the default device.
-     *
-     * <p>This method is equivalent to calling
-     * <code>getSequencer(true)</code>.
-     *
-     * <p>If the system property
-     * <code>gervill.javax.sound.midi.Sequencer</code>
-     * is defined or it is defined in the file &quot;sound.properties&quot;,
-     * it is used to identify the default sequencer.
-     * For details, refer to the  MidiSystem class description.
-     *
-     * @return the default sequencer, connected to a default Receiver
-     * throws MidiUnavailableException if the sequencer is not
-     *         available due to resource restrictions,
-     *         or there is no <code>Receiver</code> available by any
-     *         installed <code>MidiDevice</code>,
-     *         or no sequencer is installed in the system.
-     * see #getSequencer(boolean)
-     * see #getSynthesizer
-     * see #getReceiver
-     */
-    public static Sequencer getSequencer() throws MidiUnavailableException {
-        return getSequencer(true);
-    }
-
-
-
-    /**
-     * Obtains the default <code>Sequencer</code>, optionally
-     * connected to a default device.
-     *
-     * <p>If <code>connected</code> is true, the returned
-     * <code>Sequencer</code> instance is
-     * connected to the default <code>Synthesizer</code>,
-     * as returned by  #getSynthesizer.
-     * If there is no <code>Synthesizer</code>
-     * available, or the default <code>Synthesizer</code>
-     * cannot be opened, the <code>sequencer</code> is connected
-     * to the default <code>Receiver</code>, as returned
-     * by  #getReceiver.
-     * The connection is made by retrieving a <code>Transmitter</code>
-     * instance from the <code>Sequencer</code> and setting its
-     * <code>Receiver</code>.
-     * Closing and re-opening the sequencer will restore the
-     * connection to the default device.
-     *
-     * <p>If <code>connected</code> is false, the returned
-     * <code>Sequencer</code> instance is not connected, it
-     * has no open <code>Transmitters</code>. In order to
-     * play the sequencer on a MIDI device, or a <code>Synthesizer</code>,
-     * it is necessary to get a <code>Transmitter</code> and set its
-     * <code>Receiver</code>.
-     *
-     * <p>If the system property
-     * <code>gervill.javax.sound.midi.Sequencer</code>
-     * is defined or it is defined in the file "sound.properties",
-     * it is used to identify the default sequencer.
-     * For details, refer to the  MidiSystem class description.
-     *
-     * @param connected whether or not the returned {@code Sequencer}
-     * is connected to the default {@code Synthesizer}
-     * @return the default sequencer
-     * throws MidiUnavailableException if the sequencer is not
-     *         available due to resource restrictions,
-     *         or no sequencer is installed in the system,
-     *         or if <code>connected</code> is true, and there is
-     *         no <code>Receiver</code> available by any installed
-     *         <code>MidiDevice</code>
-     * see #getSynthesizer
-     * see #getReceiver
-     * @since 1.5
-     */
-    private static Sequencer getSequencer(boolean connected)
-        throws MidiUnavailableException {
-        Sequencer seq = (Sequencer) getDefaultDeviceWrapper(Sequencer.class);
-
-        if (connected) {
-            // IMPORTANT: this code needs to be synch'ed with
-            //            all AutoConnectSequencer instances,
-            //            (e.g. RealTimeSequencer) because the
-            //            same algorithm for synth retrieval
-            //            needs to be used!
-
-            Receiver rec = null;
-            MidiUnavailableException mue = null;
-
-            // first try to connect to the default synthesizer
-            try {
-                Synthesizer synth = getSynthesizer();
-                if (synth instanceof ReferenceCountingDevice) {
-                    rec = ((ReferenceCountingDevice) synth).getReceiverReferenceCounting();
-                } else {
-                    synth.open();
-                    try {
-                        rec = synth.getReceiver();
-                    } finally {
-                        // make sure that the synth is properly closed
-                        if (rec == null) {
-                            synth.close();
-                        }
-                    }
-                }
-            } catch (MidiUnavailableException e) {
-                // something went wrong with synth
-                if (e instanceof MidiUnavailableException) {
-                    mue = (MidiUnavailableException) e;
-                }
-            }
-            if (rec == null) {
-                // then try to connect to the default Receiver
-                try {
-                    rec = MidiSystem.getReceiver();
-                } catch (Exception e) {
-                    // something went wrong. Nothing to do then!
-                    if (e instanceof MidiUnavailableException) {
-                        mue = (MidiUnavailableException) e;
-                    }
-                }
-            }
-            if (rec != null) {
-                seq.getTransmitter().setReceiver(rec);
-                if (seq instanceof AutoConnectSequencer) {
-                    ((AutoConnectSequencer) seq).setAutoConnect(rec);
-                }
-            } else {
-                if (mue != null) {
-                    throw mue;
-                }
-                throw new MidiUnavailableException("no receiver available");
-            }
-        }
-        return seq;
-    }
-
+    
 
 
 
@@ -542,215 +288,20 @@ public class MidiSystem {
     }
 
 
-    /**
-     * Constructs a <code>Soundbank</code> by reading it from the specified URL.
-     * The URL must point to a valid MIDI soundbank file.
-     *
-     * @param url the source of the sound bank data
-     * @return the sound bank
-     * throws InvalidMidiDataException if the URL does not point to valid MIDI
-     * soundbank data recognized by the system
-     * throws IOException if an I/O error occurred when loading the soundbank
-     */
-    public static Soundbank getSoundbank(URL url)
-        throws InvalidMidiDataException, IOException {
-
-        SoundbankReader sp = null;
-        Soundbank s = null;
-
-        List providers = getSoundbankReaders();
-
-        for(int i = 0; i < providers.size(); i++) {
-            sp = (SoundbankReader)providers.get(i);
-            s = sp.getSoundbank(url);
-
-            if( s!= null) {
-                return s;
-            }
-        }
-        throw new InvalidMidiDataException("cannot get soundbank from stream");
-
-    }
+    
 
 
-    /**
-     * Constructs a <code>Soundbank</code> by reading it from the specified
-     * <code>File</code>.
-     * The <code>File</code> must point to a valid MIDI soundbank file.
-     *
-     * @param file the source of the sound bank data
-     * @return the sound bank
-     * throws InvalidMidiDataException if the <code>File</code> does not
-     * point to valid MIDI soundbank data recognized by the system
-     * throws IOException if an I/O error occurred when loading the soundbank
-     */
-    public static Soundbank getSoundbank(File file)
-        throws InvalidMidiDataException, IOException {
-
-        SoundbankReader sp = null;
-        Soundbank s = null;
-
-        List providers = getSoundbankReaders();
-
-        for(int i = 0; i < providers.size(); i++) {
-            sp = (SoundbankReader)providers.get(i);
-            s = sp.getSoundbank(file);
-
-            if( s!= null) {
-                return s;
-            }
-        }
-        throw new InvalidMidiDataException("cannot get soundbank from stream");
-    }
+    
 
 
 
-    /**
-     * Obtains the MIDI file format of the data in the specified input stream.
-     * The stream must point to valid MIDI file data for a file type recognized
-     * by the system.
-     * <p>
-     * This method and/or the code it invokes may need to read some data from
-     * the stream to determine whether its data format is supported.  The
-     * implementation may therefore
-     * need to mark the stream, read enough data to determine whether it is in
-     * a supported format, and reset the stream's read pointer to its original
-     * position.  If the input stream does not permit this set of operations,
-     * this method may fail with an <code>IOException</code>.
-     * <p>
-     * This operation can only succeed for files of a type which can be parsed
-     * by an installed file reader.  It may fail with an InvalidMidiDataException
-     * even for valid files if no compatible file reader is installed.  It
-     * will also fail with an InvalidMidiDataException if a compatible file reader
-     * is installed, but encounters errors while determining the file format.
-     *
-     * @param stream the input stream from which file format information
-     * should be extracted
-     * @return an <code>MidiFileFormat</code> object describing the MIDI file
-     * format
-     * throws InvalidMidiDataException if the stream does not point to valid
-     * MIDI file data recognized by the system
-     * throws IOException if an I/O exception occurs while accessing the
-     * stream
-     * see #getMidiFileFormat(URL)
-     * see #getMidiFileFormat(File)
-     * see InputStream#markSupported
-     * see InputStream#mark
-     */
-    public static MidiFileFormat getMidiFileFormat(InputStream stream)
-        throws InvalidMidiDataException, IOException {
-
-        List providers = getMidiFileReaders();
-        MidiFileFormat format = null;
-
-        for(int i = 0; i < providers.size(); i++) {
-            MidiFileReader reader = (MidiFileReader) providers.get(i);
-            try {
-                format = reader.getMidiFileFormat( stream ); // throws IOException
-                break;
-            } catch (InvalidMidiDataException e) {
-                continue;
-            }
-        }
-
-        if( format==null ) {
-            throw new InvalidMidiDataException("input stream is not a supported file type");
-        } else {
-            return format;
-        }
-    }
+    
 
 
-    /**
-     * Obtains the MIDI file format of the data in the specified URL.  The URL
-     * must point to valid MIDI file data for a file type recognized
-     * by the system.
-     * <p>
-     * This operation can only succeed for files of a type which can be parsed
-     * by an installed file reader.  It may fail with an InvalidMidiDataException
-     * even for valid files if no compatible file reader is installed.  It
-     * will also fail with an InvalidMidiDataException if a compatible file reader
-     * is installed, but encounters errors while determining the file format.
-     *
-     * @param url the URL from which file format information should be
-     * extracted
-     * @return a <code>MidiFileFormat</code> object describing the MIDI file
-     * format
-     * throws InvalidMidiDataException if the URL does not point to valid MIDI
-     * file data recognized by the system
-     * throws IOException if an I/O exception occurs while accessing the URL
-     *
-     * see #getMidiFileFormat(InputStream)
-     * see #getMidiFileFormat(File)
-     */
-    public static MidiFileFormat getMidiFileFormat(URL url)
-        throws InvalidMidiDataException, IOException {
-
-        List providers = getMidiFileReaders();
-        MidiFileFormat format = null;
-
-        for(int i = 0; i < providers.size(); i++) {
-            MidiFileReader reader = (MidiFileReader) providers.get(i);
-            try {
-                format = reader.getMidiFileFormat( url ); // throws IOException
-                break;
-            } catch (InvalidMidiDataException e) {
-                continue;
-            }
-        }
-
-        if( format==null ) {
-            throw new InvalidMidiDataException("url is not a supported file type");
-        } else {
-            return format;
-        }
-    }
+    
 
 
-    /**
-     * Obtains the MIDI file format of the specified <code>File</code>.  The
-     * <code>File</code> must point to valid MIDI file data for a file type
-     * recognized by the system.
-     * <p>
-     * This operation can only succeed for files of a type which can be parsed
-     * by an installed file reader.  It may fail with an InvalidMidiDataException
-     * even for valid files if no compatible file reader is installed.  It
-     * will also fail with an InvalidMidiDataException if a compatible file reader
-     * is installed, but encounters errors while determining the file format.
-     *
-     * @param file the <code>File</code> from which file format information
-     * should be extracted
-     * @return a <code>MidiFileFormat</code> object describing the MIDI file
-     * format
-     * throws InvalidMidiDataException if the <code>File</code> does not point
-     *  to valid MIDI file data recognized by the system
-     * throws IOException if an I/O exception occurs while accessing the file
-     *
-     * see #getMidiFileFormat(InputStream)
-     * see #getMidiFileFormat(URL)
-     */
-    public static MidiFileFormat getMidiFileFormat(File file)
-        throws InvalidMidiDataException, IOException {
-
-        List providers = getMidiFileReaders();
-        MidiFileFormat format = null;
-
-        for(int i = 0; i < providers.size(); i++) {
-            MidiFileReader reader = (MidiFileReader) providers.get(i);
-            try {
-                format = reader.getMidiFileFormat( file ); // throws IOException
-                break;
-            } catch (InvalidMidiDataException e) {
-                continue;
-            }
-        }
-
-        if( format==null ) {
-            throw new InvalidMidiDataException("file is not a supported file type");
-        } else {
-            return format;
-        }
-    }
+    
 
 
     /**
@@ -808,268 +359,28 @@ public class MidiSystem {
     }
 
 
-    /**
-     * Obtains a MIDI sequence from the specified URL.  The URL must
-     * point to valid MIDI file data for a file type recognized
-     * by the system.
-     * <p>
-     * This operation can only succeed for files of a type which can be parsed
-     * by an installed file reader.  It may fail with an InvalidMidiDataException
-     * even for valid files if no compatible file reader is installed.  It
-     * will also fail with an InvalidMidiDataException if a compatible file reader
-     * is installed, but encounters errors while constructing the <code>Sequence</code>
-     * object from the file data.
-     *
-     * @param url the URL from which the <code>Sequence</code> should be
-     * constructed
-     * @return a <code>Sequence</code> object based on the MIDI file data
-     * pointed to by the URL
-     * throws InvalidMidiDataException if the URL does not point to valid MIDI
-     * file data recognized by the system
-     * throws IOException if an I/O exception occurs while accessing the URL
-     */
-    public static Sequence getSequence(URL url)
-        throws InvalidMidiDataException, IOException {
-
-        List providers = getMidiFileReaders();
-        Sequence sequence = null;
-
-        for(int i = 0; i < providers.size(); i++) {
-            MidiFileReader reader = (MidiFileReader) providers.get(i);
-            try {
-                sequence = reader.getSequence( url ); // throws IOException
-                break;
-            } catch (InvalidMidiDataException e) {
-                continue;
-            }
-        }
-
-        if( sequence==null ) {
-            throw new InvalidMidiDataException("could not get sequence from URL");
-        } else {
-            return sequence;
-        }
-    }
+    
 
 
-    /**
-     * Obtains a MIDI sequence from the specified <code>File</code>.
-     * The <code>File</code> must point to valid MIDI file data
-     * for a file type recognized by the system.
-     * <p>
-     * This operation can only succeed for files of a type which can be parsed
-     * by an installed file reader.  It may fail with an InvalidMidiDataException
-     * even for valid files if no compatible file reader is installed.  It
-     * will also fail with an InvalidMidiDataException if a compatible file reader
-     * is installed, but encounters errors while constructing the <code>Sequence</code>
-     * object from the file data.
-     *
-     * @param file the <code>File</code> from which the <code>Sequence</code>
-     * should be constructed
-     * @return a <code>Sequence</code> object based on the MIDI file data
-     * pointed to by the File
-     * throws InvalidMidiDataException if the File does not point to valid MIDI
-     * file data recognized by the system
-     * throws IOException if an I/O exception occurs
-     */
-    public static Sequence getSequence(File file)
-        throws InvalidMidiDataException, IOException {
-
-        List providers = getMidiFileReaders();
-        Sequence sequence = null;
-
-        for(int i = 0; i < providers.size(); i++) {
-            MidiFileReader reader = (MidiFileReader) providers.get(i);
-            try {
-                sequence = reader.getSequence( file ); // throws IOException
-                break;
-            } catch (InvalidMidiDataException e) {
-                continue;
-            }
-        }
-
-        if( sequence==null ) {
-            throw new InvalidMidiDataException("could not get sequence from file");
-        } else {
-            return sequence;
-        }
-    }
+    
 
 
-    /**
-     * Obtains the set of MIDI file types for which file writing support is
-     * provided by the system.
-     * @return array of unique file types.  If no file types are supported,
-     * an array of length 0 is returned.
-     */
-    public static int[] getMidiFileTypes() {
-
-        List providers = getMidiFileWriters();
-        Set allTypes = new HashSet();
-
-        // gather from all the providers
-
-        for (int i = 0; i < providers.size(); i++ ) {
-            MidiFileWriter writer = (MidiFileWriter) providers.get(i);
-            int[] types = writer.getMidiFileTypes();
-            for (int j = 0; j < types.length; j++ ) {
-                allTypes.add(new Integer(types[j]));
-            }
-        }
-        int resultTypes[] = new int[allTypes.size()];
-        int index = 0;
-        Iterator iterator = allTypes.iterator();
-        while (iterator.hasNext()) {
-            Integer integer = (Integer) iterator.next();
-            resultTypes[index++] = integer.intValue();
-        }
-        return resultTypes;
-    }
+    
 
 
-    /**
-     * Indicates whether file writing support for the specified MIDI file type
-     * is provided by the system.
-     * @param fileType the file type for which write capabilities are queried
-     * @return <code>true</code> if the file type is supported,
-     * otherwise <code>false</code>
-     */
-    public static boolean isFileTypeSupported(int fileType) {
-
-        List providers = getMidiFileWriters();
-
-        for (int i = 0; i < providers.size(); i++ ) {
-            MidiFileWriter writer = (MidiFileWriter) providers.get(i);
-            if( writer.isFileTypeSupported(fileType)) {
-                return true;
-            }
-        }
-        return false;
-    }
+    
 
 
-    /**
-     * Obtains the set of MIDI file types that the system can write from the
-     * sequence specified.
-     * @param sequence the sequence for which MIDI file type support
-     * is queried
-     * @return the set of unique supported file types.  If no file types are supported,
-     * returns an array of length 0.
-     */
-    public static int[] getMidiFileTypes(Sequence sequence) {
-
-        List providers = getMidiFileWriters();
-        Set allTypes = new HashSet();
-
-        // gather from all the providers
-
-        for (int i = 0; i < providers.size(); i++ ) {
-            MidiFileWriter writer = (MidiFileWriter) providers.get(i);
-            int[] types = writer.getMidiFileTypes(sequence);
-            for (int j = 0; j < types.length; j++ ) {
-                allTypes.add(new Integer(types[j]));
-            }
-        }
-        int resultTypes[] = new int[allTypes.size()];
-        int index = 0;
-        Iterator iterator = allTypes.iterator();
-        while (iterator.hasNext()) {
-            Integer integer = (Integer) iterator.next();
-            resultTypes[index++] = integer.intValue();
-        }
-        return resultTypes;
-    }
+    
 
 
-    /**
-     * Indicates whether a MIDI file of the file type specified can be written
-     * from the sequence indicated.
-     * @param fileType the file type for which write capabilities
-     * are queried
-     * @param sequence the sequence for which file writing support is queried
-     * @return <code>true</code> if the file type is supported for this
-     * sequence, otherwise <code>false</code>
-     */
-    public static boolean isFileTypeSupported(int fileType, Sequence sequence) {
-
-        List providers = getMidiFileWriters();
-
-        for (int i = 0; i < providers.size(); i++ ) {
-            MidiFileWriter writer = (MidiFileWriter) providers.get(i);
-            if( writer.isFileTypeSupported(fileType,sequence)) {
-                return true;
-            }
-        }
-        return false;
-    }
+    
 
 
-    /**
-     * Writes a stream of bytes representing a file of the MIDI file type
-     * indicated to the output stream provided.
-     * @param in sequence containing MIDI data to be written to the file
-     * @param fileType the file type of the file to be written to the output stream
-     * @param out stream to which the file data should be written
-     * @return the number of bytes written to the output stream
-     * throws IOException if an I/O exception occurs
-     * throws IllegalArgumentException if the file format is not supported by
-     * the system
-     * see #isFileTypeSupported(int, Sequence)
-     * see     #getMidiFileTypes(Sequence)
-     */
-    public static int write(Sequence in, int fileType, OutputStream out) throws IOException {
-
-        List providers = getMidiFileWriters();
-        //$$fb 2002-04-17: Fix for 4635287: Standard MidiFileWriter cannot write empty Sequences
-        int bytesWritten = -2;
-
-        for (int i = 0; i < providers.size(); i++ ) {
-            MidiFileWriter writer = (MidiFileWriter) providers.get(i);
-            if( writer.isFileTypeSupported( fileType, in ) ) {
-
-                bytesWritten = writer.write(in, fileType, out);
-                break;
-            }
-        }
-        if (bytesWritten == -2) {
-            throw new IllegalArgumentException("MIDI file type is not supported");
-        }
-        return bytesWritten;
-    }
+    
 
 
-    /**
-     * Writes a stream of bytes representing a file of the MIDI file type
-     * indicated to the external file provided.
-     * @param in sequence containing MIDI data to be written to the file
-     * @param type the file type of the file to be written to the output stream
-     * @param out external file to which the file data should be written
-     * @return the number of bytes written to the file
-     * throws IOException if an I/O exception occurs
-     * throws IllegalArgumentException if the file type is not supported by
-     * the system
-     * see #isFileTypeSupported(int, Sequence)
-     * see     #getMidiFileTypes(Sequence)
-     */
-    public static int write(Sequence in, int type, File out) throws IOException {
-
-        List providers = getMidiFileWriters();
-        //$$fb 2002-04-17: Fix for 4635287: Standard MidiFileWriter cannot write empty Sequences
-        int bytesWritten = -2;
-
-        for (int i = 0; i < providers.size(); i++ ) {
-            MidiFileWriter writer = (MidiFileWriter) providers.get(i);
-            if( writer.isFileTypeSupported( type, in ) ) {
-
-                bytesWritten = writer.write(in, type, out);
-                break;
-            }
-        }
-        if (bytesWritten == -2) {
-            throw new IllegalArgumentException("MIDI file type is not supported");
-        }
-        return bytesWritten;
-    }
+    
 
 
 
@@ -1082,11 +393,6 @@ public class MidiSystem {
 
     private static List getSoundbankReaders() {
         return getProviders(SoundbankReader.class);
-    }
-
-
-    private static List getMidiFileWriters() {
-        return getProviders(MidiFileWriter.class);
     }
 
 

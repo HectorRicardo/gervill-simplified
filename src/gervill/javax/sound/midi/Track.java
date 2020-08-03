@@ -176,35 +176,7 @@ public class Track {
     }
 
 
-    /**
-     * Removes the specified event from the track.
-     * @param event the event to remove
-     * @return <code>true</code> if the event existed in the track and was removed,
-     * otherwise <code>false</code>
-     */
-    public boolean remove(MidiEvent event) {
-
-        // this implementation allows removing the EOT event.
-        // pretty bad, but would probably be too risky to
-        // change behavior now, in case someone does tricks like:
-        //
-        // while (track.size() > 0) track.remove(track.get(track.size() - 1));
-
-        // also, would it make sense to adjust the EOT's time
-        // to the last event, if the last non-EOT event is removed?
-        // Or: document that the ticks() length will not be reduced
-        // by deleting events (unless the EOT event is removed)
-        synchronized(eventsList) {
-            if (set.remove(event)) {
-                int i = eventsList.indexOf(event);
-                if (i >= 0) {
-                    eventsList.remove(i);
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
+    
 
 
     /**

@@ -25,15 +25,11 @@
 package gervill.com.sun.media.sound;
 
 import java.io.ByteArrayInputStream;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
-
 import gervill.javax.sound.sampled.AudioFormat;
 import gervill.javax.sound.sampled.AudioInputStream;
 import gervill.javax.sound.sampled.AudioSystem;
-import gervill.javax.sound.sampled.UnsupportedAudioFileException;
 
 /**
  * This class is used to create AudioFloatInputStream from AudioInputStream and
@@ -211,23 +207,11 @@ abstract class AudioFloatInputStream {
         }
     }
 
-    public static AudioFloatInputStream getInputStream(URL url)
-            throws UnsupportedAudioFileException, IOException {
-        return new DirectAudioFloatInputStream(AudioSystem
-                .getAudioInputStream(url));
-    }
+    
 
-    public static AudioFloatInputStream getInputStream(File file)
-            throws UnsupportedAudioFileException, IOException {
-        return new DirectAudioFloatInputStream(AudioSystem
-                .getAudioInputStream(file));
-    }
+    
 
-    public static AudioFloatInputStream getInputStream(InputStream stream)
-            throws UnsupportedAudioFileException, IOException {
-        return new DirectAudioFloatInputStream(AudioSystem
-                .getAudioInputStream(stream));
-    }
+    
 
     static AudioFloatInputStream getInputStream(
             AudioInputStream stream) {
@@ -259,13 +243,7 @@ abstract class AudioFloatInputStream {
         return read(b, 0, b.length);
     }
 
-    public final float read() throws IOException {
-        float[] b = new float[1];
-        int ret = read(b, 0, 1);
-        if (ret == -1 || ret == 0)
-            return 0;
-        return b[0];
-    }
+    
 
     public abstract long skip(long len) throws IOException;
 

@@ -34,12 +34,7 @@ import gervill.javax.sound.midi.*;
  */
 final class FastSysexMessage extends SysexMessage {
 
-    FastSysexMessage(byte[] data) throws InvalidMidiDataException {
-        super(data);
-        if (data.length==0 || (((data[0] & 0xFF) != 0xF0) && ((data[0] & 0xFF) != 0xF7))) {
-            super.setMessage(data, data.length); // will throw Exception
-        }
-    }
+    
 
     /**
      * The returned array may be larger than this message is.

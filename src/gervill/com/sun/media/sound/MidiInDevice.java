@@ -152,32 +152,9 @@ final class MidiInDevice extends AbstractMidiDevice implements Runnable {
 
     // CALLBACKS FROM NATIVE
 
-    /**
-     * Callback from native code when a short MIDI event is received from hardware.
-     * @param packedMsg: status | data1 << 8 | data2 << 8
-     * @param timeStamp time-stamp in microseconds
-     */
-    void callbackShortMessage(int packedMsg, long timeStamp) {
-        if (packedMsg == 0 || id == 0) {
-            return;
-        }
+    
 
-        /*if(Printer.verbose) {
-          int status = packedMsg & 0xFF;
-          int data1 = (packedMsg & 0xFF00)>>8;
-          int data2 = (packedMsg & 0xFF0000)>>16;
-          Printer.verbose(">> MidiInDevice callbackShortMessage: status: " + status + " data1: " + data1 + " data2: " + data2 + " timeStamp: " + timeStamp);
-          }*/
-
-        getTransmitterList().sendMessage(packedMsg, timeStamp);
-    }
-
-    void callbackLongMessage(byte[] data, long timeStamp) {
-        if (id == 0 || data == null) {
-            return;
-        }
-        getTransmitterList().sendMessage(data, timeStamp);
-    }
+    
 
     // NATIVE METHODS
 

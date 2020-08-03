@@ -134,20 +134,11 @@ final class ModelByteBufferWavetable implements ModelWavetable {
     private float attenuation = 0;
     private int loopType = LOOP_TYPE_OFF;
 
-    public ModelByteBufferWavetable(ModelByteBuffer buffer) {
-        this.buffer = buffer;
-    }
+    
 
-    ModelByteBufferWavetable(ModelByteBuffer buffer,
-            float pitchcorrection) {
-        this.buffer = buffer;
-        this.pitchcorrection = pitchcorrection;
-    }
+    
 
-    public ModelByteBufferWavetable(ModelByteBuffer buffer, AudioFormat format) {
-        this.format = format;
-        this.buffer = buffer;
-    }
+    
 
     ModelByteBufferWavetable(ModelByteBuffer buffer, AudioFormat format,
             float pitchcorrection) {

@@ -67,10 +67,7 @@ final class ModelSource {
         this.transform = new ModelStandardTransform();
     }
 
-    public ModelSource(ModelIdentifier id, boolean direction) {
-        source = id;
-        this.transform = new ModelStandardTransform(direction);
-    }
+    
 
     ModelSource(ModelIdentifier id, boolean direction, boolean polarity) {
         source = id;

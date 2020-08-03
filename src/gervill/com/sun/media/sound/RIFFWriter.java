@@ -24,11 +24,8 @@
  */
 package gervill.com.sun.media.sound;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.io.RandomAccessFile;
 
 /**
  * Resource Interchange File Format (RIFF) stream encoder.
@@ -54,51 +51,6 @@ final class RIFFWriter extends OutputStream {
         public long length() throws IOException;
 
         public void setLength(long i) throws IOException;
-    }
-
-    private static class RandomAccessFileWriter implements RandomAccessWriter {
-
-        RandomAccessFile raf;
-
-        RandomAccessFileWriter(File file) throws FileNotFoundException {
-            this.raf = new RandomAccessFile(file, "rw");
-        }
-
-        RandomAccessFileWriter(String name) throws FileNotFoundException {
-            this.raf = new RandomAccessFile(name, "rw");
-        }
-
-        public void seek(long chunksizepointer) throws IOException {
-            raf.seek(chunksizepointer);
-        }
-
-        public long getPointer() throws IOException {
-            return raf.getFilePointer();
-        }
-
-        public void close() throws IOException {
-            raf.close();
-        }
-
-        public void write(int b) throws IOException {
-            raf.write(b);
-        }
-
-        public void write(byte[] b, int off, int len) throws IOException {
-            raf.write(b, off, len);
-        }
-
-        public void write(byte[] bytes) throws IOException {
-            raf.write(bytes);
-        }
-
-        public long length() throws IOException {
-            return raf.length();
-        }
-
-        public void setLength(long i) throws IOException {
-            raf.setLength(i);
-        }
     }
 
     private static class RandomAccessByteWriter implements RandomAccessWriter {
@@ -169,13 +121,9 @@ final class RIFFWriter extends OutputStream {
     private boolean open = true;
     private boolean writeoverride = false;
 
-    RIFFWriter(String name, String format) throws IOException {
-        this(new RandomAccessFileWriter(name), format, 0);
-    }
+    
 
-    RIFFWriter(File file, String format) throws IOException {
-        this(new RandomAccessFileWriter(file), format, 0);
-    }
+    
 
     RIFFWriter(OutputStream stream, String format) throws IOException {
         this(new RandomAccessByteWriter(stream), format, 0);
@@ -329,24 +277,14 @@ final class RIFFWriter extends OutputStream {
     }
 
     // Write 32 bit signed integer to stream
-    void writeInt(int b) throws IOException {
+    private void writeInt(int b) throws IOException {
         write((b >>> 0) & 0xFF);
         write((b >>> 8) & 0xFF);
         write((b >>> 16) & 0xFF);
         write((b >>> 24) & 0xFF);
     }
 
-    // Write 64 bit signed integer to stream
-    public void writeLong(long b) throws IOException {
-        write((int) (b >>> 0) & 0xFF);
-        write((int) (b >>> 8) & 0xFF);
-        write((int) (b >>> 16) & 0xFF);
-        write((int) (b >>> 24) & 0xFF);
-        write((int) (b >>> 32) & 0xFF);
-        write((int) (b >>> 40) & 0xFF);
-        write((int) (b >>> 48) & 0xFF);
-        write((int) (b >>> 56) & 0xFF);
-    }
+    
 
     // Write 8 bit unsigned integer to stream
     void writeUnsignedByte(int b) throws IOException {

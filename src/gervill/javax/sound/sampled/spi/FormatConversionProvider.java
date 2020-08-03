@@ -71,73 +71,16 @@ public abstract class FormatConversionProvider {
     public abstract AudioFormat.Encoding[] getTargetEncodings();
 
 
-    /**
-     * Indicates whether the format converter supports conversion from the
-     * specified source format encoding.
-     * @param sourceEncoding the source format encoding for which support is queried
-     * @return <code>true</code> if the encoding is supported, otherwise <code>false</code>
-     */
-    public boolean isSourceEncodingSupported(AudioFormat.Encoding sourceEncoding){
-
-        AudioFormat.Encoding sourceEncodings[] = getSourceEncodings();
-
-        for(int i=0; i<sourceEncodings.length; i++) {
-            if( sourceEncoding.equals( sourceEncodings[i]) ) {
-                return true;
-            }
-        }
-        return false;
-    }
+    
 
 
-    /**
-     * Indicates whether the format converter supports conversion to the
-     * specified target format encoding.
-     * @param targetEncoding the target format encoding for which support is queried
-     * @return <code>true</code> if the encoding is supported, otherwise <code>false</code>
-     */
-    public boolean isTargetEncodingSupported(AudioFormat.Encoding targetEncoding){
-
-        AudioFormat.Encoding targetEncodings[] = getTargetEncodings();
-
-        for(int i=0; i<targetEncodings.length; i++) {
-            if( targetEncoding.equals( targetEncodings[i]) ) {
-                return true;
-            }
-        }
-        return false;
-    }
+    
 
 
-    /**
-     * Obtains the set of target format encodings supported by the format converter
-     * given a particular source format.
-     * If no target format encodings are supported for this source format,
-     * an array of length 0 is returned.
-     * @param sourceFormat format of the incoming data
-     * @return array of supported target format encodings.
-     */
-    public abstract AudioFormat.Encoding[] getTargetEncodings(AudioFormat sourceFormat);
+    
 
 
-    /**
-     * Indicates whether the format converter supports conversion to a particular encoding
-     * from a particular format.
-     * @param targetEncoding desired encoding of the outgoing data
-     * @param sourceFormat format of the incoming data
-     * @return <code>true</code> if the conversion is supported, otherwise <code>false</code>
-     */
-    public boolean isConversionSupported(AudioFormat.Encoding targetEncoding, AudioFormat sourceFormat){
-
-        AudioFormat.Encoding targetEncodings[] = getTargetEncodings(sourceFormat);
-
-        for(int i=0; i<targetEncodings.length; i++) {
-            if( targetEncoding.equals( targetEncodings[i]) ) {
-                return true;
-            }
-        }
-        return false;
-    }
+    
 
 
     /**
@@ -172,16 +115,7 @@ public abstract class FormatConversionProvider {
     }
 
 
-    /**
-     * Obtains an audio input stream with the specified encoding from the given audio
-     * input stream.
-     * @param targetEncoding desired encoding of the stream after processing
-     * @param sourceStream stream from which data to be processed should be read
-     * @return stream from which processed data with the specified target encoding may be read
-     * throws IllegalArgumentException if the format combination supplied is
-     * not supported.
-     */
-    public abstract AudioInputStream getAudioInputStream(AudioFormat.Encoding targetEncoding, AudioInputStream sourceStream);
+    
 
 
     /**

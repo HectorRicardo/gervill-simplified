@@ -25,11 +25,8 @@
 
 package gervill.javax.sound.sampled.spi;
 
-import java.io.File;
 import java.io.InputStream;
 import java.io.IOException;
-import java.net.URL;
-
 import gervill.javax.sound.sampled.AudioFileFormat;
 import gervill.javax.sound.sampled.AudioInputStream;
 import gervill.javax.sound.sampled.UnsupportedAudioFileException;
@@ -64,29 +61,9 @@ public abstract class AudioFileReader {
      */
     public abstract AudioFileFormat getAudioFileFormat(InputStream stream) throws UnsupportedAudioFileException, IOException;
 
-    /**
-     * Obtains the audio file format of the URL provided.  The URL must
-     * point to valid audio file data.
-     * @param url the URL from which file format information should be
-     * extracted
-     * @return an <code>AudioFileFormat</code> object describing the audio file format
-     * throws UnsupportedAudioFileException if the URL does not point to valid audio
-     * file data recognized by the system
-     * throws IOException if an I/O exception occurs
-     */
-    public abstract AudioFileFormat getAudioFileFormat(URL url) throws UnsupportedAudioFileException, IOException;
+    
 
-    /**
-     * Obtains the audio file format of the <code>File</code> provided.  The <code>File</code> must
-     * point to valid audio file data.
-     * @param file the <code>File</code> from which file format information should be
-     * extracted
-     * @return an <code>AudioFileFormat</code> object describing the audio file format
-     * throws UnsupportedAudioFileException if the <code>File</code> does not point to valid audio
-     * file data recognized by the system
-     * throws IOException if an I/O exception occurs
-     */
-    public abstract AudioFileFormat getAudioFileFormat(File file) throws UnsupportedAudioFileException, IOException;
+    
 
     /**
      * Obtains an audio input stream from the input stream provided.  The stream must
@@ -109,29 +86,7 @@ public abstract class AudioFileReader {
      */
     public abstract AudioInputStream getAudioInputStream(InputStream stream) throws UnsupportedAudioFileException, IOException;
 
-    /**
-     * Obtains an audio input stream from the URL provided.  The URL must
-     * point to valid audio file data.
-     * @param url the URL for which the <code>AudioInputStream</code> should be
-     * constructed
-     * @return an <code>AudioInputStream</code> object based on the audio file data pointed
-     * to by the URL
-     * throws UnsupportedAudioFileException if the URL does not point to valid audio
-     * file data recognized by the system
-     * throws IOException if an I/O exception occurs
-     */
-    public abstract AudioInputStream getAudioInputStream(URL url) throws UnsupportedAudioFileException, IOException;
+    
 
-    /**
-     * Obtains an audio input stream from the <code>File</code> provided.  The <code>File</code> must
-     * point to valid audio file data.
-     * @param file the <code>File</code> for which the <code>AudioInputStream</code> should be
-     * constructed
-     * @return an <code>AudioInputStream</code> object based on the audio file data pointed
-     * to by the File
-     * throws UnsupportedAudioFileException if the <code>File</code> does not point to valid audio
-     * file data recognized by the system
-     * throws IOException if an I/O exception occurs
-     */
-    public abstract AudioInputStream getAudioInputStream(File file) throws UnsupportedAudioFileException, IOException;
+    
 }

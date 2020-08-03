@@ -64,12 +64,7 @@ abstract class AbstractDataLine extends AbstractLine implements DataLine {
     private boolean active = false;
 
 
-    /**
-     * Constructs a new AbstractLine.
-     */
-    protected AbstractDataLine(DataLine.Info info, AbstractMixer mixer, Control[] controls) {
-        this(info, mixer, controls, null, AudioSystem.NOT_SPECIFIED);
-    }
+    
 
     /**
      * Constructs a new AbstractLine.
@@ -381,18 +376,7 @@ abstract class AbstractDataLine extends AbstractLine implements DataLine {
     }
 
 
-    /**
-     * This method generates a STOP event and sets the started state to false.
-     * It is here for historic reasons when an EOM event existed.
-     */
-    final void setEOM() {
-
-        if (Printer.trace) Printer.trace("> AbstractDataLine: setEOM()");
-        //$$fb 2002-04-21: sometimes, 2 STOP events are generated.
-        // better use setStarted() to send STOP event.
-        setStarted(false);
-        if (Printer.trace) Printer.trace("< AbstractDataLine: setEOM() completed");
-    }
+    
 
 
 

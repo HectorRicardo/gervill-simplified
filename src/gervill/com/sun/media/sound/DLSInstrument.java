@@ -47,7 +47,7 @@ final class DLSInstrument extends ModelInstrument {
     boolean druminstrument = false;
     byte[] guid = null;
     DLSInfo info = new DLSInfo();
-    List<DLSRegion> regions = new ArrayList<DLSRegion>();
+    private List<DLSRegion> regions = new ArrayList<DLSRegion>();
     private List<DLSModulator> modulators = new ArrayList<DLSModulator>();
 
     public DLSInstrument() {

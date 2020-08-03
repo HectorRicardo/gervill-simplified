@@ -88,9 +88,7 @@ final class ModelIdentifier {
     private String variable = null;
     private int instance = 0;
 
-    public ModelIdentifier(String object) {
-        this.object = object;
-    }
+    
 
     ModelIdentifier(String object, int instance) {
         this.object = object;

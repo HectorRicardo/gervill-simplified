@@ -25,10 +25,6 @@
 
 package gervill.javax.sound.sampled;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
-
 
 /**
  * An instance of the <code>AudioFileFormat</code> class describes
@@ -126,10 +122,6 @@ public class AudioFileFormat {
     private int frameLength;
 
 
-    /** The set of properties */
-    private HashMap<String, Object> properties;
-
-
     /**
      * Constructs an audio file format object.
      * This protected constructor is intended for use by providers of file-reading
@@ -142,51 +134,18 @@ public class AudioFileFormat {
      *
      * see #getType
      */
-    protected AudioFileFormat(Type type, int byteLength, AudioFormat format, int frameLength) {
+    private AudioFileFormat(Type type, int byteLength, AudioFormat format, int frameLength) {
 
         this.type = type;
         this.byteLength = byteLength;
         this.format = format;
         this.frameLength = frameLength;
-        this.properties = null;
     }
 
 
-    /**
-     * Constructs an audio file format object.
-     * This public constructor may be used by applications to describe the
-     * properties of a requested audio file.
-     * @param type the type of the audio file
-     * @param format the format of the audio data contained in the file
-     * @param frameLength the audio data length in sample frames, or <code>AudioSystem.NOT_SPECIFIED</code>
-     */
-    public AudioFileFormat(Type type, AudioFormat format, int frameLength) {
+    
 
-
-        this(type,AudioSystem.NOT_SPECIFIED,format,frameLength);
-    }
-
-    /**
-     * Construct an audio file format object with a set of
-     * defined properties.
-     * This public constructor may be used by applications to describe the
-     * properties of a requested audio file. The properties map
-     * will be copied to prevent any changes to it.
-     *
-     * @param type        the type of the audio file
-     * @param format      the format of the audio data contained in the file
-     * @param frameLength the audio data length in sample frames, or
-     *                    <code>AudioSystem.NOT_SPECIFIED</code>
-     * @param properties  a <code>Map&lt;String,Object&gt;</code> object
-     *        with properties
-     *
-     * @since 1.5
-     */
-    public AudioFileFormat(Type type, AudioFormat format,
-                           int frameLength, Map<String, Object> properties) {
-        this(type,AudioSystem.NOT_SPECIFIED,format,frameLength);
-        this.properties = new HashMap<String, Object>(properties);
-    }
+    
 
 
     /**
@@ -229,51 +188,10 @@ public class AudioFileFormat {
         return frameLength;
     }
 
-    /**
-     * Obtain an unmodifiable map of properties.
-     * The concept of properties is further explained in
-     * the  AudioFileFormat class description.
-     *
-     * @return a <code>Map&lt;String,Object&gt;</code> object containing
-     *         all properties. If no properties are recognized, an empty map is
-     *         returned.
-     *
-     * see #getProperty(String)
-     * @since 1.5
-     */
-    public Map<String,Object> properties() {
-        Map<String,Object> ret;
-        if (properties == null) {
-            ret = new HashMap<String,Object>(0);
-        } else {
-            ret = (Map<String,Object>) (properties.clone());
-        }
-        return (Map<String,Object>) Collections.unmodifiableMap(ret);
-    }
+    
 
 
-    /**
-     * Obtain the property value specified by the key.
-     * The concept of properties is further explained in
-     * the  AudioFileFormat class description.
-     *
-     * <p>If the specified property is not defined for a
-     * particular file format, this method returns
-     * <code>null</code>.
-     *
-     * @param key the key of the desired property
-     * @return the value of the property with the specified key,
-     *         or <code>null</code> if the property does not exist.
-     *
-     * see #properties()
-     * @since 1.5
-     */
-    public Object getProperty(String key) {
-        if (properties == null) {
-            return null;
-        }
-        return properties.get(key);
-    }
+    
 
 
     /**
@@ -314,30 +232,15 @@ public class AudioFileFormat {
 
         // FILE FORMAT TYPE DEFINES
 
-        /**
-         * Specifies a WAVE file.
-         */
-        public static final Type WAVE = new Type("WAVE", "wav");
+        
 
-        /**
-         * Specifies an AU file.
-         */
-        public static final Type AU = new Type("AU", "au");
+        
 
-        /**
-         * Specifies an AIFF file.
-         */
-        public static final Type AIFF = new Type("AIFF", "aif");
+        
 
-        /**
-         * Specifies an AIFF-C file.
-         */
-        public static final Type AIFC = new Type("AIFF-C", "aifc");
+        
 
-        /**
-         * Specifies a SND file.
-         */
-        public static final Type SND = new Type("SND", "snd");
+        
 
 
         // INSTANCE VARIABLES
@@ -361,7 +264,7 @@ public class AudioFileFormat {
          * @param extension the string that commonly marks the file type
          * without leading dot.
          */
-        public Type(String name, String extension) {
+        private Type(String name, String extension) {
 
             this.name = name;
             this.extension = extension;

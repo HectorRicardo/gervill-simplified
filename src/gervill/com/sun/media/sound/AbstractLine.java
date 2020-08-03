@@ -210,12 +210,7 @@ abstract class AbstractLine implements Line {
     }
 
 
-    // $$kk: 06.03.99: returns the mixer used in construction.
-    // this is a hold-over from when there was a public method like
-    // this on line and should be fixed!!
-    final AbstractMixer getMixer() {
-        return mixer;
-    }
+    
 
     final EventDispatcher getEventDispatcher() {
         // create and start the global event thread

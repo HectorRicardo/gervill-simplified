@@ -89,9 +89,7 @@ final class DLSSample extends SoundbankResource {
         this.data = new ModelByteBuffer(data);
     }
 
-    public void setData(byte[] data, int offset, int length) {
-        this.data = new ModelByteBuffer(data, offset, length);
-    }
+    
 
     public String getName() {
         return info.name;

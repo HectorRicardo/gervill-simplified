@@ -2613,18 +2613,7 @@ final class EmergencySoundbank {
             data[i] *= gain;
     }
 
-    static public void normalize(float[] data, double target) {
-        double maxvalue = 0.5;
-        for (int i = 0; i < data.length; i++) {
-            if (data[i * 2] > maxvalue)
-                maxvalue = data[i * 2];
-            if (-data[i * 2] > maxvalue)
-                maxvalue = -data[i * 2];
-        }
-        double gain = target / maxvalue;
-        for (int i = 0; i < data.length; i++)
-            data[i * 2] *= gain;
-    }
+    
 
     static private double[] realPart(double[] in) {
         double[] out = new double[in.length / 2];
@@ -2634,13 +2623,7 @@ final class EmergencySoundbank {
         return out;
     }
 
-    static public double[] imgPart(double[] in) {
-        double[] out = new double[in.length / 2];
-        for (int i = 0; i < out.length; i++) {
-            out[i] = in[i * 2];
-        }
-        return out;
-    }
+    
 
     static private float[] toFloat(double[] in) {
         float[] out = new float[in.length];
@@ -2667,18 +2650,7 @@ final class EmergencySoundbank {
             data[i] *= i / dsamples;
     }
 
-    static public double[] loopExtend(double[] data, int newsize) {
-        double[] outdata = new double[newsize];
-        int p_len = data.length;
-        int p_ps = 0;
-        for (int i = 0; i < outdata.length; i++) {
-            outdata[i] = data[p_ps];
-            p_ps++;
-            if (p_ps == p_len)
-                p_ps = 0;
-        }
-        return outdata;
-    }
+    
 
     static private float[] loopExtend(float[] data, int newsize) {
         float[] outdata = new float[newsize];

@@ -1044,15 +1044,7 @@ final class SoftChannel implements MidiChannel, ModelDirectedPlayer {
 
     }
 
-    public int getControlPerNote(int noteNumber, int controller) {
-        if (keybasedcontroller_active == null)
-            return -1;
-        if (keybasedcontroller_active[noteNumber] == null)
-            return -1;
-        if (!keybasedcontroller_active[noteNumber][controller])
-            return -1;
-        return (int)(keybasedcontroller_value[noteNumber][controller] * 128);
-    }
+    
 
     public void controlChange(int controller, int value) {
         controller = restrict7Bit(controller);
@@ -1248,9 +1240,7 @@ final class SoftChannel implements MidiChannel, ModelDirectedPlayer {
         }
     }
 
-    public void tuningChange(int program) {
-        tuningChange(0, program);
-    }
+    
 
     private void tuningChange(int bank, int program) {
         synchronized (control_mutex) {

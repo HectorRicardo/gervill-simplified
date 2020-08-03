@@ -37,9 +37,7 @@ final class ModelPatch extends Patch {
 
     private boolean percussion = false;
 
-    public ModelPatch(int bank, int program) {
-        super(bank, program);
-    }
+    
 
     ModelPatch(int bank, int program, boolean percussion) {
         super(bank, program);

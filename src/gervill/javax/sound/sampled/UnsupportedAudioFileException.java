@@ -59,7 +59,7 @@ public class UnsupportedAudioFileException extends Exception {
      *
      * @param message a string containing the error detail message
      */
-    public UnsupportedAudioFileException(String message) {
+    UnsupportedAudioFileException(String message) {
 
         super(message);
     }

@@ -38,7 +38,6 @@ final class Printer {
     static final boolean debug = false;
     static final boolean trace = false;
     static final boolean verbose = false;
-    private static final boolean release = false;
 
     private static final boolean SHOW_THREADID = false;
     private static final boolean SHOW_TIMESTAMP = false;
@@ -98,11 +97,7 @@ final class Printer {
             println(str);
     }
 
-    public static void release(String str) {
-
-        if (release)
-            println(str);
-    }
+    
 
     private static long startTime = 0;
 
@@ -120,8 +115,6 @@ final class Printer {
         System.out.println(prepend + s);
     }
 
-    public static void println() {
-        System.out.println();
-    }
+    
 
 }

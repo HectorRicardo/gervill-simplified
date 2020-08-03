@@ -25,7 +25,6 @@
 package gervill.com.sun.media.sound;
 
 import java.io.ByteArrayInputStream;
-import java.io.DataInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -170,17 +169,9 @@ final class ModelByteBuffer {
         this.len = buffer.length;
     }
 
-    ModelByteBuffer(byte[] buffer, int offset, int len) {
-        this.buffer = buffer;
-        this.offset = offset;
-        this.len = len;
-    }
+    
 
-    public ModelByteBuffer(File file) {
-        this.file = file;
-        this.fileoffset = 0;
-        this.len = file.length();
-    }
+    
 
     ModelByteBuffer(File file, long offset, long len) {
         this.file = file;
@@ -212,9 +203,7 @@ final class ModelByteBuffer {
                 (int)arrayOffset(), (int)capacity());
     }
 
-    public ModelByteBuffer subbuffer(long beginIndex) {
-        return subbuffer(beginIndex, capacity());
-    }
+    
 
     ModelByteBuffer subbuffer(long beginIndex, long endIndex) {
         return subbuffer(beginIndex, endIndex, false);
@@ -295,35 +284,7 @@ final class ModelByteBuffer {
         }
     }
 
-    public void load() throws IOException {
-        if (root != this) {
-            root.load();
-            return;
-        }
-        if (buffer != null)
-            return;
-        if (file == null) {
-            throw new IllegalStateException(
-                    "No file associated with this ByteBuffer!");
-        }
+    
 
-        DataInputStream is = new DataInputStream(getInputStream());
-        buffer = new byte[(int) capacity()];
-        offset = 0;
-        is.readFully(buffer);
-        is.close();
-
-    }
-
-    public void unload() {
-        if (root != this) {
-            root.unload();
-            return;
-        }
-        if (file == null) {
-            throw new IllegalStateException(
-                    "No file associated with this ByteBuffer!");
-        }
-        root.buffer = null;
-    }
+    
 }

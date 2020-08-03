@@ -39,30 +39,7 @@ import gervill.javax.sound.sampled.Mixer;
 public abstract class MixerProvider {
 
 
-    /**
-     * Indicates whether the mixer provider supports the mixer represented by
-     * the specified mixer info object.
-     * <p>
-     * The full set of mixer info objects that represent the mixers supported
-     * by this {@code MixerProvider} may be obtained
-     * through the {@code getMixerInfo} method.
-     *
-     * @param info an info object that describes the mixer for which support is queried
-     * @return {@code true} if the specified mixer is supported,
-     *     otherwise {@code false}
-     * see #getMixerInfo()
-     */
-    public boolean isMixerSupported(Mixer.Info info) {
-
-        Mixer.Info infos[] = getMixerInfo();
-
-        for(int i=0; i<infos.length; i++){
-            if( info.equals( infos[i] ) ) {
-                return true;
-            }
-        }
-        return false;
-    }
+    
 
 
     /**

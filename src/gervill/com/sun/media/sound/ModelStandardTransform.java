@@ -57,9 +57,7 @@ final class ModelStandardTransform implements ModelTransform {
     public ModelStandardTransform() {
     }
 
-    ModelStandardTransform(boolean direction) {
-        this.direction = direction;
-    }
+    
 
     ModelStandardTransform(boolean direction, boolean polarity) {
         this.direction = direction;

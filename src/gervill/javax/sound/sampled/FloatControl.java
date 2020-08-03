@@ -317,35 +317,7 @@ public abstract class FloatControl extends Control {
     }
 
 
-    /**
-     * Changes the control value from the initial value to the final
-     * value linearly over the specified time period, specified in microseconds.
-     * This method returns without blocking; it does not wait for the shift
-     * to complete.  An implementation should complete the operation within the time
-     * specified.  The default implementation simply changes the value
-     * to the final value immediately.
-     *
-     * @param from initial value at the beginning of the shift
-     * @param to final value after the shift
-     * @param microseconds maximum duration of the shift in microseconds
-     *
-     * throws IllegalArgumentException if either {@code from} or {@code to}
-     *     value does not fall within the allowable range
-     *
-     * see #getUpdatePeriod
-     */
-    public void shift(float from, float to, int microseconds) {
-        // test "from" value, "to" value will be tested by setValue()
-        if (from < minimum) {
-            throw new IllegalArgumentException("Requested value " + from
-                    + " smaller than allowable minimum value " + minimum + ".");
-        }
-        if (from > maximum) {
-            throw new IllegalArgumentException("Requested value " + from
-                    + " exceeds allowable maximum value " + maximum + ".");
-        }
-        setValue(to);
-    }
+    
 
 
     // ABSTRACT METHOD IMPLEMENTATIONS: CONTROL
@@ -418,21 +390,9 @@ public abstract class FloatControl extends Control {
          */
         public static final Type MASTER_GAIN            = new Type("Master Gain");
 
-        /**
-         * Represents a control for the auxiliary send gain on a line.
-         *
-         * see #MASTER_GAIN
-         * see #AUX_RETURN
-         */
-        public static final Type AUX_SEND                       = new Type("AUX Send");
+        
 
-        /**
-         * Represents a control for the auxiliary return gain on a line.
-         *
-         * see #MASTER_GAIN
-         * see #AUX_SEND
-         */
-        public static final Type AUX_RETURN                     = new Type("AUX Return");
+        
 
         /**
          * Represents a control for the pre-reverb gain on a line.
@@ -445,15 +405,7 @@ public abstract class FloatControl extends Control {
          */
         public static final Type REVERB_SEND            = new Type("Reverb Send");
 
-        /**
-         * Represents a control for the post-reverb gain on a line.
-         * This control may be used to control the relative amplitude
-         * of the signal returned from an internal reverberation unit.
-         *
-         * see #MASTER_GAIN
-         * see #REVERB_SEND
-         */
-        public static final Type REVERB_RETURN          = new Type("Reverb Return");
+        
 
 
         // VOLUME
@@ -495,23 +447,7 @@ public abstract class FloatControl extends Control {
 
         // SAMPLE RATE
 
-        /**
-         * Represents a control that changes the sample rate of audio playback.  The net effect
-         * of changing the sample rate depends on the relationship between
-         * the media's natural rate and the rate that is set via this control.
-         * The natural rate is the sample rate that is specified in the data line's
-         * <code>AudioFormat</code> object.  For example, if the natural rate
-         * of the media is 11025 samples per second and the sample rate is set
-         * to 22050 samples per second, the media will play back at twice the
-         * normal speed.
-         * <p>
-         * Changing the sample rate with this control does not affect the data line's
-         * audio format.  Also note that whenever you change a sound's sample rate, a
-         * change in the sound's pitch results.  For example, doubling the sample
-         * rate has the effect of doubling the frequencies in the sound's spectrum,
-         * which raises the pitch by an octave.
-         */
-        public static final Type SAMPLE_RATE            = new Type("Sample Rate");
+        
 
 
         // CONSTRUCTOR

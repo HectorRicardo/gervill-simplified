@@ -110,13 +110,7 @@ final class Platform {
     }
 
 
-    /**
-     * Determine whether the system takes signed 8-bit data.
-     */
-    static boolean isSigned8() {
-
-        return signed8;
-    }
+    
 
     // PRIVATE METHODS
 

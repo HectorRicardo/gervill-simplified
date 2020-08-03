@@ -828,33 +828,10 @@ public interface Sequencer extends MidiDevice {
         public static final SyncMode INTERNAL_CLOCK             = new SyncMode("Internal Clock");
 
 
-        /**
-         * A master or slave synchronization mode that specifies the
-         * use of MIDI clock
-         * messages.  If this mode is used as the master sync mode,
-         * the sequencer gets its timing information from system real-time
-         * MIDI clock messages.  This mode only applies as the master sync
-         * mode for sequencers that are also MIDI receivers.  If this is the
-         * slave sync mode, the sequencer sends system real-time MIDI clock
-         * messages to its receiver.  MIDI clock messages are sent at a rate
-         * of 24 per quarter note.
-         */
-        public static final SyncMode MIDI_SYNC                  = new SyncMode("MIDI Sync");
+        
 
 
-        /**
-         * A master or slave synchronization mode that specifies the
-         * use of MIDI Time Code.
-         * If this mode is used as the master sync mode,
-         * the sequencer gets its timing information from MIDI Time Code
-         * messages.  This mode only applies as the master sync
-         * mode to sequencers that are also MIDI receivers.  If this
-         * mode is used as the
-         * slave sync mode, the sequencer sends MIDI Time Code
-         * messages to its receiver.  (See the MIDI 1.0 Detailed
-         * Specification for a description of MIDI Time Code.)
-         */
-        public static final SyncMode MIDI_TIME_CODE             = new SyncMode("MIDI Time Code");
+        
 
 
         /**

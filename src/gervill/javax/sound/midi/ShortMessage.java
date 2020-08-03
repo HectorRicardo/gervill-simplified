@@ -60,29 +60,13 @@ public class ShortMessage extends MidiMessage {
 
     // System common messages
 
-    /**
-     * Status byte for MIDI Time Code Quarter Frame message (0xF1, or 241).
-     * see MidiMessage#getStatus
-     */
-    public static final int MIDI_TIME_CODE                              = 0xF1; // 241
+    
 
-    /**
-     * Status byte for Song Position Pointer message (0xF2, or 242).
-     * see MidiMessage#getStatus
-     */
-    public static final int SONG_POSITION_POINTER               = 0xF2; // 242
+    
 
-    /**
-     * Status byte for MIDI Song Select message (0xF3, or 243).
-     * see MidiMessage#getStatus
-     */
-    public static final int SONG_SELECT                                 = 0xF3; // 243
+    
 
-    /**
-     * Status byte for Tune Request message (0xF6, or 246).
-     * see MidiMessage#getStatus
-     */
-    public static final int TUNE_REQUEST                                = 0xF6; // 246
+    
 
     /**
      * Status byte for End of System Exclusive message (0xF7, or 247).
@@ -93,29 +77,13 @@ public class ShortMessage extends MidiMessage {
 
     // System real-time messages
 
-    /**
-     * Status byte for Timing Clock message (0xF8, or 248).
-     * see MidiMessage#getStatus
-     */
-    public static final int TIMING_CLOCK                                = 0xF8; // 248
+    
 
-    /**
-     * Status byte for Start message (0xFA, or 250).
-     * see MidiMessage#getStatus
-     */
-    public static final int START                                               = 0xFA; // 250
+    
 
-    /**
-     * Status byte for Continue message (0xFB, or 251).
-     * see MidiMessage#getStatus
-     */
-    public static final int CONTINUE                                    = 0xFB; // 251
+    
 
-    /**
-     * Status byte for Stop message (0xFC, or 252).
-     * see MidiMessage#getStatus
-     */
-    public static final int STOP                                                = 0xFC; //252
+    
 
     /**
      * Status byte for Active Sensing message (0xFE, or 254).
@@ -123,11 +91,7 @@ public class ShortMessage extends MidiMessage {
      */
     public static final int ACTIVE_SENSING                              = 0xFE; // 254
 
-    /**
-     * Status byte for System Reset message (0xFF, or 255).
-     * see MidiMessage#getStatus
-     */
-    public static final int SYSTEM_RESET                                = 0xFF; // 255
+    
 
 
     // Channel voice message upper nibble defines
@@ -187,82 +151,11 @@ public class ShortMessage extends MidiMessage {
         length = 3;
     }
 
-    /**
-     * Constructs a new {@code ShortMessage} which represents a MIDI
-     * message that takes no data bytes.
-     * The contents of the message can be changed by using one of
-     * the {@code setMessage} methods.
-     *
-     * @param status the MIDI status byte
-     * throws InvalidMidiDataException if {@code status} does not specify
-     *     a valid MIDI status byte for a message that requires no data bytes
-     * see #setMessage(int)
-     * see #setMessage(int, int, int)
-     * see #setMessage(int, int, int, int)
-     * see #getStatus()
-     * @since 1.7
-     */
-    public ShortMessage(int status) throws InvalidMidiDataException {
-        super(null);
-        setMessage(status); // can throw InvalidMidiDataException
-    }
+    
 
-    /**
-     * Constructs a new {@code ShortMessage} which represents a MIDI message
-     * that takes up to two data bytes. If the message only takes one data byte,
-     * the second data byte is ignored. If the message does not take
-     * any data bytes, both data bytes are ignored.
-     * The contents of the message can be changed by using one of
-     * the {@code setMessage} methods.
-     *
-     * @param status   the MIDI status byte
-     * @param data1    the first data byte
-     * @param data2    the second data byte
-     * throws InvalidMidiDataException if the status byte or all data bytes
-     *     belonging to the message do not specify a valid MIDI message
-     * see #setMessage(int)
-     * see #setMessage(int, int, int)
-     * see #setMessage(int, int, int, int)
-     * see #getStatus()
-     * see #getData1()
-     * see #getData2()
-     * @since 1.7
-     */
-    public ShortMessage(int status, int data1, int data2)
-            throws InvalidMidiDataException {
-        super(null);
-        setMessage(status, data1, data2); // can throw InvalidMidiDataException
-    }
+    
 
-    /**
-     * Constructs a new {@code ShortMessage} which represents a channel
-     * MIDI message that takes up to two data bytes. If the message only takes
-     * one data byte, the second data byte is ignored. If the message does not
-     * take any data bytes, both data bytes are ignored.
-     * The contents of the message can be changed by using one of
-     * the {@code setMessage} methods.
-     *
-     * @param command  the MIDI command represented by this message
-     * @param channel  the channel associated with the message
-     * @param data1    the first data byte
-     * @param data2    the second data byte
-     * throws InvalidMidiDataException if the command value, channel value
-     *     or all data bytes belonging to the message do not specify
-     *     a valid MIDI message
-     * see #setMessage(int)
-     * see #setMessage(int, int, int)
-     * see #setMessage(int, int, int, int)
-     * see #getCommand()
-     * see #getChannel()
-     * see #getData1()
-     * see #getData2()
-     * @since 1.7
-     */
-    public ShortMessage(int command, int channel, int data1, int data2)
-            throws InvalidMidiDataException {
-        super(null);
-        setMessage(command, channel, data1, data2);
-    }
+    
 
 
     /**

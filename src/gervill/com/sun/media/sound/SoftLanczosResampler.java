@@ -45,10 +45,7 @@ final class SoftLanczosResampler extends SoftAbstractResampler {
         }
     }
 
-    // Normalized sinc function
-    public static double sinc(double x) {
-        return (x == 0.0) ? 1.0 : Math.sin(Math.PI * x) / (Math.PI * x);
-    }
+    
 
     // Generate sinc table
     private static float[] sincTable(int size, float offset) {

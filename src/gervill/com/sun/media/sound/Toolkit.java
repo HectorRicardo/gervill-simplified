@@ -26,8 +26,6 @@
 package gervill.com.sun.media.sound;
 
 import gervill.javax.sound.sampled.AudioFormat;
-import gervill.javax.sound.sampled.AudioInputStream;
-import gervill.javax.sound.sampled.AudioSystem;
 
 /**
  * Common conversions etc.
